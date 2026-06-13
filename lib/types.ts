@@ -42,10 +42,20 @@ export interface Goal {
   type: string | null;
 }
 
+export interface Card {
+  minute: number | null;
+  injuryTime: number | null;
+  side: "home" | "away";
+  player: string;
+  /** YELLOW | RED */
+  type: "YELLOW" | "RED";
+}
+
 export interface MatchDetail {
   id: number;
-  source: "football-data.org" | "sample";
+  source: "football-data.org" | "sample" | "curated";
   goals: Goal[];
+  cards: Card[];
 }
 
 export interface FixturesPayload {

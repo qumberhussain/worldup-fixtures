@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
-import { SAMPLE_GOALS } from "@/lib/sample";
-import type { Goal, MatchDetail } from "@/lib/types";
+import { SAMPLE_GOALS, SAMPLE_MATCHES } from "@/lib/sample";
+import { getMatchEvents } from "@/lib/events";
+import type { Card, Goal, MatchDetail, Team } from "@/lib/types";
 
 export const dynamic = "force-dynamic";
 
@@ -24,9 +25,14 @@ export async function GET(
   const matchId = Number(id);
   const apiKey = process.env.FOOTBALL_DATA_API_KEY;
 
-  // No key -> serve sample goals (if we have any for this match).
+  // No key -> resolve teams from sample data, prefer curated events.
   if (!apiKey) {
-    return json({ id: matchId, source: "sample", goals: SAMPLE_GOALS[matchId] ?? [] });
+    const m = SAMPLE_MATCHES.find((x) => x.id === matchId);
+    const curated = m ? getMatchEvents(m.homeTeam, m.awayTeam) : null;
+    if (curated && (curated.goals.length || curated.cards.length)) {
+      return json({ id: matchId, source: "curated", ...curated });
+    }
+    return json({ id: matchId, source: "sample", goals: SAMPLE_GOALS[matchId] ?? [], cards: [] });
   }
 
   try {
@@ -40,9 +46,19 @@ export async function GET(
     }
 
     const data = await res.json();
+    const home = toTeam(data.homeTeam);
+    const away = toTeam(data.awayTeam);
+
+    // Prefer hand-curated events (goal scorers + cards) when we have them,
+    // since the free tier returns no match events.
+    const curated = getMatchEvents(home, away);
+    if (curated && (curated.goals.length || curated.cards.length)) {
+      return json({ id: matchId, source: "curated", ...curated });
+    }
+
+    // Otherwise fall back to whatever the API provides (goals on paid tiers).
     const homeId: number | undefined = data.homeTeam?.id;
     const rawGoals: RawGoal[] = Array.isArray(data.goals) ? data.goals : [];
-
     const goals: Goal[] = rawGoals.map((g) => ({
       minute: g.minute ?? null,
       injuryTime: g.injuryTime ?? null,
@@ -52,13 +68,17 @@ export async function GET(
       type: g.type ?? null,
     }));
 
-    return json({ id: matchId, source: "football-data.org", goals });
+    return json({ id: matchId, source: "football-data.org", goals, cards: [] });
   } catch (err) {
     return json(
-      { id: matchId, source: "sample", goals: SAMPLE_GOALS[matchId] ?? [] },
+      { id: matchId, source: "sample", goals: SAMPLE_GOALS[matchId] ?? [], cards: [] },
       { error: err instanceof Error ? err.message : "unknown error" }
     );
   }
+}
+
+function toTeam(t: { name?: string; tla?: string; crest?: string } | undefined): Team {
+  return { name: t?.name || "TBD", tla: t?.tla || null, crest: t?.crest || "" };
 }
 
 function json(payload: MatchDetail, extra?: Record<string, unknown>) {

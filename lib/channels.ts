@@ -109,7 +109,7 @@ const NAME_TO_TLA: Record<string, string> = {
 };
 
 /** Resolve a team to its FIFA code, preferring the name (matches our keys). */
-function teamCode(team?: Match["homeTeam"]): string | null {
+export function teamCode(team?: Match["homeTeam"]): string | null {
   if (!team) return null;
   const byName = team.name && NAME_TO_TLA[team.name.trim().toLowerCase()];
   if (byName) return byName;

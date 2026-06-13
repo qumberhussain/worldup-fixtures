@@ -3,7 +3,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { classify, hasScore } from "@/lib/normalize";
 import { channelNetwork } from "@/lib/channels";
-import type { FixturesPayload, Goal, Match, MatchKind, Team } from "@/lib/types";
+import type { Card, FixturesPayload, Goal, Match, MatchKind, Team } from "@/lib/types";
 
 // Adaptive polling cadence — only refresh quickly when it matters.
 const POLL_LIVE = 15_000; // a match is in play
@@ -228,21 +228,26 @@ function MatchCard({ m }: { m: Match }) {
   const canExpand = kind === "played" || kind === "live";
 
   const [expanded, setExpanded] = useState(false);
-  const [goals, setGoals] = useState<Goal[] | null>(null);
-  const [loadingGoals, setLoadingGoals] = useState(false);
+  const [detail, setDetail] = useState<{ goals: Goal[]; cards: Card[] } | null>(null);
+  const [loadingDetail, setLoadingDetail] = useState(false);
 
-  // Fetch goals on first expand; re-fetch live matches when the score changes.
+  // Fetch events on first expand; re-fetch live matches when the score changes.
   useEffect(() => {
     if (!expanded) return;
     let active = true;
-    setLoadingGoals(true);
+    setLoadingDetail(true);
     fetch(`/api/match/${m.id}`, { cache: "no-store" })
       .then((r) => (r.ok ? r.json() : Promise.reject(new Error(`HTTP ${r.status}`))))
-      .then((d: { goals?: Goal[] }) => {
-        if (active) setGoals(Array.isArray(d.goals) ? d.goals : []);
+      .then((d: { goals?: Goal[]; cards?: Card[] }) => {
+        if (active) {
+          setDetail({
+            goals: Array.isArray(d.goals) ? d.goals : [],
+            cards: Array.isArray(d.cards) ? d.cards : [],
+          });
+        }
       })
-      .catch(() => active && setGoals([]))
-      .finally(() => active && setLoadingGoals(false));
+      .catch(() => active && setDetail({ goals: [], cards: [] }))
+      .finally(() => active && setLoadingDetail(false));
     return () => {
       active = false;
     };
@@ -298,10 +303,11 @@ function MatchCard({ m }: { m: Match }) {
             aria-expanded={expanded}
             onClick={() => setExpanded((v) => !v)}
           >
-            {expanded ? "Hide goals" : "Goals"} <span className="chev">{expanded ? "▴" : "▾"}</span>
+            {expanded ? "Hide events" : "Match events"}{" "}
+            <span className="chev">{expanded ? "▴" : "▾"}</span>
           </button>
           {expanded && (
-            <GoalList goals={goals} loading={loadingGoals} home={h} away={a} />
+            <EventList detail={detail} loading={loadingDetail} home={h} away={a} />
           )}
         </div>
       )}
@@ -309,40 +315,74 @@ function MatchCard({ m }: { m: Match }) {
   );
 }
 
-function GoalList({
-  goals, loading, home, away,
+type TimelineItem =
+  | { kind: "goal"; minute: number | null; injuryTime: number | null; side: "home" | "away"; data: Goal }
+  | { kind: "card"; minute: number | null; injuryTime: number | null; side: "home" | "away"; data: Card };
+
+function EventList({
+  detail, loading, home, away,
 }: {
-  goals: Goal[] | null; loading: boolean; home: Team; away: Team;
+  detail: { goals: Goal[]; cards: Card[] } | null; loading: boolean; home: Team; away: Team;
 }) {
-  if (loading && goals == null) return <div className="goals-empty">Loading goals…</div>;
-  if (!goals || goals.length === 0) return <div className="goals-empty">No goals recorded.</div>;
+  if (loading && detail == null) return <div className="goals-empty">Loading match events…</div>;
+  if (!detail || (detail.goals.length === 0 && detail.cards.length === 0)) {
+    return <div className="goals-empty">No events recorded.</div>;
+  }
+
+  const items: TimelineItem[] = [
+    ...detail.goals.map((g) => ({
+      kind: "goal" as const, minute: g.minute, injuryTime: g.injuryTime, side: g.side, data: g,
+    })),
+    ...detail.cards.map((c) => ({
+      kind: "card" as const, minute: c.minute, injuryTime: c.injuryTime, side: c.side, data: c,
+    })),
+  ].sort((a, b) => order(a) - order(b));
+
+  const teamTag = (side: "home" | "away") => {
+    const team = side === "home" ? home : away;
+    return team?.tla || (team?.name ? team.name.slice(0, 3).toUpperCase() : "");
+  };
 
   return (
     <ul className="goals-list">
-      {goals.map((g, i) => {
-        const team = g.side === "home" ? home : away;
-        const tag = team?.tla || (team?.name ? team.name.slice(0, 3).toUpperCase() : "");
-        const min =
-          g.minute != null
-            ? `${g.minute}${g.injuryTime ? `+${g.injuryTime}` : ""}'`
-            : "";
-        const extra =
-          g.type === "PENALTY" ? " (pen)" : g.type === "OWN" ? " (OG)" : "";
+      {items.map((it, i) => {
+        const min = it.minute != null ? `${it.minute}${it.injuryTime ? `+${it.injuryTime}` : ""}'` : "";
+        if (it.kind === "goal") {
+          const g = it.data;
+          const extra = g.type === "PENALTY" ? " (pen)" : g.type === "OWN" ? " (OG)" : "";
+          return (
+            <li key={i} className={`goal ${it.side}`}>
+              <span className="goal-min">{min}</span>
+              <span className="goal-ball">⚽</span>
+              <span className="goal-scorer">
+                {g.scorer}
+                {extra}
+                {g.assist && <span className="goal-assist"> · assist {g.assist}</span>}
+              </span>
+              <span className="goal-team">{teamTag(it.side)}</span>
+            </li>
+          );
+        }
+        const c = it.data;
         return (
-          <li key={i} className={`goal ${g.side}`}>
+          <li key={i} className={`goal ${it.side}`}>
             <span className="goal-min">{min}</span>
-            <span className="goal-ball">⚽</span>
+            <span className={`card-mark ${c.type === "RED" ? "red" : "yellow"}`} aria-hidden="true" />
             <span className="goal-scorer">
-              {g.scorer}
-              {extra}
-              {g.assist && <span className="goal-assist"> · assist {g.assist}</span>}
+              {c.player}
+              <span className="goal-assist"> · {c.type === "RED" ? "red card" : "yellow card"}</span>
             </span>
-            <span className="goal-team">{tag}</span>
+            <span className="goal-team">{teamTag(it.side)}</span>
           </li>
         );
       })}
     </ul>
   );
+}
+
+/** Sort key: chronological by minute then stoppage time. */
+function order(it: TimelineItem): number {
+  return (it.minute ?? 0) * 100 + (it.injuryTime ?? 0);
 }
 
 function ChannelTag({ channel }: { channel: string }) {
