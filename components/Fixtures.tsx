@@ -2,10 +2,25 @@
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { classify, hasScore } from "@/lib/normalize";
+import { channelNetwork } from "@/lib/channels";
 import type { FixturesPayload, Goal, Match, MatchKind, Team } from "@/lib/types";
 
 const POLL_MS = 15_000;
-type View = "upcoming" | "results" | "all";
+type View = "upcoming" | "results" | "england" | "all";
+
+const VIEW_LABELS: Record<View, string> = {
+  upcoming: "Upcoming",
+  results: "Results",
+  england: "England",
+  all: "All",
+};
+
+function isEngland(m: Match): boolean {
+  return (
+    m.homeTeam?.tla === "ENG" || m.awayTeam?.tla === "ENG" ||
+    m.homeTeam?.name === "England" || m.awayTeam?.name === "England"
+  );
+}
 
 export default function Fixtures() {
   const [payload, setPayload] = useState<FixturesPayload | null>(null);
@@ -81,6 +96,9 @@ export default function Fixtures() {
     } else if (view === "results") {
       l = l.filter((m) => classify(m) === "played");
       l = [...l].sort((a, b) => +new Date(b.utcDate) - +new Date(a.utcDate));
+    } else if (view === "england") {
+      l = l.filter(isEngland);
+      l = [...l].sort((a, b) => +new Date(a.utcDate) - +new Date(b.utcDate));
     } else {
       l = [...l].sort((a, b) => +new Date(a.utcDate) - +new Date(b.utcDate));
     }
@@ -93,7 +111,7 @@ export default function Fixtures() {
     <>
       <div className="controls">
         <nav className="tabs" role="tablist" aria-label="Match views">
-          {(["upcoming", "results", "all"] as View[]).map((v) => (
+          {(["upcoming", "results", "england", "all"] as View[]).map((v) => (
             <button
               key={v}
               className={`tab ${view === v ? "is-active" : ""}`}
@@ -101,7 +119,7 @@ export default function Fixtures() {
               aria-selected={view === v}
               onClick={() => setView(v)}
             >
-              {v === "upcoming" ? "Upcoming" : v === "results" ? "Results" : "All"}
+              {VIEW_LABELS[v]}
             </button>
           ))}
         </nav>
@@ -252,7 +270,7 @@ function MatchCard({ m }: { m: Match }) {
           {m.group && <span>🏆 {m.group}</span>}
           {m.stage && m.stage !== "GROUP_STAGE" && <span>{prettyStage(m.stage)}</span>}
           {m.venue && <span>📍 {m.venue}</span>}
-          {m.channel && <span className="channel">📺 {m.channel}</span>}
+          {m.channel && <ChannelTag channel={m.channel} />}
         </div>
       )}
 
@@ -310,6 +328,19 @@ function GoalList({
   );
 }
 
+function ChannelTag({ channel }: { channel: string }) {
+  const net = channelNetwork(channel);
+  if (!net) return <span className="channel">📺 {channel}</span>;
+  // Split "BBC One" -> logo "BBC" + name "One"; "ITV1" -> "ITV" + "1".
+  const rest = channel.replace(/^bbc\s*/i, "").replace(/^itv\s*/i, "").trim();
+  return (
+    <span className={`channel-tag ${net}`}>
+      <span className="ch-logo">{net === "bbc" ? "BBC" : "ITV"}</span>
+      {rest && <span className="ch-name">{rest}</span>}
+    </span>
+  );
+}
+
 function TeamMark({ team }: { team: Match["homeTeam"] }) {
   if (team?.crest) {
     // eslint-disable-next-line @next/next/no-img-element
@@ -333,6 +364,7 @@ function EmptyState({ view }: { view: View }) {
   const map: Record<View, [string, string, string]> = {
     upcoming: ["📅", "No upcoming matches", "Check the Results tab or adjust your filter."],
     results: ["⚽", "No results yet", "Played matches appear here once games finish."],
+    england: ["🏴", "No England matches", "England's fixtures will appear here."],
     all: ["🔍", "Nothing to show", "Try clearing your filter."],
   };
   const [emoji, title, sub] = map[view];

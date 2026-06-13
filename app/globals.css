@@ -186,6 +186,24 @@ a { color: var(--accent-2); }
 .match-meta span { display: inline-flex; align-items: center; gap: 5px; }
 .match-meta .channel { color: var(--accent-2); font-weight: 600; }
 
+/* Channel broadcaster badge */
+.channel-tag {
+  display: inline-flex; align-items: center; gap: 0;
+  border-radius: 5px; overflow: hidden; border: 1px solid var(--border);
+  font-size: 11px; line-height: 1; height: 18px;
+}
+.channel-tag .ch-logo {
+  font-weight: 800; letter-spacing: .02em; color: #fff;
+  padding: 0 5px; height: 100%; display: inline-flex; align-items: center;
+  font-size: 10px;
+}
+.channel-tag .ch-name {
+  padding: 0 6px; height: 100%; display: inline-flex; align-items: center;
+  font-weight: 700; color: var(--text); background: var(--bg-elev);
+}
+.channel-tag.bbc .ch-logo { background: #000; }
+.channel-tag.itv .ch-logo { background: #e9b200; color: #1a1205; }
+
 /* Goals / expandable */
 .goals-section { grid-column: 1 / -1; }
 .goals-toggle {
