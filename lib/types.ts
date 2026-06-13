@@ -27,6 +27,25 @@ export interface Match {
   homeTeam: Team;
   awayTeam: Team;
   score: { home: number | null; away: number | null };
+  /** UK broadcast channel, merged from the curated channel map. */
+  channel: string | null;
+}
+
+export interface Goal {
+  minute: number | null;
+  /** Extra/injury-time minutes, if any (e.g. 90+3). */
+  injuryTime: number | null;
+  side: "home" | "away";
+  scorer: string;
+  assist: string | null;
+  /** REGULAR | OWN | PENALTY */
+  type: string | null;
+}
+
+export interface MatchDetail {
+  id: number;
+  source: "football-data.org" | "sample";
+  goals: Goal[];
 }
 
 export interface FixturesPayload {

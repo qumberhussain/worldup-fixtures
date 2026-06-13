@@ -184,6 +184,41 @@ a { color: var(--accent-2); }
   font-size: 11.5px; color: var(--text-faint);
 }
 .match-meta span { display: inline-flex; align-items: center; gap: 5px; }
+.match-meta .channel { color: var(--accent-2); font-weight: 600; }
+
+/* Goals / expandable */
+.goals-section { grid-column: 1 / -1; }
+.goals-toggle {
+  appearance: none; background: transparent; border: 1px solid var(--border);
+  color: var(--text-dim); font: inherit; font-size: 12px; font-weight: 600;
+  padding: 5px 12px; border-radius: 999px; cursor: pointer; margin-top: 10px;
+  display: inline-flex; align-items: center; gap: 6px;
+  transition: border-color .18s, color .18s, background .18s;
+}
+.goals-toggle:hover { color: var(--text); border-color: #34416b; background: var(--bg-elev); }
+.goals-toggle .chev { font-size: 10px; }
+.goals-empty {
+  margin-top: 10px; font-size: 12.5px; color: var(--text-faint); padding: 4px 2px;
+}
+.goals-list { list-style: none; margin: 10px 0 2px; padding: 0; }
+.goal {
+  display: flex; align-items: center; gap: 10px; padding: 6px 10px;
+  border-radius: 8px; font-size: 13.5px;
+}
+.goal + .goal { margin-top: 2px; }
+.goal:hover { background: var(--bg-elev); }
+.goal-min {
+  min-width: 38px; font-weight: 700; color: var(--text-dim);
+  font-variant-numeric: tabular-nums; font-size: 12.5px;
+}
+.goal-ball { font-size: 12px; }
+.goal-scorer { flex: 1; min-width: 0; }
+.goal-assist { color: var(--text-faint); font-size: 12px; }
+.goal-team {
+  font-size: 10.5px; font-weight: 700; color: var(--text-dim);
+  background: var(--bg-elev); border: 1px solid var(--border);
+  padding: 2px 7px; border-radius: 999px;
+}
 
 /* States */
 .state { text-align: center; padding: 60px 20px; color: var(--text-dim); }

@@ -62,5 +62,6 @@ export function normalizeMatch(m: RawMatch): Match {
       home: m.score?.fullTime?.home ?? null,
       away: m.score?.fullTime?.away ?? null,
     },
+    channel: null,
   };
 }

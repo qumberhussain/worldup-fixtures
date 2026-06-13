@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { classify, hasScore } from "@/lib/normalize";
-import type { FixturesPayload, Match, MatchKind } from "@/lib/types";
+import type { FixturesPayload, Goal, Match, MatchKind, Team } from "@/lib/types";
 
 const POLL_MS = 15_000;
 type View = "upcoming" | "results" | "all";
@@ -190,6 +190,30 @@ function MatchCard({ m }: { m: Match }) {
   const h = m.homeTeam, a = m.awayTeam;
   const homeWin = kind === "played" && hasScore(m) && m.score.home! > m.score.away!;
   const awayWin = kind === "played" && hasScore(m) && m.score.away! > m.score.home!;
+  const canExpand = kind === "played" || kind === "live";
+
+  const [expanded, setExpanded] = useState(false);
+  const [goals, setGoals] = useState<Goal[] | null>(null);
+  const [loadingGoals, setLoadingGoals] = useState(false);
+
+  // Fetch goals on first expand; re-fetch live matches when the score changes.
+  useEffect(() => {
+    if (!expanded) return;
+    let active = true;
+    setLoadingGoals(true);
+    fetch(`/api/match/${m.id}`, { cache: "no-store" })
+      .then((r) => (r.ok ? r.json() : Promise.reject(new Error(`HTTP ${r.status}`))))
+      .then((d: { goals?: Goal[] }) => {
+        if (active) setGoals(Array.isArray(d.goals) ? d.goals : []);
+      })
+      .catch(() => active && setGoals([]))
+      .finally(() => active && setLoadingGoals(false));
+    return () => {
+      active = false;
+    };
+  }, [expanded, m.id, m.score?.home, m.score?.away]);
+
+  const hasMeta = m.group || m.venue || m.channel || (m.stage && m.stage !== "GROUP_STAGE");
 
   return (
     <article className={`match ${kind === "live" ? "is-live" : ""}`}>
@@ -222,14 +246,67 @@ function MatchCard({ m }: { m: Match }) {
         <TeamMark team={a} />
         <span className="name">{a?.name || "TBD"}</span>
       </div>
-      {(m.group || m.venue || (m.stage && m.stage !== "GROUP_STAGE")) && (
+
+      {hasMeta && (
         <div className="match-meta">
           {m.group && <span>🏆 {m.group}</span>}
           {m.stage && m.stage !== "GROUP_STAGE" && <span>{prettyStage(m.stage)}</span>}
           {m.venue && <span>📍 {m.venue}</span>}
+          {m.channel && <span className="channel">📺 {m.channel}</span>}
+        </div>
+      )}
+
+      {canExpand && (
+        <div className="goals-section">
+          <button
+            className="goals-toggle"
+            aria-expanded={expanded}
+            onClick={() => setExpanded((v) => !v)}
+          >
+            {expanded ? "Hide goals" : "Goals"} <span className="chev">{expanded ? "▴" : "▾"}</span>
+          </button>
+          {expanded && (
+            <GoalList goals={goals} loading={loadingGoals} home={h} away={a} />
+          )}
         </div>
       )}
     </article>
+  );
+}
+
+function GoalList({
+  goals, loading, home, away,
+}: {
+  goals: Goal[] | null; loading: boolean; home: Team; away: Team;
+}) {
+  if (loading && goals == null) return <div className="goals-empty">Loading goals…</div>;
+  if (!goals || goals.length === 0) return <div className="goals-empty">No goals recorded.</div>;
+
+  return (
+    <ul className="goals-list">
+      {goals.map((g, i) => {
+        const team = g.side === "home" ? home : away;
+        const tag = team?.tla || (team?.name ? team.name.slice(0, 3).toUpperCase() : "");
+        const min =
+          g.minute != null
+            ? `${g.minute}${g.injuryTime ? `+${g.injuryTime}` : ""}'`
+            : "";
+        const extra =
+          g.type === "PENALTY" ? " (pen)" : g.type === "OWN" ? " (OG)" : "";
+        return (
+          <li key={i} className={`goal ${g.side}`}>
+            <span className="goal-min">{min}</span>
+            <span className="goal-ball">⚽</span>
+            <span className="goal-scorer">
+              {g.scorer}
+              {extra}
+              {g.assist && <span className="goal-assist"> · assist {g.assist}</span>}
+            </span>
+            <span className="goal-team">{tag}</span>
+          </li>
+        );
+      })}
+    </ul>
   );
 }
 

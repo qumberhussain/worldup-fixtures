@@ -1,7 +1,8 @@
 import { NextResponse } from "next/server";
 import { normalizeMatch } from "@/lib/normalize";
+import { getChannel } from "@/lib/channels";
 import { SAMPLE_MATCHES } from "@/lib/sample";
-import type { FixturesPayload } from "@/lib/types";
+import type { FixturesPayload, Match } from "@/lib/types";
 
 // Always run on each request; we cache the *upstream* call ourselves below so
 // the browser can poll frequently without burning the free-tier rate limit.
@@ -12,19 +13,28 @@ const BASE = "https://api.football-data.org/v4";
 // Seconds the upstream response is reused across all visitors.
 const UPSTREAM_TTL = 15;
 
+/** Merge the curated UK channel onto each match. */
+function withChannels(matches: Match[]): Match[] {
+  return matches.map((m) => ({ ...m, channel: getChannel(m) }));
+}
+
+function sampleFixtures(): FixturesPayload {
+  return {
+    competition: "FIFA World Cup 2026",
+    season: "2026",
+    source: "sample",
+    lastUpdated: new Date().toISOString(),
+    count: SAMPLE_MATCHES.length,
+    matches: withChannels(SAMPLE_MATCHES),
+  };
+}
+
 export async function GET() {
   const apiKey = process.env.FOOTBALL_DATA_API_KEY;
 
   // No key configured -> serve sample data so the page still works.
   if (!apiKey) {
-    return json({
-      competition: "FIFA World Cup 2026",
-      season: "2026",
-      source: "sample",
-      lastUpdated: new Date().toISOString(),
-      count: SAMPLE_MATCHES.length,
-      matches: SAMPLE_MATCHES,
-    });
+    return json(sampleFixtures());
   }
 
   try {
@@ -41,11 +51,13 @@ export async function GET() {
 
     const data = await res.json();
     const raw = Array.isArray(data.matches) ? data.matches : [];
-    const matches = raw
-      .map(normalizeMatch)
-      .sort((a: { utcDate: string }, b: { utcDate: string }) =>
-        new Date(a.utcDate).getTime() - new Date(b.utcDate).getTime()
-      );
+    const matches = withChannels(
+      raw
+        .map(normalizeMatch)
+        .sort((a: Match, b: Match) =>
+          new Date(a.utcDate).getTime() - new Date(b.utcDate).getTime()
+        )
+    );
 
     return json({
       competition: data.competition?.name || "FIFA World Cup",
@@ -57,17 +69,9 @@ export async function GET() {
     });
   } catch (err) {
     // On upstream failure, fall back to sample data rather than breaking the page.
-    return json(
-      {
-        competition: "FIFA World Cup 2026",
-        season: "2026",
-        source: "sample",
-        lastUpdated: new Date().toISOString(),
-        count: SAMPLE_MATCHES.length,
-        matches: SAMPLE_MATCHES,
-      },
-      { error: err instanceof Error ? err.message : "unknown error" }
-    );
+    return json(sampleFixtures(), {
+      error: err instanceof Error ? err.message : "unknown error",
+    });
   }
 }
 
