@@ -1,0 +1,314 @@
+"use client";
+
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { classify, hasScore } from "@/lib/normalize";
+import type { FixturesPayload, Match, MatchKind } from "@/lib/types";
+
+const POLL_MS = 15_000;
+type View = "upcoming" | "results" | "all";
+
+export default function Fixtures() {
+  const [payload, setPayload] = useState<FixturesPayload | null>(null);
+  const [error, setError] = useState<string | null>(null);
+  const [view, setView] = useState<View>("upcoming");
+  const [query, setQuery] = useState("");
+  const [fetchedAt, setFetchedAt] = useState<number | null>(null);
+  const [, forceTick] = useState(0);
+  const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const load = useCallback(async () => {
+    try {
+      const res = await fetch("/api/fixtures", { cache: "no-store" });
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      const data: FixturesPayload = await res.json();
+      setPayload(data);
+      setFetchedAt(Date.now());
+      setError(null);
+    } catch (e) {
+      setError(e instanceof Error ? e.message : "Failed to load fixtures");
+    }
+  }, []);
+
+  // Initial load + polling. Pause when the tab is hidden, refresh on return.
+  useEffect(() => {
+    let active = true;
+    const tick = async () => {
+      if (active && !document.hidden) await load();
+      timer.current = setTimeout(tick, POLL_MS);
+    };
+    tick();
+    const onVisible = () => {
+      if (!document.hidden) load();
+    };
+    document.addEventListener("visibilitychange", onVisible);
+    return () => {
+      active = false;
+      if (timer.current) clearTimeout(timer.current);
+      document.removeEventListener("visibilitychange", onVisible);
+    };
+  }, [load]);
+
+  // Re-render every second so the "updated Ns ago" label stays current.
+  useEffect(() => {
+    const id = setInterval(() => forceTick((n) => n + 1), 1000);
+    return () => clearInterval(id);
+  }, []);
+
+  const matches = payload?.matches ?? [];
+  const isLiveSource = payload?.source === "football-data.org";
+
+  const filtered = useMemo(() => {
+    const q = query.trim().toLowerCase();
+    return matches.filter((m) => {
+      if (!q) return true;
+      return [
+        m.homeTeam?.name, m.awayTeam?.name, m.homeTeam?.tla, m.awayTeam?.tla,
+        m.group, m.venue, m.stage,
+      ].filter(Boolean).join(" ").toLowerCase().includes(q);
+    });
+  }, [matches, query]);
+
+  const liveMatches = useMemo(
+    () => matches.filter((m) => classify(m) === "live"),
+    [matches]
+  );
+
+  const list = useMemo(() => {
+    let l = filtered;
+    if (view === "upcoming") {
+      l = l.filter((m) => classify(m) !== "played");
+      l = [...l].sort((a, b) => +new Date(a.utcDate) - +new Date(b.utcDate));
+    } else if (view === "results") {
+      l = l.filter((m) => classify(m) === "played");
+      l = [...l].sort((a, b) => +new Date(b.utcDate) - +new Date(a.utcDate));
+    } else {
+      l = [...l].sort((a, b) => +new Date(a.utcDate) - +new Date(b.utcDate));
+    }
+    return l;
+  }, [filtered, view]);
+
+  const groups = useMemo(() => groupByDay(list), [list]);
+
+  return (
+    <>
+      <div className="controls">
+        <nav className="tabs" role="tablist" aria-label="Match views">
+          {(["upcoming", "results", "all"] as View[]).map((v) => (
+            <button
+              key={v}
+              className={`tab ${view === v ? "is-active" : ""}`}
+              role="tab"
+              aria-selected={view === v}
+              onClick={() => setView(v)}
+            >
+              {v === "upcoming" ? "Upcoming" : v === "results" ? "Results" : "All"}
+            </button>
+          ))}
+        </nav>
+        <input
+          className="search"
+          type="search"
+          placeholder="Filter by team, group or venue…"
+          aria-label="Filter matches"
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+        />
+      </div>
+
+      <StatusBar
+        isLiveSource={isLiveSource}
+        fetchedAt={fetchedAt}
+        loaded={payload != null}
+        error={error}
+      />
+
+      {liveMatches.length > 0 && (
+        <div className="live-strip">
+          {liveMatches.map((m) => (
+            <div className="live-chip" key={m.id}>
+              <span className="live-tag">LIVE</span>
+              <div className="lc-teams">
+                {m.homeTeam?.tla || m.homeTeam?.name}{" "}
+                <span className="lc-score">
+                  {m.score?.home ?? 0}–{m.score?.away ?? 0}
+                </span>{" "}
+                {m.awayTeam?.tla || m.awayTeam?.name}
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
+
+      <section className="content" aria-live="polite">
+        {payload == null && !error && <Skeleton />}
+        {payload != null && list.length === 0 && <EmptyState view={view} />}
+        {groups.map(({ key, label, items }) => (
+          <div className="day-group" key={key}>
+            <div className="day-head">
+              <h2>{label}</h2>
+              <span className="day-sub">
+                {items.length} match{items.length > 1 ? "es" : ""}
+              </span>
+            </div>
+            {items.map((m) => (
+              <MatchCard key={m.id} m={m} />
+            ))}
+          </div>
+        ))}
+      </section>
+    </>
+  );
+}
+
+function StatusBar({
+  isLiveSource, fetchedAt, loaded, error,
+}: {
+  isLiveSource: boolean; fetchedAt: number | null; loaded: boolean; error: string | null;
+}) {
+  let label: string;
+  if (error && !loaded) label = "Connection error — retrying";
+  else if (!loaded) label = "Loading…";
+  else if (!isLiveSource) label = "Sample data (no API key configured)";
+  else label = `Live · updated ${agoLabel(fetchedAt)}`;
+
+  const dotClass = !loaded
+    ? ""
+    : isLiveSource
+      ? "live-source"
+      : "sample-source";
+
+  return (
+    <div className="statusbar">
+      <span className={`status-dot ${dotClass}`} />
+      <span>{label}</span>
+    </div>
+  );
+}
+
+function MatchCard({ m }: { m: Match }) {
+  const kind: MatchKind = classify(m);
+  const h = m.homeTeam, a = m.awayTeam;
+  const homeWin = kind === "played" && hasScore(m) && m.score.home! > m.score.away!;
+  const awayWin = kind === "played" && hasScore(m) && m.score.away! > m.score.home!;
+
+  return (
+    <article className={`match ${kind === "live" ? "is-live" : ""}`}>
+      <div className={`team home ${homeWin ? "winner" : ""}`}>
+        <span className="name">{h?.name || "TBD"}</span>
+        <TeamMark team={h} />
+      </div>
+      <div className="center">
+        {kind === "upcoming" ? (
+          <>
+            <div className="kickoff">{kickoffTime(m.utcDate)}</div>
+            <span className="badge upcoming">Upcoming</span>
+          </>
+        ) : (
+          <>
+            <div className="score">
+              {m.score?.home ?? 0}
+              <span className="dash">–</span>
+              {m.score?.away ?? 0}
+            </div>
+            {kind === "live" ? (
+              <span className="badge live">● Live</span>
+            ) : (
+              <span className="badge ft">Full time</span>
+            )}
+          </>
+        )}
+      </div>
+      <div className={`team away ${awayWin ? "winner" : ""}`}>
+        <TeamMark team={a} />
+        <span className="name">{a?.name || "TBD"}</span>
+      </div>
+      {(m.group || m.venue || (m.stage && m.stage !== "GROUP_STAGE")) && (
+        <div className="match-meta">
+          {m.group && <span>🏆 {m.group}</span>}
+          {m.stage && m.stage !== "GROUP_STAGE" && <span>{prettyStage(m.stage)}</span>}
+          {m.venue && <span>📍 {m.venue}</span>}
+        </div>
+      )}
+    </article>
+  );
+}
+
+function TeamMark({ team }: { team: Match["homeTeam"] }) {
+  if (team?.crest) {
+    // eslint-disable-next-line @next/next/no-img-element
+    return <img className="crest" src={team.crest} alt="" loading="lazy" />;
+  }
+  const fallback = team?.tla || (team?.name ? team.name.slice(0, 3).toUpperCase() : "—");
+  return <span className="tla">{fallback}</span>;
+}
+
+function Skeleton() {
+  return (
+    <div className="skeleton-list">
+      <div className="skeleton-card" />
+      <div className="skeleton-card" />
+      <div className="skeleton-card" />
+    </div>
+  );
+}
+
+function EmptyState({ view }: { view: View }) {
+  const map: Record<View, [string, string, string]> = {
+    upcoming: ["📅", "No upcoming matches", "Check the Results tab or adjust your filter."],
+    results: ["⚽", "No results yet", "Played matches appear here once games finish."],
+    all: ["🔍", "Nothing to show", "Try clearing your filter."],
+  };
+  const [emoji, title, sub] = map[view];
+  return (
+    <div className="state">
+      <span className="emoji">{emoji}</span>
+      <h3>{title}</h3>
+      <p>{sub}</p>
+    </div>
+  );
+}
+
+/* ---------- helpers ---------- */
+
+function groupByDay(list: Match[]) {
+  const groups: { key: string; label: string; items: Match[] }[] = [];
+  const index = new Map<string, number>();
+  for (const m of list) {
+    const d = new Date(m.utcDate);
+    const key = `${d.getFullYear()}-${d.getMonth()}-${d.getDate()}`;
+    if (!index.has(key)) {
+      index.set(key, groups.length);
+      groups.push({ key, label: dayLabel(d), items: [] });
+    }
+    groups[index.get(key)!].items.push(m);
+  }
+  return groups;
+}
+
+function dayLabel(d: Date) {
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+  const that = new Date(d);
+  that.setHours(0, 0, 0, 0);
+  const diff = Math.round((+that - +today) / 86_400_000);
+  const rel = diff === 0 ? "Today" : diff === 1 ? "Tomorrow" : diff === -1 ? "Yesterday" : null;
+  const full = d.toLocaleDateString([], { weekday: "long", month: "long", day: "numeric" });
+  return rel ? `${rel} · ${full}` : full;
+}
+
+function kickoffTime(iso: string) {
+  return new Date(iso).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
+}
+
+function prettyStage(s: string) {
+  return s.replace(/_/g, " ").toLowerCase().replace(/\b\w/g, (c) => c.toUpperCase());
+}
+
+function agoLabel(ts: number | null) {
+  if (!ts) return "just now";
+  const s = Math.max(0, Math.round((Date.now() - ts) / 1000));
+  if (s < 5) return "just now";
+  if (s < 60) return `${s}s ago`;
+  const m = Math.round(s / 60);
+  return `${m}m ago`;
+}
