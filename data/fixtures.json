@@ -1,0 +1,81 @@
+{
+  "competition": "FIFA World Cup 2026",
+  "season": "2026",
+  "source": "sample",
+  "lastUpdated": "2026-06-13T16:00:00Z",
+  "note": "Sample data shown until the live football-data.org feed is wired up via GitHub Actions. See README.",
+  "matches": [
+    {
+      "id": 1,
+      "utcDate": "2026-06-11T19:00:00Z",
+      "status": "FINISHED",
+      "matchday": 1,
+      "stage": "GROUP_STAGE",
+      "group": "Group A",
+      "venue": "Estadio Azteca, Mexico City",
+      "homeTeam": { "name": "Mexico", "tla": "MEX", "crest": "" },
+      "awayTeam": { "name": "Croatia", "tla": "CRO", "crest": "" },
+      "score": { "home": 2, "away": 1 }
+    },
+    {
+      "id": 2,
+      "utcDate": "2026-06-12T19:00:00Z",
+      "status": "FINISHED",
+      "matchday": 1,
+      "stage": "GROUP_STAGE",
+      "group": "Group B",
+      "venue": "SoFi Stadium, Los Angeles",
+      "homeTeam": { "name": "Canada", "tla": "CAN", "crest": "" },
+      "awayTeam": { "name": "Japan", "tla": "JPN", "crest": "" },
+      "score": { "home": 1, "away": 1 }
+    },
+    {
+      "id": 3,
+      "utcDate": "2026-06-13T16:00:00Z",
+      "status": "IN_PLAY",
+      "matchday": 1,
+      "stage": "GROUP_STAGE",
+      "group": "Group C",
+      "venue": "MetLife Stadium, New York",
+      "homeTeam": { "name": "United States", "tla": "USA", "crest": "" },
+      "awayTeam": { "name": "Ghana", "tla": "GHA", "crest": "" },
+      "score": { "home": 0, "away": 0 }
+    },
+    {
+      "id": 4,
+      "utcDate": "2026-06-14T19:00:00Z",
+      "status": "TIMED",
+      "matchday": 1,
+      "stage": "GROUP_STAGE",
+      "group": "Group D",
+      "venue": "AT&T Stadium, Dallas",
+      "homeTeam": { "name": "England", "tla": "ENG", "crest": "" },
+      "awayTeam": { "name": "Senegal", "tla": "SEN", "crest": "" },
+      "score": { "home": null, "away": null }
+    },
+    {
+      "id": 5,
+      "utcDate": "2026-06-15T22:00:00Z",
+      "status": "TIMED",
+      "matchday": 1,
+      "stage": "GROUP_STAGE",
+      "group": "Group E",
+      "venue": "Lincoln Financial Field, Philadelphia",
+      "homeTeam": { "name": "Brazil", "tla": "BRA", "crest": "" },
+      "awayTeam": { "name": "Morocco", "tla": "MAR", "crest": "" },
+      "score": { "home": null, "away": null }
+    },
+    {
+      "id": 6,
+      "utcDate": "2026-06-16T19:00:00Z",
+      "status": "SCHEDULED",
+      "matchday": 1,
+      "stage": "GROUP_STAGE",
+      "group": "Group F",
+      "venue": "Mercedes-Benz Stadium, Atlanta",
+      "homeTeam": { "name": "Argentina", "tla": "ARG", "crest": "" },
+      "awayTeam": { "name": "Australia", "tla": "AUS", "crest": "" },
+      "score": { "home": null, "away": null }
+    }
+  ]
+}
