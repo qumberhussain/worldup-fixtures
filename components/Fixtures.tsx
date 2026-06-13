@@ -5,7 +5,11 @@ import { classify, hasScore } from "@/lib/normalize";
 import { channelNetwork } from "@/lib/channels";
 import type { FixturesPayload, Goal, Match, MatchKind, Team } from "@/lib/types";
 
-const POLL_MS = 15_000;
+// Adaptive polling cadence — only refresh quickly when it matters.
+const POLL_LIVE = 15_000; // a match is in play
+const POLL_SOON = 60_000; // a match kicks off within 30 min (or just started)
+const POLL_IDLE = 300_000; // nothing live or imminent
+
 type View = "upcoming" | "results" | "england" | "all";
 
 const VIEW_LABELS: Record<View, string> = {
@@ -22,6 +26,17 @@ function isEngland(m: Match): boolean {
   );
 }
 
+/** Choose the next poll delay from the current fixtures. */
+function pollDelay(matches: Match[]): number {
+  if (matches.some((m) => classify(m) === "live")) return POLL_LIVE;
+  const now = Date.now();
+  const soon = matches.some((m) => {
+    const dt = new Date(m.utcDate).getTime() - now;
+    return dt < 30 * 60_000 && dt > -3 * 60 * 60_000; // 30 min before .. 3h after KO
+  });
+  return soon ? POLL_SOON : POLL_IDLE;
+}
+
 export default function Fixtures() {
   const [payload, setPayload] = useState<FixturesPayload | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -30,6 +45,7 @@ export default function Fixtures() {
   const [fetchedAt, setFetchedAt] = useState<number | null>(null);
   const [, forceTick] = useState(0);
   const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const latestMatches = useRef<Match[]>([]);
 
   const load = useCallback(async () => {
     try {
@@ -37,6 +53,7 @@ export default function Fixtures() {
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
       const data: FixturesPayload = await res.json();
       setPayload(data);
+      latestMatches.current = data.matches ?? [];
       setFetchedAt(Date.now());
       setError(null);
     } catch (e) {
@@ -44,12 +61,12 @@ export default function Fixtures() {
     }
   }, []);
 
-  // Initial load + polling. Pause when the tab is hidden, refresh on return.
+  // Initial load + adaptive polling. Pause when the tab is hidden, refresh on return.
   useEffect(() => {
     let active = true;
     const tick = async () => {
       if (active && !document.hidden) await load();
-      timer.current = setTimeout(tick, POLL_MS);
+      timer.current = setTimeout(tick, pollDelay(latestMatches.current));
     };
     tick();
     const onVisible = () => {

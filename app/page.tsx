@@ -26,7 +26,7 @@ export default function Home() {
             <a href="https://www.football-data.org/" rel="noopener" target="_blank">
               football-data.org
             </a>
-            . Auto-refreshes every 15s · times shown in your local timezone.
+            . Auto-refreshes every 15s during live matches · times shown in your local timezone.
           </p>
         </div>
       </footer>

@@ -10,8 +10,15 @@ export const dynamic = "force-dynamic";
 
 const COMPETITION = process.env.COMPETITION || "WC";
 const BASE = "https://api.football-data.org/v4";
-// Seconds the upstream response is reused across all visitors.
-const UPSTREAM_TTL = 15;
+// Minimum seconds between real upstream calls, shared across ALL visitors.
+// football-data.org free tier allows 10 calls/min; 12s => <=5/min for this
+// endpoint, leaving headroom for the match-detail endpoint.
+const UPSTREAM_TTL = 12;
+
+// Module-scoped throttle cache. On a warm serverless instance this guarantees
+// we never hit the API more than once per UPSTREAM_TTL regardless of how many
+// browsers are polling, and lets us serve last-good data if the API errors.
+let cache: { at: number; payload: FixturesPayload } | null = null;
 
 /** Merge the curated UK channel onto each match. */
 function withChannels(matches: Match[]): Match[] {
@@ -37,10 +44,14 @@ export async function GET() {
     return json(sampleFixtures());
   }
 
+  // Serve from the throttle cache if it's still fresh (rate-limit guard).
+  if (cache && Date.now() - cache.at < UPSTREAM_TTL * 1000) {
+    return json(cache.payload, { cached: true });
+  }
+
   try {
     const res = await fetch(`${BASE}/competitions/${COMPETITION}/matches`, {
       headers: { "X-Auth-Token": apiKey },
-      // Next.js data cache: one upstream hit per TTL window, shared by all clients.
       next: { revalidate: UPSTREAM_TTL },
     });
 
@@ -59,19 +70,21 @@ export async function GET() {
         )
     );
 
-    return json({
+    const payload: FixturesPayload = {
       competition: data.competition?.name || "FIFA World Cup",
       season: String(data.filters?.season || ""),
       source: "football-data.org",
       lastUpdated: new Date().toISOString(),
       count: matches.length,
       matches,
-    });
+    };
+    cache = { at: Date.now(), payload };
+    return json(payload);
   } catch (err) {
-    // On upstream failure, fall back to sample data rather than breaking the page.
-    return json(sampleFixtures(), {
-      error: err instanceof Error ? err.message : "unknown error",
-    });
+    // Prefer last-good data over breaking the page; fall back to sample.
+    const extra = { error: err instanceof Error ? err.message : "unknown error" };
+    if (cache) return json(cache.payload, { ...extra, stale: true });
+    return json(sampleFixtures(), extra);
   }
 }
 
