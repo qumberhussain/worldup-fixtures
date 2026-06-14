@@ -64,6 +64,16 @@ a { color: var(--accent-2); }
   letter-spacing: 0.14em; color: var(--text-faint);
 }
 
+/* SEO lead paragraph */
+.lead {
+  margin: 18px 2px 6px;
+  max-width: 70ch;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--text-dim);
+}
+.lead strong { color: var(--text); font-weight: 600; }
+
 /* Controls */
 .controls {
   display: flex; align-items: center; justify-content: space-between;

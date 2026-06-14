@@ -37,15 +37,16 @@ function pollDelay(matches: Match[]): number {
   return soon ? POLL_SOON : POLL_IDLE;
 }
 
-export default function Fixtures() {
-  const [payload, setPayload] = useState<FixturesPayload | null>(null);
+export default function Fixtures({ initial }: { initial?: FixturesPayload }) {
+  const [payload, setPayload] = useState<FixturesPayload | null>(initial ?? null);
   const [error, setError] = useState<string | null>(null);
   const [view, setView] = useState<View>("upcoming");
   const [query, setQuery] = useState("");
   const [fetchedAt, setFetchedAt] = useState<number | null>(null);
+  const [mounted, setMounted] = useState(false);
   const [, forceTick] = useState(0);
   const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const latestMatches = useRef<Match[]>([]);
+  const latestMatches = useRef<Match[]>(initial?.matches ?? []);
 
   const load = useCallback(async () => {
     try {
@@ -61,6 +62,14 @@ export default function Fixtures() {
     }
   }, []);
 
+  // Reveal the live, locale-aware UI only after mount so the server-rendered
+  // HTML (which can't know the viewer's timezone or "now") matches the first
+  // client render — avoids hydration mismatches on kick-off times and live state.
+  useEffect(() => {
+    setMounted(true);
+    if (initial) setFetchedAt(Date.now());
+  }, [initial]);
+
   // Initial load + adaptive polling. Pause when the tab is hidden, refresh on return.
   useEffect(() => {
     let active = true;
@@ -68,7 +77,13 @@ export default function Fixtures() {
       if (active && !document.hidden) await load();
       timer.current = setTimeout(tick, pollDelay(latestMatches.current));
     };
-    tick();
+    // If seeded with SSR data, wait one poll interval before the first refresh;
+    // otherwise fetch immediately.
+    if (initial) {
+      timer.current = setTimeout(tick, pollDelay(latestMatches.current));
+    } else {
+      tick();
+    }
     const onVisible = () => {
       if (!document.hidden) load();
     };
@@ -78,7 +93,7 @@ export default function Fixtures() {
       if (timer.current) clearTimeout(timer.current);
       document.removeEventListener("visibilitychange", onVisible);
     };
-  }, [load]);
+  }, [load, initial]);
 
   // Re-render every second so the "updated Ns ago" label stays current.
   useEffect(() => {
@@ -157,40 +172,46 @@ export default function Fixtures() {
         error={error}
       />
 
-      {liveMatches.length > 0 && (
-        <div className="live-strip">
-          {liveMatches.map((m) => (
-            <div className="live-chip" key={m.id}>
-              <span className="live-tag">LIVE</span>
-              <div className="lc-teams">
-                {m.homeTeam?.tla || m.homeTeam?.name}{" "}
-                <span className="lc-score">
-                  {m.score?.home ?? 0}–{m.score?.away ?? 0}
-                </span>{" "}
-                {m.awayTeam?.tla || m.awayTeam?.name}
-              </div>
+      {!mounted ? (
+        <Skeleton />
+      ) : (
+        <>
+          {liveMatches.length > 0 && (
+            <div className="live-strip">
+              {liveMatches.map((m) => (
+                <div className="live-chip" key={m.id}>
+                  <span className="live-tag">LIVE</span>
+                  <div className="lc-teams">
+                    {m.homeTeam?.tla || m.homeTeam?.name}{" "}
+                    <span className="lc-score">
+                      {m.score?.home ?? 0}–{m.score?.away ?? 0}
+                    </span>{" "}
+                    {m.awayTeam?.tla || m.awayTeam?.name}
+                  </div>
+                </div>
+              ))}
             </div>
-          ))}
-        </div>
-      )}
+          )}
 
-      <section className="content" aria-live="polite">
-        {payload == null && !error && <Skeleton />}
-        {payload != null && list.length === 0 && <EmptyState view={view} />}
-        {groups.map(({ key, label, items }) => (
-          <div className="day-group" key={key}>
-            <div className="day-head">
-              <h2>{label}</h2>
-              <span className="day-sub">
-                {items.length} match{items.length > 1 ? "es" : ""}
-              </span>
-            </div>
-            {items.map((m) => (
-              <MatchCard key={m.id} m={m} />
+          <section className="content" aria-live="polite">
+            {payload == null && !error && <Skeleton />}
+            {payload != null && list.length === 0 && <EmptyState view={view} />}
+            {groups.map(({ key, label, items }) => (
+              <div className="day-group" key={key}>
+                <div className="day-head">
+                  <h2>{label}</h2>
+                  <span className="day-sub">
+                    {items.length} match{items.length > 1 ? "es" : ""}
+                  </span>
+                </div>
+                {items.map((m) => (
+                  <MatchCard key={m.id} m={m} />
+                ))}
+              </div>
             ))}
-          </div>
-        ))}
-      </section>
+          </section>
+        </>
+      )}
     </>
   );
 }
