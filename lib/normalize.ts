@@ -16,7 +16,9 @@ export function classify(m: Match): MatchKind {
     // The free-tier feed lags the FINISHED status, leaving matches stuck on
     // "in play" long after full time. No realistic match runs this long after
     // kick-off, so treat a stale "live" status as finished/upcoming instead.
-    const maxLiveMins = m.stage && m.stage !== "GROUP_STAGE" ? 200 : 140;
+    // Group games finish ~115 min after KO (max ~125 with long stoppage); 130
+    // gives a small safety margin. Knockouts allow for extra time + penalties.
+    const maxLiveMins = m.stage && m.stage !== "GROUP_STAGE" ? 190 : 130;
     if (Number.isFinite(kicked) && minsSince > maxLiveMins) {
       return hasScore(m) ? "played" : "upcoming";
     }
