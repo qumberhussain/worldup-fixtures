@@ -67,16 +67,18 @@ Cron (.github/workflows/scrape-events.yml, hourly)
 | Scores, schedule, status | **football-data.org** (free tier) | Clean `status` field maps to live/finished/upcoming. Competition code `WC`. |
 | UK TV channel | **Hand-curated** (`lib/channels.ts`) | No free API exists for UK broadcast rights. Populated from the official BBC/ITV timetable; keyed by FIFA team-code pair. |
 | Goal scorers | **Auto-scraped from Wikipedia** (`data/events.json`) | Free tier has **no** match events. Wikipedia group pages encode goals cleanly; the cron refreshes them. |
-| Cards (🟨/🟥) | **Hand-curated** (`lib/events.ts`) | Cards live in Wikipedia's lineup section with mixed teams + noisy player links — **not reliably attributable** by script. Curated entries override scraped goals and add cards. |
+| Cards (🟨/🟥) | **Auto-scraped from Wikipedia** (`data/events.json`) | Parsed from the 2-column lineup tables. Team attribution is validated against hand-verified matches; `lib/events.ts` can still override per match for corrections. |
 
 **Key limitation (by design, because we're avoiding paid APIs):**
-- **Cards are not auto-updated.** New finished matches get **goal scorers automatically**
-  (via the cron), but **cards require a manual curated entry** in `lib/events.ts`.
-  A paid data tier (football-data.org paid, or API-Football) would automate cards
-  *and* goals — the `/api/match/[id]` route is already wired to map API events if
-  you ever upgrade.
-- **Wikipedia lag** — scorers appear once Wikipedia editors fill a match box (usually
-  minutes-to-an-hour after full time). Curated entries cover anything urgent.
+- **Wikipedia lag** — scorers/cards appear once Wikipedia editors fill a match box
+  (usually minutes-to-an-hour after full time), then the hourly cron picks them up.
+  Add an override entry in `lib/events.ts` for anything urgent.
+- **Stale "live" status** — the free feed lags the FINISHED flag, so `classify()`
+  stops trusting an `IN_PLAY` status past a realistic match duration (140 min group,
+  200 min knockout) and treats it as a result instead.
+- A paid data tier (football-data.org paid, or API-Football) would give official
+  real-time events and statuses — the `/api/match/[id]` route is already wired to
+  map API events if you ever upgrade.
 - **Knockout channels** — the channel map only covers the **group stage**; knockout
   fixtures use bracket placeholders until teams are drawn.
 
@@ -87,8 +89,9 @@ Cron (.github/workflows/scrape-events.yml, hourly)
 - `.github/workflows/scrape-events.yml` runs **hourly** (and on manual dispatch).
 - It runs `scripts/scrape-events.mjs`, which fetches all 12 group pages from the
   Wikipedia API, parses each match's `goals1`/`goals2` (handles `{{goal}}` templates
-  **and** plain-text minutes, penalties, own goals), and writes `data/events.json`
-  keyed by team-code pair.
+  **and** plain-text minutes, penalties, own goals) **and cards** (from the 2-column
+  lineup tables, `{{yel}}`/`{{sent off}}`), and writes `data/events.json` keyed by
+  team-code pair.
 - It commits **only when the file changes**; the commit triggers a Vercel redeploy.
 - **Why GitHub Actions and not Vercel Cron:** Vercel's free (Hobby) plan limits cron
   to **once per day** — too slow for a tournament. GitHub Actions cron is free and

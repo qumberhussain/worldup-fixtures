@@ -93,21 +93,21 @@ export const MATCH_EVENTS: Record<string, CuratedMatch> = {
   },
 };
 
-// Goals auto-scraped from Wikipedia (data/events.json), refreshed by the cron.
-// Goals only — cards can't be reliably attributed from that source.
+// Goals + cards auto-scraped from Wikipedia (data/events.json), refreshed by
+// the cron. Card team-attribution is validated against curated matches.
 interface ScrapedFile {
-  matches: Record<string, { goals: CuratedGoal[] }>;
+  matches: Record<string, { goals: CuratedGoal[]; cards?: CuratedCard[] }>;
 }
 const SCRAPED = (scrapedData as unknown as ScrapedFile).matches || {};
 
 /**
- * Resolve events for a pair. Hand-curated entries (goals + verified cards) win;
- * otherwise fall back to the auto-scraped goals (no cards).
+ * Resolve events for a pair. Hand-curated entries win (a manual correction
+ * path); otherwise fall back to the auto-scraped goals + cards.
  */
 function lookup(homeCode: string, awayCode: string): CuratedMatch | null {
   const keys = [`${homeCode}|${awayCode}`, `${awayCode}|${homeCode}`];
   for (const k of keys) if (MATCH_EVENTS[k]) return MATCH_EVENTS[k];
-  for (const k of keys) if (SCRAPED[k]) return { goals: SCRAPED[k].goals, cards: [] };
+  for (const k of keys) if (SCRAPED[k]) return { goals: SCRAPED[k].goals, cards: SCRAPED[k].cards ?? [] };
   return null;
 }
 

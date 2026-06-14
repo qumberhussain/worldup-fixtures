@@ -1,6 +1,6 @@
 {
   "source": "wikipedia",
-  "scrapedAt": "2026-06-14T01:56:03.631Z",
+  "scrapedAt": "2026-06-14T02:25:03.746Z",
   "matches": {
     "MEX|RSA": {
       "goals": [
@@ -13,6 +13,45 @@
           "minute": 67,
           "team": "MEX",
           "scorer": "Jiménez"
+        }
+      ],
+      "cards": [
+        {
+          "minute": 90,
+          "injuryTime": 2,
+          "team": "MEX",
+          "player": "César Montes",
+          "type": "RED"
+        },
+        {
+          "minute": 23,
+          "team": "MEX",
+          "player": "Brian Gutiérrez",
+          "type": "YELLOW"
+        },
+        {
+          "minute": 74,
+          "team": "RSA",
+          "player": "Nkosinathi Sibisi",
+          "type": "YELLOW"
+        },
+        {
+          "minute": 49,
+          "team": "RSA",
+          "player": "Sphephelo Sithole",
+          "type": "RED"
+        },
+        {
+          "minute": 17,
+          "team": "RSA",
+          "player": "Teboho Mokoena",
+          "type": "YELLOW"
+        },
+        {
+          "minute": 84,
+          "team": "RSA",
+          "player": "Themba Zwane",
+          "type": "RED"
         }
       ]
     },
@@ -33,6 +72,15 @@
           "team": "CZE",
           "scorer": "Krejčí"
         }
+      ],
+      "cards": [
+        {
+          "minute": 90,
+          "injuryTime": 6,
+          "team": "KOR",
+          "player": "Lee Gi-hyuk",
+          "type": "YELLOW"
+        }
       ]
     },
     "CAN|BIH": {
@@ -46,6 +94,40 @@
           "minute": 21,
           "team": "BIH",
           "scorer": "Lukić"
+        }
+      ],
+      "cards": [
+        {
+          "minute": 11,
+          "team": "CAN",
+          "player": "Alistair Johnston",
+          "type": "YELLOW"
+        },
+        {
+          "minute": 53,
+          "team": "CAN",
+          "player": "Luc de Fougerolles",
+          "type": "YELLOW"
+        },
+        {
+          "minute": 90,
+          "injuryTime": 3,
+          "team": "BIH",
+          "player": "Nikola Katić",
+          "type": "YELLOW"
+        },
+        {
+          "minute": 44,
+          "team": "BIH",
+          "player": "Ermedin Demirović",
+          "type": "YELLOW"
+        },
+        {
+          "minute": 45,
+          "injuryTime": 1,
+          "team": "BIH",
+          "player": "Jovo Lukić",
+          "type": "YELLOW"
         }
       ]
     },
@@ -64,6 +146,26 @@
           "scorer": "Embolo",
           "type": "PENALTY"
         }
+      ],
+      "cards": [
+        {
+          "minute": 14,
+          "team": "QAT",
+          "player": "Mahmud Abunada",
+          "type": "YELLOW"
+        },
+        {
+          "minute": 23,
+          "team": "QAT",
+          "player": "Jassem Gaber",
+          "type": "YELLOW"
+        },
+        {
+          "minute": 42,
+          "team": "SUI",
+          "player": "Denis Zakaria",
+          "type": "YELLOW"
+        }
       ]
     },
     "BRA|MAR": {
@@ -77,6 +179,20 @@
           "minute": 21,
           "team": "MAR",
           "scorer": "Saibari"
+        }
+      ],
+      "cards": [
+        {
+          "minute": 43,
+          "team": "BRA",
+          "player": "Roger Ibañez",
+          "type": "YELLOW"
+        },
+        {
+          "minute": 37,
+          "team": "BRA",
+          "player": "Casemiro",
+          "type": "YELLOW"
         }
       ]
     },
@@ -109,6 +225,45 @@
           "minute": 73,
           "team": "PAR",
           "scorer": "Maurício"
+        }
+      ],
+      "cards": [
+        {
+          "minute": 59,
+          "team": "USA",
+          "player": "Tyler Adams",
+          "type": "YELLOW"
+        },
+        {
+          "minute": 9,
+          "team": "PAR",
+          "player": "Juan José Cáceres",
+          "type": "YELLOW"
+        },
+        {
+          "minute": 90,
+          "injuryTime": 3,
+          "team": "PAR",
+          "player": "Júnior Alonso",
+          "type": "YELLOW"
+        },
+        {
+          "minute": 79,
+          "team": "PAR",
+          "player": "Diego Gómez",
+          "type": "YELLOW"
+        },
+        {
+          "minute": 53,
+          "team": "PAR",
+          "player": "Miguel Almirón",
+          "type": "YELLOW"
+        },
+        {
+          "minute": 88,
+          "team": "PAR",
+          "player": "Álex Arce",
+          "type": "YELLOW"
         }
       ]
     }

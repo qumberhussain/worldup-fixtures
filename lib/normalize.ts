@@ -9,9 +9,20 @@ export function hasScore(m: Match): boolean {
 
 /** Decide whether a match is live, already played, or still upcoming. */
 export function classify(m: Match): MatchKind {
-  if (LIVE_STATUSES.has(m.status)) return "live";
-  if (FINISHED_STATUSES.has(m.status)) return "played";
   const kicked = new Date(m.utcDate).getTime();
+  const minsSince = Number.isFinite(kicked) ? (Date.now() - kicked) / 60000 : 0;
+
+  if (LIVE_STATUSES.has(m.status)) {
+    // The free-tier feed lags the FINISHED status, leaving matches stuck on
+    // "in play" long after full time. No realistic match runs this long after
+    // kick-off, so treat a stale "live" status as finished/upcoming instead.
+    const maxLiveMins = m.stage && m.stage !== "GROUP_STAGE" ? 200 : 140;
+    if (Number.isFinite(kicked) && minsSince > maxLiveMins) {
+      return hasScore(m) ? "played" : "upcoming";
+    }
+    return "live";
+  }
+  if (FINISHED_STATUSES.has(m.status)) return "played";
   if (Number.isFinite(kicked) && kicked < Date.now() && hasScore(m)) return "played";
   return "upcoming";
 }
