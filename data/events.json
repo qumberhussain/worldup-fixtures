@@ -1,6 +1,6 @@
 {
   "source": "wikipedia",
-  "scrapedAt": "2026-06-14T20:57:35.081Z",
+  "scrapedAt": "2026-06-14T22:04:06.109Z",
   "matches": {
     "MEX|RSA": {
       "goals": [
@@ -364,6 +364,30 @@
           "minute": 21,
           "team": "CUW",
           "scorer": "Comenencia"
+        }
+      ]
+    },
+    "NED|JPN": {
+      "goals": [
+        {
+          "minute": 51,
+          "team": "NED",
+          "scorer": "van Dijk"
+        },
+        {
+          "minute": 64,
+          "team": "NED",
+          "scorer": "Summerville"
+        },
+        {
+          "minute": 57,
+          "team": "JPN",
+          "scorer": "Nakamura"
+        },
+        {
+          "minute": 89,
+          "team": "JPN",
+          "scorer": "Ogawa"
         }
       ]
     }
