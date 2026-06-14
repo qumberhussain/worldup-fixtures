@@ -1,6 +1,6 @@
 {
   "source": "wikipedia",
-  "scrapedAt": "2026-06-14T02:25:03.746Z",
+  "scrapedAt": "2026-06-14T07:13:04.307Z",
   "matches": {
     "MEX|RSA": {
       "goals": [
@@ -196,6 +196,43 @@
         }
       ]
     },
+    "HAI|SCO": {
+      "goals": [
+        {
+          "minute": 28,
+          "team": "SCO",
+          "scorer": "McGinn"
+        }
+      ],
+      "cards": [
+        {
+          "minute": 39,
+          "team": "HAI",
+          "player": "Jean-Ricner Bellegarde",
+          "type": "YELLOW"
+        },
+        {
+          "minute": 46,
+          "team": "SCO",
+          "player": "Aaron Hickey",
+          "type": "YELLOW"
+        },
+        {
+          "minute": 90,
+          "injuryTime": 5,
+          "team": "SCO",
+          "player": "Kenny McLean",
+          "type": "YELLOW"
+        },
+        {
+          "minute": 90,
+          "injuryTime": 1,
+          "team": "SCO",
+          "player": "Findlay Curtis",
+          "type": "YELLOW"
+        }
+      ]
+    },
     "USA|PAR": {
       "goals": [
         {
@@ -263,6 +300,28 @@
           "minute": 88,
           "team": "PAR",
           "player": "Álex Arce",
+          "type": "YELLOW"
+        }
+      ]
+    },
+    "AUS|TUR": {
+      "goals": [
+        {
+          "minute": 27,
+          "team": "AUS",
+          "scorer": "Irankunda"
+        },
+        {
+          "minute": 75,
+          "team": "AUS",
+          "scorer": "Metcalfe"
+        }
+      ],
+      "cards": [
+        {
+          "minute": 86,
+          "team": "TUR",
+          "player": "Yunus Akgün",
           "type": "YELLOW"
         }
       ]
