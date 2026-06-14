@@ -15,3 +15,7 @@ next-env.d.ts
 .env*.local
 .vercel
 *.tsbuildinfo
+
+# personal learning tracker (not product docs)
+LEARNING.md
+raw/
