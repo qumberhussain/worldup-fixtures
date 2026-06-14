@@ -203,6 +203,12 @@ a { color: var(--accent-2); }
 }
 .channel-tag.bbc .ch-logo { background: #000; }
 .channel-tag.itv .ch-logo { background: #e9b200; color: #1a1205; }
+.channel-wrap { display: inline-flex; align-items: center; gap: 5px; flex-wrap: wrap; }
+.ch-service {
+  font-size: 10px; font-weight: 600; color: var(--text-dim);
+  background: var(--bg-elev); border: 1px solid var(--border);
+  padding: 2px 6px; border-radius: 4px; line-height: 1;
+}
 
 /* Goals / expandable */
 .goals-section { grid-column: 1 / -1; }

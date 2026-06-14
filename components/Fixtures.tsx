@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { classify, hasScore } from "@/lib/normalize";
-import { channelNetwork } from "@/lib/channels";
+import { channelNetwork, channelServices } from "@/lib/channels";
 import type { Card, FixturesPayload, Goal, Match, MatchKind, Team } from "@/lib/types";
 
 // Adaptive polling cadence — only refresh quickly when it matters.
@@ -390,10 +390,16 @@ function ChannelTag({ channel }: { channel: string }) {
   if (!net) return <span className="channel">📺 {channel}</span>;
   // Split "BBC One" -> logo "BBC" + name "One"; "ITV1" -> "ITV" + "1".
   const rest = channel.replace(/^bbc\s*/i, "").replace(/^itv\s*/i, "").trim();
+  const services = channelServices(channel);
   return (
-    <span className={`channel-tag ${net}`}>
-      <span className="ch-logo">{net === "bbc" ? "BBC" : "ITV"}</span>
-      {rest && <span className="ch-name">{rest}</span>}
+    <span className="channel-wrap">
+      <span className={`channel-tag ${net}`}>
+        <span className="ch-logo">{net === "bbc" ? "BBC" : "ITV"}</span>
+        {rest && <span className="ch-name">{rest}</span>}
+      </span>
+      {services.map((s) => (
+        <span key={s} className="ch-service">{s}</span>
+      ))}
     </span>
   );
 }

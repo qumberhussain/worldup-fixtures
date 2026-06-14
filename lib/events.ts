@@ -1,4 +1,5 @@
 import { teamCode } from "./channels";
+import scrapedData from "@/data/events.json";
 import type { Card, Goal, Match } from "./types";
 
 /**
@@ -92,8 +93,22 @@ export const MATCH_EVENTS: Record<string, CuratedMatch> = {
   },
 };
 
+// Goals auto-scraped from Wikipedia (data/events.json), refreshed by the cron.
+// Goals only — cards can't be reliably attributed from that source.
+interface ScrapedFile {
+  matches: Record<string, { goals: CuratedGoal[] }>;
+}
+const SCRAPED = (scrapedData as unknown as ScrapedFile).matches || {};
+
+/**
+ * Resolve events for a pair. Hand-curated entries (goals + verified cards) win;
+ * otherwise fall back to the auto-scraped goals (no cards).
+ */
 function lookup(homeCode: string, awayCode: string): CuratedMatch | null {
-  return MATCH_EVENTS[`${homeCode}|${awayCode}`] || MATCH_EVENTS[`${awayCode}|${homeCode}`] || null;
+  const keys = [`${homeCode}|${awayCode}`, `${awayCode}|${homeCode}`];
+  for (const k of keys) if (MATCH_EVENTS[k]) return MATCH_EVENTS[k];
+  for (const k of keys) if (SCRAPED[k]) return { goals: SCRAPED[k].goals, cards: [] };
+  return null;
 }
 
 /** Resolve curated goals + cards for a match, mapped to home/away sides. */

@@ -1,0 +1,116 @@
+{
+  "source": "wikipedia",
+  "scrapedAt": "2026-06-14T01:56:03.631Z",
+  "matches": {
+    "MEX|RSA": {
+      "goals": [
+        {
+          "minute": 9,
+          "team": "MEX",
+          "scorer": "Quiñones"
+        },
+        {
+          "minute": 67,
+          "team": "MEX",
+          "scorer": "Jiménez"
+        }
+      ]
+    },
+    "KOR|CZE": {
+      "goals": [
+        {
+          "minute": 67,
+          "team": "KOR",
+          "scorer": "Hwang In-beom"
+        },
+        {
+          "minute": 80,
+          "team": "KOR",
+          "scorer": "Oh Hyeon-gyu"
+        },
+        {
+          "minute": 59,
+          "team": "CZE",
+          "scorer": "Krejčí"
+        }
+      ]
+    },
+    "CAN|BIH": {
+      "goals": [
+        {
+          "minute": 78,
+          "team": "CAN",
+          "scorer": "Larin"
+        },
+        {
+          "minute": 21,
+          "team": "BIH",
+          "scorer": "Lukić"
+        }
+      ]
+    },
+    "QAT|SUI": {
+      "goals": [
+        {
+          "minute": 90,
+          "injuryTime": 4,
+          "team": "QAT",
+          "scorer": "Muheim",
+          "type": "OWN"
+        },
+        {
+          "minute": 17,
+          "team": "SUI",
+          "scorer": "Embolo",
+          "type": "PENALTY"
+        }
+      ]
+    },
+    "BRA|MAR": {
+      "goals": [
+        {
+          "minute": 32,
+          "team": "BRA",
+          "scorer": "Vinícius"
+        },
+        {
+          "minute": 21,
+          "team": "MAR",
+          "scorer": "Saibari"
+        }
+      ]
+    },
+    "USA|PAR": {
+      "goals": [
+        {
+          "minute": 7,
+          "team": "USA",
+          "scorer": "Bobadilla",
+          "type": "OWN"
+        },
+        {
+          "minute": 31,
+          "team": "USA",
+          "scorer": "Balogun"
+        },
+        {
+          "minute": 45,
+          "injuryTime": 5,
+          "team": "USA",
+          "scorer": "Balogun"
+        },
+        {
+          "minute": 90,
+          "injuryTime": 8,
+          "team": "USA",
+          "scorer": "Reyna"
+        },
+        {
+          "minute": 73,
+          "team": "PAR",
+          "scorer": "Maurício"
+        }
+      ]
+    }
+  }
+}

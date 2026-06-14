@@ -130,3 +130,15 @@ export function channelNetwork(channel: string | null): "bbc" | "itv" | null {
   if (channel.toUpperCase().startsWith("ITV")) return "itv";
   return null;
 }
+
+/**
+ * Additional ways to watch alongside the main broadcast channel, matching the
+ * UK timetable: BBC channels also stream on iPlayer; ITV on ITVX, and ITV1 is
+ * simulcast on STV in Scotland.
+ */
+export function channelServices(channel: string | null): string[] {
+  const net = channelNetwork(channel);
+  if (net === "bbc") return ["iPlayer"];
+  if (net === "itv") return /itv\s*1/i.test(channel || "") ? ["ITVX", "STV"] : ["ITVX"];
+  return [];
+}

@@ -1,0 +1,42 @@
+name: Scrape match events
+
+# Auto-updates goal scorers from Wikipedia into data/events.json.
+# Committing the file triggers a Vercel redeploy with the fresh data.
+# NOTE: scheduled workflows only run from the repo's default branch.
+
+on:
+  schedule:
+    - cron: "0 * * * *" # hourly
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+concurrency:
+  group: scrape-events
+  cancel-in-progress: false
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Scrape goal scorers
+        run: node scripts/scrape-events.mjs
+
+      - name: Commit if changed
+        run: |
+          if git diff --quiet -- data/events.json; then
+            echo "No event changes."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/events.json
+          git commit -m "chore: refresh match events"
+          git push
