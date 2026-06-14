@@ -101,3 +101,9 @@ export async function loadFixtures(): Promise<{
     return { payload: sampleFixtures(), meta: { error } };
   }
 }
+
+/** Find a single match by id (uses the shared loader + throttle cache). */
+export async function getMatchById(id: number): Promise<Match | undefined> {
+  const { payload } = await loadFixtures();
+  return payload.matches.find((m) => m.id === id);
+}

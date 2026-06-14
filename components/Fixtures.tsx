@@ -1,8 +1,10 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import Link from "next/link";
 import { classify, hasScore } from "@/lib/normalize";
 import { channelNetwork, channelServices } from "@/lib/channels";
+import { matchSlug } from "@/lib/slug";
 import type { Card, FixturesPayload, Goal, Match, MatchKind, Team } from "@/lib/types";
 
 // Adaptive polling cadence — only refresh quickly when it matters.
@@ -341,6 +343,16 @@ function MatchCard({ m }: { m: Match }) {
           )}
         </div>
       )}
+
+      <div className="match-foot">
+        <Link
+          className="match-link"
+          href={`/match/${matchSlug(m)}`}
+          aria-label={`${h?.name || "TBD"} vs ${a?.name || "TBD"} — full match page`}
+        >
+          Match page →
+        </Link>
+      </div>
     </article>
   );
 }

@@ -1,5 +1,10 @@
 import type { Match } from "./types";
 import { SITE, absoluteUrl } from "./site";
+import { matchSlug } from "./slug";
+
+function hasScore(m: Match): boolean {
+  return m.score?.home != null && m.score?.away != null;
+}
 
 /**
  * Build Schema.org JSON-LD for the homepage. Search engines (esp. Google's
@@ -43,17 +48,21 @@ function sportsEvent(m: Match) {
       ? m.stage.replace(/_/g, " ").toLowerCase().replace(/\b\w/g, (c) => c.toUpperCase())
       : m.group || "Group Stage";
 
+  const scoreText = hasScore(m)
+    ? ` Final score: ${home} ${m.score.home}–${m.score.away} ${away}.`
+    : "";
+
   const node: Record<string, unknown> = {
     "@type": "SportsEvent",
     name: `${home} vs ${away}`,
-    description: `FIFA World Cup 2026 ${stage}: ${home} vs ${away}.${
+    description: `FIFA World Cup 2026 ${stage}: ${home} vs ${away}.${scoreText}${
       m.channel ? ` Live on ${m.channel} in the UK.` : ""
     }`,
     sport: "Association football",
     startDate: m.utcDate,
     eventStatus: eventStatus(m.status),
     eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
-    url: SITE.url,
+    url: absoluteUrl(`/match/${matchSlug(m)}`),
     isAccessibleForFree: true,
     superEvent: { "@id": TOURNAMENT_ID },
     homeTeam: { "@type": "SportsTeam", name: home },
@@ -68,7 +77,34 @@ function sportsEvent(m: Match) {
   if (m.venue) {
     node.location = { "@type": "Place", name: m.venue };
   }
+  if (m.channel) {
+    node.publication = {
+      "@type": "BroadcastEvent",
+      name: `${home} vs ${away} on ${m.channel}`,
+      isLiveBroadcast: true,
+      publishedOn: { "@type": "BroadcastService", name: m.channel },
+    };
+  }
   return node;
+}
+
+/** Per-match JSON-LD: the SportsEvent (with a stable @id) + a breadcrumb. */
+export function buildMatchJsonLd(m: Match) {
+  const url = absoluteUrl(`/match/${matchSlug(m)}`);
+  const event = sportsEvent(m);
+  return {
+    "@context": "https://schema.org",
+    "@graph": [
+      { ...event, "@id": `${url}#event` },
+      {
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: "World Cup 2026", item: SITE.url },
+          { "@type": "ListItem", position: 2, name: event.name, item: url },
+        ],
+      },
+    ],
+  };
 }
 
 export function buildHomeJsonLd(matches: Match[]) {
