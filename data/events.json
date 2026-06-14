@@ -1,6 +1,6 @@
 {
   "source": "wikipedia",
-  "scrapedAt": "2026-06-14T22:04:06.109Z",
+  "scrapedAt": "2026-06-14T23:59:01.566Z",
   "matches": {
     "MEX|RSA": {
       "goals": [
@@ -385,9 +385,9 @@
           "scorer": "Nakamura"
         },
         {
-          "minute": 89,
+          "minute": 88,
           "team": "JPN",
-          "scorer": "Ogawa"
+          "scorer": "Kamada"
         }
       ]
     }
