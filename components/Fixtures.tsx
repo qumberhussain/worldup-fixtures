@@ -296,7 +296,16 @@ function MatchCard({ m }: { m: Match }) {
               {m.score?.away ?? 0}
             </div>
             {kind === "live" ? (
-              <span className="badge live">● Live</span>
+              <>
+                <span className="badge live">● Live</span>
+                <time
+                  className="ko-time"
+                  dateTime={m.utcDate}
+                  aria-label={`Kicked off at ${kickoffTime(m.utcDate)}`}
+                >
+                  KO {kickoffTime(m.utcDate)}
+                </time>
+              </>
             ) : (
               <span className="badge ft">Full time</span>
             )}

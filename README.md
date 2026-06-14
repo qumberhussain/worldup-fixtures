@@ -258,6 +258,40 @@ Chronological record of what changed and why, so context is recoverable:
 Benchmarked against BBC Sport, FlashScore, Sofascore, OneFootball and ESPN. Not
 committed — a backlog of ideas and where they'd slot in.
 
+### Big builds (heavy work, high payoff)
+
+The large, multi-session features — ordered roughly by impact. Each notes the
+*skill it exercises* (this project doubles as a learning vehicle: SEO that ranks,
+analytics, ads, a11y).
+
+- **Per-match pages** (`/match/[id]`, SSG/ISR via `generateStaticParams` +
+  `generateMetadata`) — the biggest SEO multiplier. Each match becomes an
+  indexable URL ("Brazil vs Morocco World Cup 2026") with its own title,
+  description, per-match OG image, `SportsEvent` JSON-LD and internal links.
+  Turns one page into 100+ long-tail landing pages. *(SEO that ranks; Next routing.)*
+- **Editorial / programmatic SEO layer** — match previews & reports, "where to
+  watch X", group/team guides. Content is what actually ranks for these queries;
+  pair with a Search Console feedback loop. *(SEO content strategy + analytics.)*
+- **Richer live data via API-Football (or football-data paid tier)** — real-time
+  events, **live match minute/clock**, lineups, formations, stats (xG, shots,
+  possession), head-to-head. The match route is already structured for events.
+  *(API integration; removes the Wikipedia-lag limitation.)*
+- **Group standings + knockout bracket** — compute W/D/L, GD, points from results;
+  visual R32→final tree. Non-trivial data logic + UI. *(state modelling, data viz.)*
+- **Team & player pages** — squads, scorer/assist/cards leaderboards, per-team
+  fixtures. Another large SEO surface. *(data modelling + SEO.)*
+- **Full WCAG 2.2 AA accessibility pass** — see the dedicated item below. *(directly
+  relevant to his UK gov consultancy work.)*
+- **Monetisation: Google AdSense/Ad Manager + a GDPR consent platform (CMP)** —
+  ad slots, consent-gated analytics/ads, measuring revenue. *(Google Ads; consent/
+  privacy engineering.)*
+- **PWA offline + push notifications** — service worker caching last payload, Web
+  Push for goals/kick-offs of favourite teams (needs a push backend). *(SW/push.)*
+- **Favourites & personalisation** — "My teams" (localStorage → optional accounts);
+  accounts pull in auth + a backend. *(auth/state; bigger if accounts are added.)*
+- **i18n + multi-region channels** — translations and broadcaster maps beyond the
+  UK (US/AU), per-region detection. Expands audience + SEO. *(i18n; content.)*
+
 ### High value / low effort
 - **Group standings tables** — W/D/L, GD, points per group (compute from results).
 - **Calendar export (.ics)** — "add this match/these fixtures to my calendar".
@@ -282,7 +316,11 @@ committed — a backlog of ideas and where they'd slot in.
   or per-region detection.
 - **Shareable match cards** (OG images) and deep links to a single match — ✅ a
   site-level OG share card is generated; per-match OG images + deep links still TODO.
-- **Accessibility pass** — full keyboard nav, ARIA on the timeline, reduced-motion.
+- **Accessibility pass (WCAG 2.2 AA)** — keyboard nav + visible focus order, ARIA
+  on the tabs (`tablist`/`tab`/`tabpanel`) and the live-score region (`aria-live`),
+  ARIA on the event timeline, `prefers-reduced-motion` (kill the LIVE pulse),
+  colour-contrast audit, and real screen-reader testing (VoiceOver/NVDA). Directly
+  relevant to UK gov work — and a strong teaching candidate.
 - **Analytics** (privacy-friendly) — ✅ done: Vercel Web Analytics + Speed Insights
   (cookieless) and GA4. Custom per-view/match event tracking is a possible next step.
 
