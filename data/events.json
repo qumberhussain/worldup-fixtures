@@ -1,6 +1,6 @@
 {
   "source": "wikipedia",
-  "scrapedAt": "2026-06-15T15:35:02.493Z",
+  "scrapedAt": "2026-06-15T19:36:44.042Z",
   "matches": {
     "MEX|RSA": {
       "goals": [
@@ -247,6 +247,12 @@
           "scorer": "Balogun"
         },
         {
+          "minute": 45,
+          "injuryTime": 5,
+          "team": "USA",
+          "scorer": "Balogun"
+        },
+        {
           "minute": 90,
           "injuryTime": 8,
           "team": "USA",
@@ -340,6 +346,12 @@
           "type": "PENALTY"
         },
         {
+          "minute": 88,
+          "team": "GER",
+          "scorer": "Havertz",
+          "type": "PENALTY"
+        },
+        {
           "minute": 47,
           "team": "GER",
           "scorer": "Musiala"
@@ -366,7 +378,7 @@
         {
           "minute": 90,
           "team": "CIV",
-          "scorer": "Diallo"
+          "scorer": "A. Diallo"
         }
       ],
       "cards": [
@@ -449,6 +461,12 @@
           "scorer": "Ayari"
         },
         {
+          "minute": 90,
+          "injuryTime": 6,
+          "team": "SWE",
+          "scorer": "Ayari"
+        },
+        {
           "minute": 30,
           "team": "SWE",
           "scorer": "Isak"
@@ -474,6 +492,33 @@
           "minute": 54,
           "team": "TUN",
           "player": "Rani Khedira",
+          "type": "YELLOW"
+        }
+      ]
+    },
+    "BEL|EGY": {
+      "goals": [
+        {
+          "minute": 20,
+          "team": "EGY",
+          "scorer": "Ashour"
+        }
+      ]
+    },
+    "ESP|CPV": {
+      "goals": [],
+      "cards": [
+        {
+          "minute": 90,
+          "injuryTime": 3,
+          "team": "ESP",
+          "player": "Pedri",
+          "type": "YELLOW"
+        },
+        {
+          "minute": 16,
+          "team": "CPV",
+          "player": "Sidny Lopes Cabral",
           "type": "YELLOW"
         }
       ]
