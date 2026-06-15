@@ -30,7 +30,10 @@ function isEngland(m: Match): boolean {
 
 /** Choose the next poll delay from the current fixtures. */
 function pollDelay(matches: Match[]): number {
-  if (matches.some((m) => classify(m) === "live")) return POLL_LIVE;
+  if (matches.some((m) => {
+    const k = classify(m);
+    return k === "live" || k === "underway";
+  })) return POLL_LIVE;
   const now = Date.now();
   const soon = matches.some((m) => {
     const dt = new Date(m.utcDate).getTime() - now;
@@ -118,7 +121,10 @@ export default function Fixtures({ initial }: { initial?: FixturesPayload }) {
   }, [matches, query]);
 
   const liveMatches = useMemo(
-    () => matches.filter((m) => classify(m) === "live"),
+    () => matches.filter((m) => {
+      const k = classify(m);
+      return k === "live" || k === "underway";
+    }),
     [matches]
   );
 
@@ -186,7 +192,7 @@ export default function Fixtures({ initial }: { initial?: FixturesPayload }) {
                   <div className="lc-teams">
                     {m.homeTeam?.tla || m.homeTeam?.name}{" "}
                     <span className="lc-score">
-                      {m.score?.home ?? 0}–{m.score?.away ?? 0}
+                      {hasScore(m) ? `${m.score.home}–${m.score.away}` : "vs"}
                     </span>{" "}
                     {m.awayTeam?.tla || m.awayTeam?.name}
                   </div>
@@ -248,7 +254,7 @@ function MatchCard({ m }: { m: Match }) {
   const h = m.homeTeam, a = m.awayTeam;
   const homeWin = kind === "played" && hasScore(m) && m.score.home! > m.score.away!;
   const awayWin = kind === "played" && hasScore(m) && m.score.away! > m.score.home!;
-  const canExpand = kind === "played" || kind === "live";
+  const canExpand = kind === "played" || kind === "live" || kind === "underway";
 
   const [expanded, setExpanded] = useState(false);
   const [detail, setDetail] = useState<{ goals: Goal[]; cards: Card[] } | null>(null);
@@ -279,7 +285,9 @@ function MatchCard({ m }: { m: Match }) {
   const hasMeta = m.group || m.venue || m.channel || (m.stage && m.stage !== "GROUP_STAGE");
 
   return (
-    <article className={`match ${kind === "live" ? "is-live" : ""}`}>
+    <article
+      className={`match ${kind === "live" ? "is-live" : ""} ${kind === "underway" ? "is-underway" : ""}`}
+    >
       <div className={`team home ${homeWin ? "winner" : ""}`}>
         <span className="name">{h?.name || "TBD"}</span>
         <TeamMark team={h} />
@@ -289,6 +297,18 @@ function MatchCard({ m }: { m: Match }) {
           <>
             <div className="kickoff">{kickoffTime(m.utcDate)}</div>
             <span className="badge upcoming">Upcoming</span>
+          </>
+        ) : kind === "underway" ? (
+          <>
+            {hasScore(m) && (
+              <div className="score">
+                {m.score.home}
+                <span className="dash">–</span>
+                {m.score.away}
+              </div>
+            )}
+            <span className="badge inplay">● In progress</span>
+            {!hasScore(m) && <div className="ko-note">Live score unavailable</div>}
           </>
         ) : (
           <>

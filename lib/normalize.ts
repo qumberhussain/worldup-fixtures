@@ -2,30 +2,43 @@ import type { Match, MatchKind, Team } from "./types";
 
 const LIVE_STATUSES = new Set(["IN_PLAY", "PAUSED", "SUSPENDED"]);
 const FINISHED_STATUSES = new Set(["FINISHED", "AWARDED"]);
+// Pre-match statuses the free feed leaves stale once a game actually kicks off.
+const PRE_STATUSES = new Set(["TIMED", "SCHEDULED"]);
 
 export function hasScore(m: Match): boolean {
   return m.score?.home != null && m.score?.away != null;
 }
 
-/** Decide whether a match is live, already played, or still upcoming. */
+/** Decide whether a match is live, underway, already played, or still upcoming. */
 export function classify(m: Match): MatchKind {
   const kicked = new Date(m.utcDate).getTime();
-  const minsSince = Number.isFinite(kicked) ? (Date.now() - kicked) / 60000 : 0;
+  const valid = Number.isFinite(kicked);
+  const minsSince = valid ? (Date.now() - kicked) / 60000 : 0;
+  // Group games finish ~115 min after KO (max ~125 with long stoppage); 130
+  // gives a small safety margin. Knockouts allow for extra time + penalties.
+  const maxLiveMins = m.stage && m.stage !== "GROUP_STAGE" ? 190 : 130;
 
+  // 1. Feed confirms finished.
+  if (FINISHED_STATUSES.has(m.status)) return "played";
+
+  // 2. Feed confirms live — but distrust a status stuck "in play" well past a
+  //    realistic match length (the free feed lags the FINISHED flag).
   if (LIVE_STATUSES.has(m.status)) {
-    // The free-tier feed lags the FINISHED status, leaving matches stuck on
-    // "in play" long after full time. No realistic match runs this long after
-    // kick-off, so treat a stale "live" status as finished/upcoming instead.
-    // Group games finish ~115 min after KO (max ~125 with long stoppage); 130
-    // gives a small safety margin. Knockouts allow for extra time + penalties.
-    const maxLiveMins = m.stage && m.stage !== "GROUP_STAGE" ? 190 : 130;
-    if (Number.isFinite(kicked) && minsSince > maxLiveMins) {
-      return hasScore(m) ? "played" : "upcoming";
-    }
+    if (valid && minsSince > maxLiveMins) return hasScore(m) ? "played" : "upcoming";
     return "live";
   }
-  if (FINISHED_STATUSES.has(m.status)) return "played";
-  if (Number.isFinite(kicked) && kicked < Date.now() && hasScore(m)) return "played";
+
+  // 3. Feed still says "scheduled" but the clock says otherwise. The free tier
+  //    lags IN_PLAY/score updates, so once kick-off has passed and we're inside
+  //    a realistic match window, infer the match is underway rather than
+  //    trusting the stale status (and without asserting a score we don't have).
+  if (valid && PRE_STATUSES.has(m.status) && minsSince > 0) {
+    if (minsSince <= maxLiveMins) return "underway";
+    return hasScore(m) ? "played" : "upcoming";
+  }
+
+  // 4. Any other status (postponed/cancelled/unknown) or not yet kicked off.
+  if (valid && minsSince > 0 && hasScore(m)) return "played";
   return "upcoming";
 }
 

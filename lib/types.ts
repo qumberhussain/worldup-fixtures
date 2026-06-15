@@ -67,4 +67,12 @@ export interface FixturesPayload {
   matches: Match[];
 }
 
-export type MatchKind = "live" | "played" | "upcoming";
+/**
+ * - live:     feed confirms IN_PLAY — we trust the score.
+ * - underway: kick-off has passed but the (free-tier) feed hasn't flipped to
+ *             IN_PLAY yet, so the match is in progress but the score may be
+ *             stale/unavailable. We don't assert a score we can't trust.
+ * - played:   finished.
+ * - upcoming: not started.
+ */
+export type MatchKind = "live" | "underway" | "played" | "upcoming";

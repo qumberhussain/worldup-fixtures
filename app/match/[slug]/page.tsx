@@ -61,7 +61,7 @@ export async function generateMetadata({
   const description =
     kind === "played"
       ? `Full time: ${home} ${m.score.home}–${m.score.away} ${away}. Goal scorers, cards and details from this FIFA World Cup 2026 match.${channel}`
-      : kind === "live"
+      : kind === "live" || kind === "underway"
         ? `LIVE: ${home} vs ${away} at the FIFA World Cup 2026 — live score, goal scorers and cards.${channel}`
         : `${home} vs ${away} at the FIFA World Cup 2026. Kick-off ${when}, plus group, venue and UK TV channel.${channel}`;
 
@@ -118,7 +118,7 @@ export default async function MatchPage({
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      {kind === "live" && <LiveRefresher />}
+      {(kind === "live" || kind === "underway") && <LiveRefresher />}
 
       <header className="site-header">
         <div className="wrap">
@@ -147,13 +147,31 @@ export default async function MatchPage({
             <div className="md-center">
               {kind === "upcoming" ? (
                 <time className="md-ko" dateTime={m.utcDate}>{fmtTime(m.utcDate)}</time>
+              ) : kind === "underway" ? (
+                hasScore(m) ? (
+                  <div className="md-score">
+                    {m.score.home}<span className="dash">–</span>{m.score.away}
+                  </div>
+                ) : (
+                  <div className="md-note">Live score unavailable</div>
+                )
               ) : (
                 <div className="md-score">
                   {m.score?.home ?? 0}<span className="dash">–</span>{m.score?.away ?? 0}
                 </div>
               )}
-              <span className={`badge ${kind === "live" ? "live" : kind === "played" ? "ft" : "upcoming"}`}>
-                {kind === "live" ? "● Live" : kind === "played" ? "Full time" : "Upcoming"}
+              <span
+                className={`badge ${
+                  kind === "live" ? "live"
+                    : kind === "underway" ? "inplay"
+                    : kind === "played" ? "ft"
+                    : "upcoming"
+                }`}
+              >
+                {kind === "live" ? "● Live"
+                  : kind === "underway" ? "● In progress"
+                  : kind === "played" ? "Full time"
+                  : "Upcoming"}
               </span>
             </div>
             <h1 className={`md-team ${awayWin ? "winner" : ""}`}>{away?.name || "TBD"}</h1>
