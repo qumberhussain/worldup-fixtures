@@ -209,7 +209,7 @@ node scripts/scrape-events.mjs               # refresh data/events.json locally
    - **`FOOTBALL_DATA_PAID`** *(optional)* — set to `1` only with a paid livescore
      key to enable the live goal/card events API path (see the decision log).
    - **`NEXT_PUBLIC_SITE_URL`** — canonical origin for SEO (no trailing slash).
-     Defaults to `https://worldup-fixtures.vercel.app`; set this when using a
+     Defaults to `https://worldcup2026-fixtures.vercel.app`; set this when using a
      custom domain so canonical/OG/sitemap links are correct.
    - **`NEXT_PUBLIC_GA_ID`** *(optional)* — GA4 Measurement ID (`G-…`). GA only
      loads when set.

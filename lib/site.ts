@@ -5,7 +5,7 @@
  * deployment so canonical/OG/sitemap links are always absolute and correct.
  */
 const RAW_URL =
-  process.env.NEXT_PUBLIC_SITE_URL || "https://worldup-fixtures.vercel.app";
+  process.env.NEXT_PUBLIC_SITE_URL || "https://worldcup2026-fixtures.vercel.app";
 
 /** Absolute site origin, no trailing slash (e.g. https://example.com). */
 export const SITE_URL = RAW_URL.replace(/\/+$/, "");
