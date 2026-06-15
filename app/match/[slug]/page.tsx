@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound, redirect } from "next/navigation";
 import { getMatchById, loadFixtures } from "@/lib/fixtures";
 import { getMatchEvents } from "@/lib/events";
+import { loadMatchEvents } from "@/lib/match-events";
 import { buildMatchJsonLd } from "@/lib/jsonld";
 import { matchSlug, parseMatchId } from "@/lib/slug";
 import { classify, hasScore } from "@/lib/normalize";
@@ -95,7 +96,12 @@ export default async function MatchPage({
   const kind = classify(m);
   const home = m.homeTeam;
   const away = m.awayTeam;
-  const events = getMatchEvents(home, away) ?? { goals: [], cards: [] };
+  // For in-progress matches, pull live events (paid tier); otherwise the
+  // curated/scraped set. Free tier never hits the API in either path.
+  const events =
+    kind === "live" || kind === "underway"
+      ? await loadMatchEvents(m)
+      : getMatchEvents(home, away) ?? { goals: [], cards: [] };
   const jsonLd = buildMatchJsonLd(m);
   const homeWin = kind === "played" && hasScore(m) && m.score.home! > m.score.away!;
   const awayWin = kind === "played" && hasScore(m) && m.score.away! > m.score.home!;
@@ -168,7 +174,8 @@ export default async function MatchPage({
                     : "upcoming"
                 }`}
               >
-                {kind === "live" ? "● Live"
+                {kind === "live"
+                  ? (m.minute != null ? `● ${m.minute}${m.injuryTime ? `+${m.injuryTime}` : ""}'` : "● Live")
                   : kind === "underway" ? "● In progress"
                   : kind === "played" ? "Full time"
                   : "Upcoming"}

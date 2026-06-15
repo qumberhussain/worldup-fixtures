@@ -59,6 +59,8 @@ interface RawMatch {
   stage?: string | null;
   group?: string | null;
   venue?: string | null;
+  minute?: number | null;
+  injuryTime?: number | null;
   homeTeam?: RawTeam;
   awayTeam?: RawTeam;
   score?: { fullTime?: { home?: number | null; away?: number | null } };
@@ -89,5 +91,7 @@ export function normalizeMatch(m: RawMatch): Match {
       away: m.score?.fullTime?.away ?? null,
     },
     channel: null,
+    minute: m.minute ?? null,
+    injuryTime: m.injuryTime ?? null,
   };
 }

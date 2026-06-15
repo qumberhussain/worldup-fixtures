@@ -173,6 +173,7 @@ lib/
   site.ts                 Central site config (URL, name, description, keywords)
   slug.ts                 Match URL slugs (matchSlug / parseMatchId)
   fixtures.ts             Shared fixtures loader + throttle cache (SSR + API route)
+  match-events.ts         Shared match-events loader (curated ▸ scraped ▸ paid API)
   jsonld.ts               Builds Schema.org SportsEvent / WebSite JSON-LD
   types.ts                Shared types (Match, Goal, Card, ...)
   normalize.ts            football-data.org → app shape + match classification
@@ -205,6 +206,8 @@ node scripts/scrape-events.mjs               # refresh data/events.json locally
    - **`FOOTBALL_DATA_API_KEY`** — free key from
      [football-data.org](https://www.football-data.org/client/register). Without it
      the site serves clearly-labelled sample data.
+   - **`FOOTBALL_DATA_PAID`** *(optional)* — set to `1` only with a paid livescore
+     key to enable the live goal/card events API path (see the decision log).
    - **`NEXT_PUBLIC_SITE_URL`** — canonical origin for SEO (no trailing slash).
      Defaults to `https://worldup-fixtures.vercel.app`; set this when using a
      custom domain so canonical/OG/sitemap links are correct.
@@ -262,6 +265,17 @@ Chronological record of what changed and why, so context is recoverable:
     `SportsEvent`+`BreadcrumbList` JSON-LD with `BroadcastEvent`, per-match OG
     card, a sitemap entry per match, and `router.refresh()`-based live updates so
     the timeline stays server-rendered yet live (no polling JS on non-live pages).
+11. **"Underway" state + paid-ready data.** Verified the football-data.org **free
+    tier never reports `IN_PLAY`** (matches go `TIMED`→`FINISHED`, scores delayed —
+    confirmed against the live feed + their docs). So `classify()` now infers an
+    **"underway"** state from the clock when KO has passed but the feed is still
+    `TIMED`, shown as an amber "In progress" badge with no invented score. Made the
+    data layer **paid-key ready** (graceful on free): `lib/match-events.ts` maps
+    goals **and cards/`bookings`** from the match detail; `Match.minute` surfaces a
+    live clock in the badges; the match page pulls live events for in-progress
+    games. The events API path is gated on **`FOOTBALL_DATA_PAID=1`** (not just key
+    presence — a free key returns no events) so the free tier never wastes a call;
+    going paid = set the paid key + that flag (live minute/score come automatically).
 
 ---
 

@@ -29,6 +29,10 @@ export interface Match {
   score: { home: number | null; away: number | null };
   /** UK broadcast channel, merged from the curated channel map. */
   channel: string | null;
+  /** Live elapsed minute while IN_PLAY — only present on paid tiers; null otherwise. */
+  minute?: number | null;
+  /** Live stoppage-time minutes (paid tiers), if any. */
+  injuryTime?: number | null;
 }
 
 export interface Goal {

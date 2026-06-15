@@ -188,7 +188,9 @@ export default function Fixtures({ initial }: { initial?: FixturesPayload }) {
             <div className="live-strip">
               {liveMatches.map((m) => (
                 <div className="live-chip" key={m.id}>
-                  <span className="live-tag">LIVE</span>
+                  <span className="live-tag">
+                    {m.minute != null ? `${m.minute}${m.injuryTime ? `+${m.injuryTime}` : ""}'` : "LIVE"}
+                  </span>
                   <div className="lc-teams">
                     {m.homeTeam?.tla || m.homeTeam?.name}{" "}
                     <span className="lc-score">
@@ -319,7 +321,11 @@ function MatchCard({ m }: { m: Match }) {
             </div>
             {kind === "live" ? (
               <>
-                <span className="badge live">● Live</span>
+                <span className="badge live">
+                  {m.minute != null
+                    ? `● ${m.minute}${m.injuryTime ? `+${m.injuryTime}` : ""}'`
+                    : "● Live"}
+                </span>
                 <time
                   className="ko-time"
                   dateTime={m.utcDate}
