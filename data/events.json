@@ -1,6 +1,6 @@
 {
   "source": "wikipedia",
-  "scrapedAt": "2026-06-15T03:55:48.514Z",
+  "scrapedAt": "2026-06-15T09:50:04.665Z",
   "matches": {
     "MEX|RSA": {
       "goals": [
@@ -437,6 +437,43 @@
           "minute": 83,
           "team": "NED",
           "player": "Memphis Depay",
+          "type": "YELLOW"
+        }
+      ]
+    },
+    "SWE|TUN": {
+      "goals": [
+        {
+          "minute": 7,
+          "team": "SWE",
+          "scorer": "Ayari"
+        },
+        {
+          "minute": 30,
+          "team": "SWE",
+          "scorer": "Isak"
+        },
+        {
+          "minute": 59,
+          "team": "SWE",
+          "scorer": "Gyökeres"
+        },
+        {
+          "minute": 84,
+          "team": "SWE",
+          "scorer": "Svanberg"
+        },
+        {
+          "minute": 43,
+          "team": "TUN",
+          "scorer": "Rekik"
+        }
+      ],
+      "cards": [
+        {
+          "minute": 54,
+          "team": "TUN",
+          "player": "Rani Khedira",
           "type": "YELLOW"
         }
       ]
