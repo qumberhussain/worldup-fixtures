@@ -1,6 +1,6 @@
 {
   "source": "wikipedia",
-  "scrapedAt": "2026-06-14T23:59:01.566Z",
+  "scrapedAt": "2026-06-15T03:55:48.514Z",
   "matches": {
     "MEX|RSA": {
       "goals": [
@@ -247,12 +247,6 @@
           "scorer": "Balogun"
         },
         {
-          "minute": 45,
-          "injuryTime": 5,
-          "team": "USA",
-          "scorer": "Balogun"
-        },
-        {
           "minute": 90,
           "injuryTime": 8,
           "team": "USA",
@@ -367,12 +361,47 @@
         }
       ]
     },
+    "CIV|ECU": {
+      "goals": [
+        {
+          "minute": 90,
+          "team": "CIV",
+          "scorer": "Diallo"
+        }
+      ],
+      "cards": [
+        {
+          "minute": 40,
+          "team": "CIV",
+          "player": "Guéla Doué",
+          "type": "YELLOW"
+        },
+        {
+          "minute": 38,
+          "team": "CIV",
+          "player": "Franck Kessié",
+          "type": "YELLOW"
+        },
+        {
+          "minute": 28,
+          "team": "CIV",
+          "player": "Seko Fofana",
+          "type": "YELLOW"
+        },
+        {
+          "minute": 73,
+          "team": "ECU",
+          "player": "Jackson Porozo",
+          "type": "YELLOW"
+        }
+      ]
+    },
     "NED|JPN": {
       "goals": [
         {
-          "minute": 51,
+          "minute": 50,
           "team": "NED",
-          "scorer": "van Dijk"
+          "scorer": "Van Dijk"
         },
         {
           "minute": 64,
@@ -388,6 +417,27 @@
           "minute": 88,
           "team": "JPN",
           "scorer": "Kamada"
+        }
+      ],
+      "cards": [
+        {
+          "minute": 90,
+          "injuryTime": 1,
+          "team": "NED",
+          "player": "Micky van de Ven",
+          "type": "YELLOW"
+        },
+        {
+          "minute": 61,
+          "team": "NED",
+          "player": "Crysencio Summerville",
+          "type": "YELLOW"
+        },
+        {
+          "minute": 83,
+          "team": "NED",
+          "player": "Memphis Depay",
+          "type": "YELLOW"
         }
       ]
     }
