@@ -1,6 +1,6 @@
 {
   "source": "wikipedia",
-  "scrapedAt": "2026-06-16T20:01:04.502Z",
+  "scrapedAt": "2026-06-16T22:13:42.914Z",
   "matches": {
     "MEX|RSA": {
       "goals": [
@@ -79,6 +79,91 @@
           "injuryTime": 6,
           "team": "KOR",
           "player": "Lee Gi-hyuk",
+          "type": "YELLOW"
+        }
+      ]
+    },
+    "CAN|BIH": {
+      "goals": [
+        {
+          "minute": 78,
+          "team": "CAN",
+          "scorer": "Larin"
+        },
+        {
+          "minute": 21,
+          "team": "BIH",
+          "scorer": "Lukić"
+        }
+      ],
+      "cards": [
+        {
+          "minute": 11,
+          "team": "CAN",
+          "player": "Alistair Johnston",
+          "type": "YELLOW"
+        },
+        {
+          "minute": 53,
+          "team": "CAN",
+          "player": "Luc de Fougerolles",
+          "type": "YELLOW"
+        },
+        {
+          "minute": 90,
+          "injuryTime": 3,
+          "team": "BIH",
+          "player": "Nikola Katić",
+          "type": "YELLOW"
+        },
+        {
+          "minute": 44,
+          "team": "BIH",
+          "player": "Ermedin Demirović",
+          "type": "YELLOW"
+        },
+        {
+          "minute": 45,
+          "injuryTime": 1,
+          "team": "BIH",
+          "player": "Jovo Lukić",
+          "type": "YELLOW"
+        }
+      ]
+    },
+    "QAT|SUI": {
+      "goals": [
+        {
+          "minute": 90,
+          "injuryTime": 4,
+          "team": "QAT",
+          "scorer": "Muheim",
+          "type": "OWN"
+        },
+        {
+          "minute": 17,
+          "team": "SUI",
+          "scorer": "Embolo",
+          "type": "PENALTY"
+        }
+      ],
+      "cards": [
+        {
+          "minute": 14,
+          "team": "QAT",
+          "player": "Mahmud Abunada",
+          "type": "YELLOW"
+        },
+        {
+          "minute": 23,
+          "team": "QAT",
+          "player": "Jassem Gaber",
+          "type": "YELLOW"
+        },
+        {
+          "minute": 42,
+          "team": "SUI",
+          "player": "Denis Zakaria",
           "type": "YELLOW"
         }
       ]
@@ -516,6 +601,26 @@
           "team": "KSA",
           "player": "Abdulelah Al-Amri",
           "type": "YELLOW"
+        }
+      ]
+    },
+    "FRA|SEN": {
+      "goals": [
+        {
+          "minute": 66,
+          "team": "FRA",
+          "scorer": "Mbappé"
+        },
+        {
+          "minute": 82,
+          "team": "FRA",
+          "scorer": "Barcola"
+        },
+        {
+          "minute": 90,
+          "injuryTime": 5,
+          "team": "SEN",
+          "scorer": "Mbaye"
         }
       ]
     }
