@@ -1,6 +1,6 @@
 {
   "source": "wikipedia",
-  "scrapedAt": "2026-06-15T22:08:48.839Z",
+  "scrapedAt": "2026-06-16T00:21:06.343Z",
   "matches": {
     "MEX|RSA": {
       "goals": [
@@ -551,6 +551,28 @@
           "minute": 16,
           "team": "CPV",
           "player": "Sidny Lopes Cabral",
+          "type": "YELLOW"
+        }
+      ]
+    },
+    "KSA|URU": {
+      "goals": [
+        {
+          "minute": 41,
+          "team": "KSA",
+          "scorer": "Al-Amri"
+        },
+        {
+          "minute": 80,
+          "team": "URU",
+          "scorer": "Araújo"
+        }
+      ],
+      "cards": [
+        {
+          "minute": 44,
+          "team": "KSA",
+          "player": "Abdulelah Al-Amri",
           "type": "YELLOW"
         }
       ]
