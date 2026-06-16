@@ -1,6 +1,6 @@
 {
   "source": "wikipedia",
-  "scrapedAt": "2026-06-16T06:20:40.262Z",
+  "scrapedAt": "2026-06-16T12:00:02.756Z",
   "matches": {
     "MEX|RSA": {
       "goals": [
@@ -378,7 +378,7 @@
         {
           "minute": 90,
           "team": "CIV",
-          "scorer": "Diallo"
+          "scorer": "A. Diallo"
         }
       ],
       "cards": [
