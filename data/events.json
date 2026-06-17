@@ -1,6 +1,6 @@
 {
   "source": "wikipedia",
-  "scrapedAt": "2026-06-16T22:13:42.914Z",
+  "scrapedAt": "2026-06-17T00:10:06.463Z",
   "matches": {
     "MEX|RSA": {
       "goals": [
@@ -501,13 +501,13 @@
         {
           "minute": 66,
           "team": "BEL",
-          "scorer": "Hany",
+          "scorer": "Mohamed Hany",
           "type": "OWN"
         },
         {
           "minute": 19,
           "team": "EGY",
-          "scorer": "Ashour"
+          "scorer": "Emam Ashour"
         }
       ],
       "cards": [
@@ -621,6 +621,40 @@
           "injuryTime": 5,
           "team": "SEN",
           "scorer": "Mbaye"
+        }
+      ]
+    },
+    "IRQ|NOR": {
+      "goals": [
+        {
+          "minute": 39,
+          "team": "IRQ",
+          "scorer": "Hussein"
+        },
+        {
+          "minute": 29,
+          "team": "NOR",
+          "scorer": "Haaland"
+        },
+        {
+          "minute": 76,
+          "team": "NOR",
+          "scorer": "Østigård"
+        },
+        {
+          "minute": 90,
+          "injuryTime": 6,
+          "team": "NOR",
+          "scorer": "Hussein",
+          "type": "OWN"
+        }
+      ],
+      "cards": [
+        {
+          "minute": 86,
+          "team": "IRQ",
+          "player": "Zaid Tahseen",
+          "type": "YELLOW"
         }
       ]
     }
