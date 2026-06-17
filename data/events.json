@@ -1,6 +1,6 @@
 {
   "source": "wikipedia",
-  "scrapedAt": "2026-06-17T21:51:00.816Z",
+  "scrapedAt": "2026-06-17T23:14:02.034Z",
   "matches": {
     "MEX|RSA": {
       "goals": [
@@ -718,6 +718,85 @@
           "team": "AUT",
           "player": "Marcel Sabitzer",
           "type": "YELLOW"
+        }
+      ]
+    },
+    "POR|COD": {
+      "goals": [
+        {
+          "minute": 6,
+          "team": "POR",
+          "scorer": "J. Neves"
+        },
+        {
+          "minute": 45,
+          "injuryTime": 5,
+          "team": "COD",
+          "scorer": "Wissa"
+        }
+      ],
+      "cards": [
+        {
+          "minute": 90,
+          "injuryTime": 2,
+          "team": "POR",
+          "player": "Tomás Araújo",
+          "type": "YELLOW"
+        },
+        {
+          "minute": 13,
+          "team": "POR",
+          "player": "Bernardo Silva",
+          "type": "YELLOW"
+        },
+        {
+          "minute": 88,
+          "team": "POR",
+          "player": "Nélson Semedo",
+          "type": "YELLOW"
+        },
+        {
+          "minute": 32,
+          "team": "COD",
+          "player": "Chancel Mbemba",
+          "type": "YELLOW"
+        }
+      ]
+    },
+    "ENG|CRO": {
+      "goals": [
+        {
+          "minute": 12,
+          "team": "ENG",
+          "scorer": "Kane",
+          "type": "PENALTY"
+        },
+        {
+          "minute": 42,
+          "team": "ENG",
+          "scorer": "Kane",
+          "type": "PENALTY"
+        },
+        {
+          "minute": 47,
+          "team": "ENG",
+          "scorer": "Bellingham"
+        },
+        {
+          "minute": 85,
+          "team": "ENG",
+          "scorer": "Rashford"
+        },
+        {
+          "minute": 36,
+          "team": "CRO",
+          "scorer": "Baturina"
+        },
+        {
+          "minute": 45,
+          "injuryTime": 5,
+          "team": "CRO",
+          "scorer": "Musa"
         }
       ]
     }
