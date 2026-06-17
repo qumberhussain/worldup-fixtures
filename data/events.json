@@ -1,6 +1,6 @@
 {
   "source": "wikipedia",
-  "scrapedAt": "2026-06-17T05:56:55.732Z",
+  "scrapedAt": "2026-06-17T10:26:48.057Z",
   "matches": {
     "MEX|RSA": {
       "goals": [
@@ -553,6 +553,11 @@
           "minute": 7,
           "team": "NZL",
           "scorer": "Just"
+        },
+        {
+          "minute": 54,
+          "team": "NZL",
+          "scorer": "Just"
         }
       ],
       "cards": [
@@ -612,6 +617,12 @@
           "scorer": "Mbappé"
         },
         {
+          "minute": 90,
+          "injuryTime": 6,
+          "team": "FRA",
+          "scorer": "Mbappé"
+        },
+        {
           "minute": 82,
           "team": "FRA",
           "scorer": "Barcola"
@@ -633,6 +644,11 @@
         },
         {
           "minute": 29,
+          "team": "NOR",
+          "scorer": "Haaland"
+        },
+        {
+          "minute": 43,
           "team": "NOR",
           "scorer": "Haaland"
         },
@@ -664,6 +680,44 @@
           "minute": 17,
           "team": "ARG",
           "scorer": "Messi"
+        },
+        {
+          "minute": 60,
+          "team": "ARG",
+          "scorer": "Messi"
+        },
+        {
+          "minute": 76,
+          "team": "ARG",
+          "scorer": "Messi"
+        }
+      ]
+    },
+    "AUT|JOR": {
+      "goals": [
+        {
+          "minute": 20,
+          "team": "AUT",
+          "scorer": "Schmid"
+        },
+        {
+          "minute": 76,
+          "team": "AUT",
+          "scorer": "Al-Arab",
+          "type": "OWN"
+        },
+        {
+          "minute": 50,
+          "team": "JOR",
+          "scorer": "Olwan"
+        }
+      ],
+      "cards": [
+        {
+          "minute": 77,
+          "team": "AUT",
+          "player": "Marcel Sabitzer",
+          "type": "YELLOW"
         }
       ]
     }
