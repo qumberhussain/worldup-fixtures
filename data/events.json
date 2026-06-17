@@ -1,6 +1,6 @@
 {
   "source": "wikipedia",
-  "scrapedAt": "2026-06-17T00:10:06.463Z",
+  "scrapedAt": "2026-06-17T05:56:55.732Z",
   "matches": {
     "MEX|RSA": {
       "goals": [
@@ -501,13 +501,13 @@
         {
           "minute": 66,
           "team": "BEL",
-          "scorer": "Mohamed Hany",
+          "scorer": "Hany",
           "type": "OWN"
         },
         {
           "minute": 19,
           "team": "EGY",
-          "scorer": "Emam Ashour"
+          "scorer": "Ashour"
         }
       ],
       "cards": [
@@ -655,6 +655,15 @@
           "team": "IRQ",
           "player": "Zaid Tahseen",
           "type": "YELLOW"
+        }
+      ]
+    },
+    "ARG|ALG": {
+      "goals": [
+        {
+          "minute": 17,
+          "team": "ARG",
+          "scorer": "Messi"
         }
       ]
     }
