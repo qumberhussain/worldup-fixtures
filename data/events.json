@@ -1,6 +1,6 @@
 {
   "source": "wikipedia",
-  "scrapedAt": "2026-06-17T19:55:04.136Z",
+  "scrapedAt": "2026-06-17T21:51:00.816Z",
   "matches": {
     "MEX|RSA": {
       "goals": [
@@ -717,48 +717,6 @@
           "minute": 77,
           "team": "AUT",
           "player": "Marcel Sabitzer",
-          "type": "YELLOW"
-        }
-      ]
-    },
-    "POR|COD": {
-      "goals": [
-        {
-          "minute": 6,
-          "team": "POR",
-          "scorer": "J. Neves"
-        },
-        {
-          "minute": 45,
-          "injuryTime": 5,
-          "team": "COD",
-          "scorer": "Wissa"
-        }
-      ],
-      "cards": [
-        {
-          "minute": 90,
-          "injuryTime": 2,
-          "team": "POR",
-          "player": "Tomás Araújo",
-          "type": "YELLOW"
-        },
-        {
-          "minute": 13,
-          "team": "POR",
-          "player": "Bernardo Silva",
-          "type": "YELLOW"
-        },
-        {
-          "minute": 88,
-          "team": "POR",
-          "player": "Nélson Semedo",
-          "type": "YELLOW"
-        },
-        {
-          "minute": 32,
-          "team": "COD",
-          "player": "Chancel Mbemba",
           "type": "YELLOW"
         }
       ]
