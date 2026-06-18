@@ -1,6 +1,6 @@
 {
   "source": "wikipedia",
-  "scrapedAt": "2026-06-18T14:39:01.854Z",
+  "scrapedAt": "2026-06-18T17:52:06.610Z",
   "matches": {
     "MEX|RSA": {
       "goals": [
@@ -80,6 +80,15 @@
           "team": "KOR",
           "player": "Lee Gi-hyuk",
           "type": "YELLOW"
+        }
+      ]
+    },
+    "CZE|RSA": {
+      "goals": [
+        {
+          "minute": 6,
+          "team": "CZE",
+          "scorer": "Sadílek"
         }
       ]
     },
@@ -724,87 +733,6 @@
           "minute": 77,
           "team": "AUT",
           "player": "Marcel Sabitzer",
-          "type": "YELLOW"
-        }
-      ]
-    },
-    "POR|COD": {
-      "goals": [
-        {
-          "minute": 6,
-          "team": "POR",
-          "scorer": "J. Neves"
-        },
-        {
-          "minute": 45,
-          "injuryTime": 5,
-          "team": "COD",
-          "scorer": "Wissa"
-        }
-      ],
-      "cards": [
-        {
-          "minute": 90,
-          "injuryTime": 2,
-          "team": "POR",
-          "player": "Tomás Araújo",
-          "type": "YELLOW"
-        },
-        {
-          "minute": 13,
-          "team": "POR",
-          "player": "Bernardo Silva",
-          "type": "YELLOW"
-        },
-        {
-          "minute": 88,
-          "team": "POR",
-          "player": "Nélson Semedo",
-          "type": "YELLOW"
-        },
-        {
-          "minute": 32,
-          "team": "COD",
-          "player": "Chancel Mbemba",
-          "type": "YELLOW"
-        }
-      ]
-    },
-    "UZB|COL": {
-      "goals": [
-        {
-          "minute": 60,
-          "team": "UZB",
-          "scorer": "Fayzullaev"
-        },
-        {
-          "minute": 40,
-          "team": "COL",
-          "scorer": "Muñoz"
-        },
-        {
-          "minute": 65,
-          "team": "COL",
-          "scorer": "Díaz"
-        },
-        {
-          "minute": 90,
-          "injuryTime": 9,
-          "team": "COL",
-          "scorer": "Campaz"
-        }
-      ],
-      "cards": [
-        {
-          "minute": 34,
-          "team": "UZB",
-          "player": "Abdukodir Khusanov",
-          "type": "YELLOW"
-        },
-        {
-          "minute": 7,
-          "team": "COL",
-          "player": "Johan Mojica",
           "type": "YELLOW"
         }
       ]
