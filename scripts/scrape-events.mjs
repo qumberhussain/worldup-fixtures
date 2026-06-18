@@ -62,17 +62,30 @@ function parseGoals(block, teamCode) {
     const tmpl = [...chunk.matchAll(/\{\{\s*(p?goal)\s*\|([^}]+)\}\}/gi)];
     let entries;
     if (tmpl.length) {
-      entries = tmpl.map((g) => {
-        const params = g[2].split("|").map((s) => s.trim());
-        const pen = g[1].toLowerCase() === "pgoal" || params.slice(1).some((p) => /pen/i.test(p));
-        return { spec: params[0], pen };
+      // Every template param is its own goal minute — a brace is one template
+      // with multiple params (e.g. {{goal|31|45+5}}), so map ALL of them, not
+      // just the first. A param may annotate a penalty inline ("45 (pen.)"),
+      // and {{pgoal|...}} marks every minute a penalty.
+      entries = tmpl.flatMap((g) => {
+        const allPen = g[1].toLowerCase() === "pgoal";
+        return g[2]
+          .split("|")
+          .map((p) => p.trim())
+          .map((p) => {
+            const min = p.match(/\d{1,3}(?:\+\d{1,2})?/);
+            return min ? { spec: min[0], pen: allPen || /pen/i.test(p) } : null;
+          })
+          .filter(Boolean);
       });
     } else {
       const penChunk = /pen/i.test(chunk);
-      entries = [...chunk.matchAll(/(\d{1,3}(?:\+\d{1,2})?)\s*['′]/g)].map((mm) => ({
-        spec: mm[1],
-        pen: penChunk,
-      }));
+      // Minutes are usually apostrophe-terminated ("20'", "45+5'"), but some
+      // entries omit it before an annotation ("90+12 pen.") — accept a minute
+      // followed by an apostrophe OR (lookahead) a pen/o.g. marker, so those
+      // trailing goals aren't dropped.
+      entries = [
+        ...chunk.matchAll(/(\d{1,3}(?:\+\d{1,2})?)\s*(?:['′]|(?=\s*(?:pen|o\.?\s?g)))/gi),
+      ].map((mm) => ({ spec: mm[1], pen: penChunk }));
     }
 
     for (const e of entries) {
