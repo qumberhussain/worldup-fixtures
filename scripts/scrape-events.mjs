@@ -12,7 +12,7 @@
  *
  * Run: node scripts/scrape-events.mjs   (no API key needed)
  */
-import { writeFile, mkdir } from "node:fs/promises";
+import { readFile, writeFile, mkdir } from "node:fs/promises";
 import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
 
@@ -181,18 +181,42 @@ function parsePage(wt) {
   return out;
 }
 
+/** Load the previously-scraped matches so a failed group doesn't blank them. */
+async function loadPrevious() {
+  try {
+    const prev = JSON.parse(await readFile(OUT, "utf8"));
+    return prev?.matches && typeof prev.matches === "object" ? prev.matches : {};
+  } catch {
+    return {}; // first run / unreadable file
+  }
+}
+
 async function main() {
-  const all = {};
+  // Start from the last-good data and overlay only the groups we fetch
+  // successfully. A single group can transiently 429 (shared CI egress IPs);
+  // rebuilding from scratch each run meant any skipped group's matches were
+  // dropped from the committed file, blanking them on the live site until a
+  // later run happened to succeed. Merging makes a skip non-destructive — the
+  // group keeps its previous events and self-heals on the next good fetch.
+  const all = await loadPrevious();
+  let ok = 0;
   for (const g of GROUPS) {
     try {
       const wt = await fetchWikitext(g);
       const parsed = parsePage(wt);
       Object.assign(all, parsed);
+      ok++;
       process.stderr.write(`Group ${g}: ${Object.keys(parsed).length} match(es) with goals\n`);
     } catch (err) {
-      process.stderr.write(`Group ${g}: skipped (${err.message})\n`);
+      process.stderr.write(`Group ${g}: skipped, keeping previous (${err.message})\n`);
     }
-    await sleep(700); // be polite to the Wikipedia API (avoid 429)
+    await sleep(1000); // be polite to the Wikipedia API (avoid 429)
+  }
+  // If every group failed, don't rewrite with just stale data — surface the
+  // outage so the run is visibly red and the committed file is left untouched.
+  if (ok === 0) {
+    process.stderr.write("\nAll groups failed — leaving data/events.json unchanged.\n");
+    process.exit(1);
   }
   const payload = {
     source: "wikipedia",
@@ -201,7 +225,7 @@ async function main() {
   };
   await mkdir(dirname(OUT), { recursive: true });
   await writeFile(OUT, JSON.stringify(payload, null, 2) + "\n", "utf8");
-  process.stderr.write(`\nWrote ${Object.keys(all).length} matches to data/events.json\n`);
+  process.stderr.write(`\nWrote ${Object.keys(all).length} matches (${ok}/${GROUPS.length} groups fetched) to data/events.json\n`);
 }
 
 main().catch((err) => {
