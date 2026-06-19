@@ -1,6 +1,6 @@
 {
   "source": "wikipedia",
-  "scrapedAt": "2026-06-19T14:36:35.154Z",
+  "scrapedAt": "2026-06-19T17:09:04.690Z",
   "matches": {
     "MEX|RSA": {
       "goals": [
@@ -848,6 +848,155 @@
           "minute": 77,
           "team": "AUT",
           "player": "Marcel Sabitzer",
+          "type": "YELLOW"
+        }
+      ]
+    },
+    "POR|COD": {
+      "goals": [
+        {
+          "minute": 6,
+          "team": "POR",
+          "scorer": "J. Neves"
+        },
+        {
+          "minute": 45,
+          "injuryTime": 5,
+          "team": "COD",
+          "scorer": "Wissa"
+        }
+      ],
+      "cards": [
+        {
+          "minute": 90,
+          "injuryTime": 2,
+          "team": "POR",
+          "player": "Tomás Araújo",
+          "type": "YELLOW"
+        },
+        {
+          "minute": 13,
+          "team": "POR",
+          "player": "Bernardo Silva",
+          "type": "YELLOW"
+        },
+        {
+          "minute": 88,
+          "team": "POR",
+          "player": "Nélson Semedo",
+          "type": "YELLOW"
+        },
+        {
+          "minute": 32,
+          "team": "COD",
+          "player": "Chancel Mbemba",
+          "type": "YELLOW"
+        }
+      ]
+    },
+    "UZB|COL": {
+      "goals": [
+        {
+          "minute": 60,
+          "team": "UZB",
+          "scorer": "Fayzullaev"
+        },
+        {
+          "minute": 40,
+          "team": "COL",
+          "scorer": "Muñoz"
+        },
+        {
+          "minute": 65,
+          "team": "COL",
+          "scorer": "Díaz"
+        },
+        {
+          "minute": 90,
+          "injuryTime": 9,
+          "team": "COL",
+          "scorer": "Campaz"
+        }
+      ],
+      "cards": [
+        {
+          "minute": 34,
+          "team": "UZB",
+          "player": "Abdukodir Khusanov",
+          "type": "YELLOW"
+        },
+        {
+          "minute": 7,
+          "team": "COL",
+          "player": "Johan Mojica",
+          "type": "YELLOW"
+        }
+      ]
+    },
+    "ENG|CRO": {
+      "goals": [
+        {
+          "minute": 12,
+          "team": "ENG",
+          "scorer": "Kane",
+          "type": "PENALTY"
+        },
+        {
+          "minute": 42,
+          "team": "ENG",
+          "scorer": "Kane",
+          "type": "PENALTY"
+        },
+        {
+          "minute": 47,
+          "team": "ENG",
+          "scorer": "Bellingham"
+        },
+        {
+          "minute": 85,
+          "team": "ENG",
+          "scorer": "Rashford"
+        },
+        {
+          "minute": 36,
+          "team": "CRO",
+          "scorer": "Baturina"
+        },
+        {
+          "minute": 45,
+          "injuryTime": 5,
+          "team": "CRO",
+          "scorer": "Musa"
+        }
+      ]
+    },
+    "GHA|PAN": {
+      "goals": [
+        {
+          "minute": 90,
+          "injuryTime": 5,
+          "team": "GHA",
+          "scorer": "Yirenkyi"
+        }
+      ],
+      "cards": [
+        {
+          "minute": 16,
+          "team": "GHA",
+          "player": "Caleb Yirenkyi",
+          "type": "YELLOW"
+        },
+        {
+          "minute": 90,
+          "injuryTime": 9,
+          "team": "PAN",
+          "player": "Carlos Harvey",
+          "type": "YELLOW"
+        },
+        {
+          "minute": 72,
+          "team": "PAN",
+          "player": "César Blackman",
           "type": "YELLOW"
         }
       ]
