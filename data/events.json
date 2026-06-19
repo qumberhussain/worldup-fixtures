@@ -1,6 +1,6 @@
 {
   "source": "wikipedia",
-  "scrapedAt": "2026-06-19T20:28:37.211Z",
+  "scrapedAt": "2026-06-19T20:59:06.143Z",
   "matches": {
     "MEX|RSA": {
       "goals": [
@@ -902,6 +902,74 @@
           "minute": 77,
           "team": "AUT",
           "player": "Marcel Sabitzer",
+          "type": "YELLOW"
+        }
+      ]
+    },
+    "ENG|CRO": {
+      "goals": [
+        {
+          "minute": 12,
+          "team": "ENG",
+          "scorer": "Kane",
+          "type": "PENALTY"
+        },
+        {
+          "minute": 42,
+          "team": "ENG",
+          "scorer": "Kane",
+          "type": "PENALTY"
+        },
+        {
+          "minute": 47,
+          "team": "ENG",
+          "scorer": "Bellingham"
+        },
+        {
+          "minute": 85,
+          "team": "ENG",
+          "scorer": "Rashford"
+        },
+        {
+          "minute": 36,
+          "team": "CRO",
+          "scorer": "Baturina"
+        },
+        {
+          "minute": 45,
+          "injuryTime": 5,
+          "team": "CRO",
+          "scorer": "Musa"
+        }
+      ]
+    },
+    "GHA|PAN": {
+      "goals": [
+        {
+          "minute": 90,
+          "injuryTime": 5,
+          "team": "GHA",
+          "scorer": "Yirenkyi"
+        }
+      ],
+      "cards": [
+        {
+          "minute": 16,
+          "team": "GHA",
+          "player": "Caleb Yirenkyi",
+          "type": "YELLOW"
+        },
+        {
+          "minute": 90,
+          "injuryTime": 9,
+          "team": "PAN",
+          "player": "Carlos Harvey",
+          "type": "YELLOW"
+        },
+        {
+          "minute": 72,
+          "team": "PAN",
+          "player": "César Blackman",
           "type": "YELLOW"
         }
       ]
