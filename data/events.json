@@ -1,6 +1,6 @@
 {
   "source": "wikipedia",
-  "scrapedAt": "2026-06-19T19:21:54.420Z",
+  "scrapedAt": "2026-06-19T20:28:37.211Z",
   "matches": {
     "MEX|RSA": {
       "goals": [
@@ -118,7 +118,13 @@
       ]
     },
     "MEX|KOR": {
-      "goals": [],
+      "goals": [
+        {
+          "minute": 50,
+          "team": "MEX",
+          "scorer": "Romo"
+        }
+      ],
       "cards": [
         {
           "minute": 58,
@@ -222,11 +228,32 @@
     "SUI|BIH": {
       "goals": [
         {
+          "minute": 74,
+          "team": "SUI",
+          "scorer": "Manzambi"
+        },
+        {
+          "minute": 90,
+          "team": "SUI",
+          "scorer": "Manzambi"
+        },
+        {
+          "minute": 84,
+          "team": "SUI",
+          "scorer": "Vargas"
+        },
+        {
           "minute": 90,
           "injuryTime": 7,
           "team": "SUI",
           "scorer": "Xhaka",
           "type": "PENALTY"
+        },
+        {
+          "minute": 90,
+          "injuryTime": 3,
+          "team": "BIH",
+          "scorer": "Mahmić"
         }
       ],
       "cards": [
@@ -258,6 +285,33 @@
     },
     "CAN|QAT": {
       "goals": [
+        {
+          "minute": 16,
+          "team": "CAN",
+          "scorer": "Larin"
+        },
+        {
+          "minute": 29,
+          "team": "CAN",
+          "scorer": "J. David"
+        },
+        {
+          "minute": 45,
+          "injuryTime": 3,
+          "team": "CAN",
+          "scorer": "J. David"
+        },
+        {
+          "minute": 90,
+          "injuryTime": 2,
+          "team": "CAN",
+          "scorer": "J. David"
+        },
+        {
+          "minute": 64,
+          "team": "CAN",
+          "scorer": "Saliba"
+        },
         {
           "minute": 75,
           "team": "CAN",
@@ -447,16 +501,6 @@
           "team": "TUR",
           "player": "Yunus Akgün",
           "type": "YELLOW"
-        }
-      ]
-    },
-    "USA|AUS": {
-      "goals": [
-        {
-          "minute": 11,
-          "team": "USA",
-          "scorer": "Burgess",
-          "type": "OWN"
         }
       ]
     },
