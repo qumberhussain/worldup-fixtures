@@ -1,6 +1,6 @@
 {
   "source": "wikipedia",
-  "scrapedAt": "2026-06-19T20:59:06.143Z",
+  "scrapedAt": "2026-06-19T21:41:51.835Z",
   "matches": {
     "MEX|RSA": {
       "goals": [
@@ -970,6 +970,66 @@
           "minute": 72,
           "team": "PAN",
           "player": "César Blackman",
+          "type": "YELLOW"
+        }
+      ]
+    },
+    "USA|AUS": {
+      "goals": [
+        {
+          "minute": 11,
+          "team": "USA",
+          "scorer": "Burgess",
+          "type": "OWN"
+        },
+        {
+          "minute": 43,
+          "team": "USA",
+          "scorer": "Freeman"
+        }
+      ],
+      "cards": [
+        {
+          "minute": 90,
+          "injuryTime": 3,
+          "team": "USA",
+          "player": "Chris Richards",
+          "type": "YELLOW"
+        },
+        {
+          "minute": 56,
+          "team": "USA",
+          "player": "Antonee Robinson",
+          "type": "YELLOW"
+        },
+        {
+          "minute": 89,
+          "team": "USA",
+          "player": "Folarin Balogun",
+          "type": "YELLOW"
+        },
+        {
+          "minute": 89,
+          "team": "AUS",
+          "player": "Jacob Italiano",
+          "type": "YELLOW"
+        },
+        {
+          "minute": 32,
+          "team": "AUS",
+          "player": "Alessandro Circati",
+          "type": "YELLOW"
+        },
+        {
+          "minute": 89,
+          "team": "AUS",
+          "player": "Harry Souttar",
+          "type": "YELLOW"
+        },
+        {
+          "minute": 16,
+          "team": "AUS",
+          "player": "Jordan Bos",
           "type": "YELLOW"
         }
       ]
