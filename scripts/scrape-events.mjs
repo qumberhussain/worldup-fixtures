@@ -79,12 +79,16 @@ function parseGoals(block, teamCode) {
       });
     } else {
       const penChunk = /pen/i.test(chunk);
-      // Minutes are usually apostrophe-terminated ("20'", "45+5'"), but some
-      // entries omit it before an annotation ("90+12 pen.") — accept a minute
-      // followed by an apostrophe OR (lookahead) a pen/o.g. marker, so those
-      // trailing goals aren't dropped.
+      // Within a goals chunk (text after a scorer link, up to the next link)
+      // every standalone number is a goal minute. Editors are inconsistent:
+      // some write "20'" / "45+5'" with a trailing apostrophe, others write the
+      // bare minute ("16") or a comma list ("29, 45+3, 90+2"). Earlier this
+      // regex required an apostrophe or a pen/o.g. marker, so bare-minute goals
+      // were silently dropped (only own goals/penalties survived). Match any
+      // minute (optionally +stoppage), bounded so a longer digit run (e.g. a
+      // stray "2026") can't be split into bogus minutes.
       entries = [
-        ...chunk.matchAll(/(\d{1,3}(?:\+\d{1,2})?)\s*(?:['′]|(?=\s*(?:pen|o\.?\s?g)))/gi),
+        ...chunk.matchAll(/(?<![\d+])(\d{1,3}(?:\+\d{1,2})?)(?!\d)/g),
       ].map((mm) => ({ spec: mm[1], pen: penChunk }));
     }
 
