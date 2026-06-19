@@ -23,20 +23,39 @@ const OUT = join(__dirname, "..", "data", "events.json");
 const GROUPS = "ABCDEFGHIJKL".split("");
 const API = "https://en.wikipedia.org/w/api.php";
 
-async function fetchWikitext(group) {
-  const page = `2026_FIFA_World_Cup_Group_${group}`;
-  const url = `${API}?action=parse&page=${page}&prop=wikitext&format=json&formatversion=2`;
-  for (let attempt = 0; attempt < 3; attempt++) {
+/**
+ * Fetch the wikitext of every group page in ONE request via the MediaWiki
+ * `query` API (up to 50 titles per call). The old approach made 12 separate
+ * `parse` requests; the last couple (Groups K, L) were reliably 429'd once the
+ * IP had fired ~10 rapid requests, so those groups never refreshed and their
+ * matches stayed blank on the site. A single batched request sidesteps the
+ * per-request rate limit entirely. Returns a { [group letter]: wikitext } map.
+ */
+async function fetchAllWikitext(groups) {
+  const titles = groups.map((g) => `2026_FIFA_World_Cup_Group_${g}`).join("|");
+  const url =
+    `${API}?action=query&prop=revisions&rvprop=content&rvslots=main` +
+    `&titles=${encodeURIComponent(titles)}&format=json&formatversion=2`;
+  let lastErr = "unknown";
+  for (let attempt = 0; attempt < 4; attempt++) {
     const res = await fetch(url, { headers: { "User-Agent": "worldup-fixtures/1.0 (events scraper)" } });
     if (res.status === 429) {
+      lastErr = "HTTP 429";
       await sleep(2000 * (attempt + 1));
       continue;
     }
-    if (!res.ok) throw new Error(`${page}: HTTP ${res.status}`);
+    if (!res.ok) throw new Error(`group pages: HTTP ${res.status}`);
     const json = await res.json();
-    return json.parse?.wikitext || "";
+    const pages = json.query?.pages || [];
+    const byGroup = {};
+    for (const p of pages) {
+      const letter = p.title?.match(/Group ([A-L])$/)?.[1];
+      const content = p.revisions?.[0]?.slots?.main?.content;
+      if (letter && content) byGroup[letter] = content;
+    }
+    return byGroup;
   }
-  throw new Error(`${page}: HTTP 429 (after retries)`);
+  throw new Error(`group pages: ${lastErr} (after retries)`);
 }
 
 function cleanName(raw) {
@@ -199,24 +218,26 @@ async function main() {
   // later run happened to succeed. Merging makes a skip non-destructive — the
   // group keeps its previous events and self-heals on the next good fetch.
   const all = await loadPrevious();
+  let pages;
+  try {
+    pages = await fetchAllWikitext(GROUPS);
+  } catch (err) {
+    // Fetch failed outright — leave the committed file untouched and exit red
+    // so the previous good data keeps serving rather than being overwritten.
+    process.stderr.write(`\nFetch failed (${err.message}) — leaving data/events.json unchanged.\n`);
+    process.exit(1);
+  }
   let ok = 0;
   for (const g of GROUPS) {
-    try {
-      const wt = await fetchWikitext(g);
-      const parsed = parsePage(wt);
-      Object.assign(all, parsed);
-      ok++;
-      process.stderr.write(`Group ${g}: ${Object.keys(parsed).length} match(es) with goals\n`);
-    } catch (err) {
-      process.stderr.write(`Group ${g}: skipped, keeping previous (${err.message})\n`);
+    const wt = pages[g];
+    if (!wt) {
+      process.stderr.write(`Group ${g}: missing from response, keeping previous\n`);
+      continue;
     }
-    await sleep(1000); // be polite to the Wikipedia API (avoid 429)
-  }
-  // If every group failed, don't rewrite with just stale data — surface the
-  // outage so the run is visibly red and the committed file is left untouched.
-  if (ok === 0) {
-    process.stderr.write("\nAll groups failed — leaving data/events.json unchanged.\n");
-    process.exit(1);
+    const parsed = parsePage(wt);
+    Object.assign(all, parsed);
+    ok++;
+    process.stderr.write(`Group ${g}: ${Object.keys(parsed).length} match(es) with goals\n`);
   }
   const payload = {
     source: "wikipedia",
