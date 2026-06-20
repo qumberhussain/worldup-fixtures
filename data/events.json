@@ -1,6 +1,6 @@
 {
   "source": "wikipedia",
-  "scrapedAt": "2026-06-20T21:01:05.278Z",
+  "scrapedAt": "2026-06-20T22:55:33.141Z",
   "matches": {
     "MEX|RSA": {
       "goals": [
@@ -1277,6 +1277,17 @@
     },
     "GER|CIV": {
       "goals": [
+        {
+          "minute": 68,
+          "team": "GER",
+          "scorer": "Undav"
+        },
+        {
+          "minute": 90,
+          "injuryTime": 4,
+          "team": "GER",
+          "scorer": "Undav"
+        },
         {
           "minute": 30,
           "team": "CIV",
