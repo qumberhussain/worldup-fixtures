@@ -1,6 +1,6 @@
 {
   "source": "wikipedia",
-  "scrapedAt": "2026-06-20T19:05:25.560Z",
+  "scrapedAt": "2026-06-20T21:01:05.278Z",
   "matches": {
     "MEX|RSA": {
       "goals": [
@@ -1272,6 +1272,15 @@
           "team": "SWE",
           "player": "Lucas Bergvall",
           "type": "YELLOW"
+        }
+      ]
+    },
+    "GER|CIV": {
+      "goals": [
+        {
+          "minute": 30,
+          "team": "CIV",
+          "scorer": "Kessié"
         }
       ]
     }
