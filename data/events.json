@@ -1,6 +1,6 @@
 {
   "source": "wikipedia",
-  "scrapedAt": "2026-06-19T23:56:28.864Z",
+  "scrapedAt": "2026-06-20T02:32:58.044Z",
   "matches": {
     "MEX|RSA": {
       "goals": [
@@ -1111,6 +1111,76 @@
           "minute": 7,
           "team": "COL",
           "player": "Johan Mojica",
+          "type": "YELLOW"
+        }
+      ]
+    },
+    "SCO|MAR": {
+      "goals": [
+        {
+          "minute": 2,
+          "team": "MAR",
+          "scorer": "Saibari"
+        }
+      ],
+      "cards": [
+        {
+          "minute": 65,
+          "team": "SCO",
+          "player": "Andy Robertson",
+          "type": "YELLOW"
+        },
+        {
+          "minute": 23,
+          "team": "MAR",
+          "player": "Issa Diop",
+          "type": "YELLOW"
+        }
+      ]
+    },
+    "BRA|HAI": {
+      "goals": [
+        {
+          "minute": 23,
+          "team": "BRA",
+          "scorer": "Cunha"
+        },
+        {
+          "minute": 36,
+          "team": "BRA",
+          "scorer": "Cunha"
+        },
+        {
+          "minute": 45,
+          "injuryTime": 3,
+          "team": "BRA",
+          "scorer": "Vinícius"
+        }
+      ],
+      "cards": [
+        {
+          "minute": 65,
+          "team": "BRA",
+          "player": "Douglas Santos",
+          "type": "YELLOW"
+        },
+        {
+          "minute": 4,
+          "team": "HAI",
+          "player": "Carlens Arcus",
+          "type": "YELLOW"
+        },
+        {
+          "minute": 72,
+          "team": "HAI",
+          "player": "Danley Jean Jacques",
+          "type": "YELLOW"
+        },
+        {
+          "minute": 45,
+          "injuryTime": 4,
+          "team": "HAI",
+          "player": "Frantzdy Pierrot",
           "type": "YELLOW"
         }
       ]
