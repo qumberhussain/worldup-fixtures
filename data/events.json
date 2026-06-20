@@ -1,6 +1,6 @@
 {
   "source": "wikipedia",
-  "scrapedAt": "2026-06-20T02:32:58.044Z",
+  "scrapedAt": "2026-06-20T06:52:06.392Z",
   "matches": {
     "MEX|RSA": {
       "goals": [
@@ -1009,12 +1009,6 @@
           "type": "YELLOW"
         },
         {
-          "minute": 89,
-          "team": "AUS",
-          "player": "Jacob Italiano",
-          "type": "YELLOW"
-        },
-        {
           "minute": 32,
           "team": "AUS",
           "player": "Alessandro Circati",
@@ -1024,6 +1018,12 @@
           "minute": 89,
           "team": "AUS",
           "player": "Harry Souttar",
+          "type": "YELLOW"
+        },
+        {
+          "minute": 89,
+          "team": "AUS",
+          "player": "Jacob Italiano",
           "type": "YELLOW"
         },
         {
@@ -1182,6 +1182,42 @@
           "team": "HAI",
           "player": "Frantzdy Pierrot",
           "type": "YELLOW"
+        }
+      ]
+    },
+    "TUR|PAR": {
+      "goals": [
+        {
+          "minute": 2,
+          "team": "PAR",
+          "scorer": "Galarza"
+        }
+      ],
+      "cards": [
+        {
+          "minute": 71,
+          "team": "TUR",
+          "player": "Eren Elmalı",
+          "type": "YELLOW"
+        },
+        {
+          "minute": 63,
+          "team": "TUR",
+          "player": "Vincenzo Montella",
+          "type": "YELLOW"
+        },
+        {
+          "minute": 4,
+          "team": "PAR",
+          "player": "Matías Galarza",
+          "type": "YELLOW"
+        },
+        {
+          "minute": 45,
+          "injuryTime": 3,
+          "team": "PAR",
+          "player": "Miguel Almirón",
+          "type": "RED"
         }
       ]
     }
