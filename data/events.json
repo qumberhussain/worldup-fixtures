@@ -1,6 +1,6 @@
 {
   "source": "wikipedia",
-  "scrapedAt": "2026-06-20T17:12:27.892Z",
+  "scrapedAt": "2026-06-20T19:05:25.560Z",
   "matches": {
     "MEX|RSA": {
       "goals": [
@@ -589,7 +589,7 @@
     "NED|JPN": {
       "goals": [
         {
-          "minute": 50,
+          "minute": 51,
           "team": "NED",
           "scorer": "Van Dijk"
         },
@@ -1207,17 +1207,71 @@
           "type": "YELLOW"
         },
         {
-          "minute": 4,
-          "team": "PAR",
-          "player": "Matías Galarza",
-          "type": "YELLOW"
-        },
-        {
           "minute": 45,
           "injuryTime": 3,
           "team": "PAR",
           "player": "Miguel Almirón",
           "type": "RED"
+        },
+        {
+          "minute": 4,
+          "team": "PAR",
+          "player": "Matías Galarza",
+          "type": "YELLOW"
+        }
+      ]
+    },
+    "NED|SWE": {
+      "goals": [
+        {
+          "minute": 5,
+          "team": "NED",
+          "scorer": "Brobbey"
+        },
+        {
+          "minute": 17,
+          "team": "NED",
+          "scorer": "Brobbey"
+        },
+        {
+          "minute": 47,
+          "team": "NED",
+          "scorer": "Gakpo"
+        },
+        {
+          "minute": 54,
+          "team": "NED",
+          "scorer": "Gakpo"
+        },
+        {
+          "minute": 89,
+          "team": "NED",
+          "scorer": "Summerville"
+        },
+        {
+          "minute": 59,
+          "team": "SWE",
+          "scorer": "Elanga"
+        }
+      ],
+      "cards": [
+        {
+          "minute": 75,
+          "team": "SWE",
+          "player": "Yasin Ayari",
+          "type": "YELLOW"
+        },
+        {
+          "minute": 53,
+          "team": "SWE",
+          "player": "Gabriel Gudmundsson",
+          "type": "YELLOW"
+        },
+        {
+          "minute": 80,
+          "team": "SWE",
+          "player": "Lucas Bergvall",
+          "type": "YELLOW"
         }
       ]
     }
