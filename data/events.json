@@ -1,6 +1,6 @@
 {
   "source": "wikipedia",
-  "scrapedAt": "2026-06-21T03:42:18.917Z",
+  "scrapedAt": "2026-06-21T08:18:47.556Z",
   "matches": {
     "MEX|RSA": {
       "goals": [
@@ -1334,6 +1334,30 @@
           "team": "CUW",
           "player": "Gervane Kastaneer",
           "type": "YELLOW"
+        }
+      ]
+    },
+    "TUN|JPN": {
+      "goals": [
+        {
+          "minute": 4,
+          "team": "JPN",
+          "scorer": "Kamada"
+        },
+        {
+          "minute": 31,
+          "team": "JPN",
+          "scorer": "Ueda"
+        },
+        {
+          "minute": 83,
+          "team": "JPN",
+          "scorer": "Ueda"
+        },
+        {
+          "minute": 69,
+          "team": "JPN",
+          "scorer": "J. Itō"
         }
       ]
     }
