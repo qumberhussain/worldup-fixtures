@@ -1,6 +1,6 @@
 {
   "source": "wikipedia",
-  "scrapedAt": "2026-06-21T17:15:08.332Z",
+  "scrapedAt": "2026-06-21T19:09:36.531Z",
   "matches": {
     "MEX|RSA": {
       "goals": [
@@ -1358,6 +1358,45 @@
           "minute": 69,
           "team": "JPN",
           "scorer": "J. Itō"
+        }
+      ]
+    },
+    "ESP|KSA": {
+      "goals": [
+        {
+          "minute": 10,
+          "team": "ESP",
+          "scorer": "Yamal"
+        },
+        {
+          "minute": 21,
+          "team": "ESP",
+          "scorer": "Oyarzabal"
+        },
+        {
+          "minute": 24,
+          "team": "ESP",
+          "scorer": "Oyarzabal"
+        },
+        {
+          "minute": 49,
+          "team": "ESP",
+          "scorer": "Al-Tambakti",
+          "type": "OWN"
+        }
+      ],
+      "cards": [
+        {
+          "minute": 30,
+          "team": "KSA",
+          "player": "Salem Al-Dawsari",
+          "type": "YELLOW"
+        },
+        {
+          "minute": 60,
+          "team": "KSA",
+          "player": "Mohamed Kanno",
+          "type": "YELLOW"
         }
       ]
     }
