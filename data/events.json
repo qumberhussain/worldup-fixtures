@@ -1,6 +1,6 @@
 {
   "source": "wikipedia",
-  "scrapedAt": "2026-06-21T19:09:36.531Z",
+  "scrapedAt": "2026-06-21T21:01:46.780Z",
   "matches": {
     "MEX|RSA": {
       "goals": [
@@ -1396,6 +1396,23 @@
           "minute": 60,
           "team": "KSA",
           "player": "Mohamed Kanno",
+          "type": "YELLOW"
+        }
+      ]
+    },
+    "BEL|IRN": {
+      "goals": [],
+      "cards": [
+        {
+          "minute": 3,
+          "team": "BEL",
+          "player": "Romelu Lukaku",
+          "type": "YELLOW"
+        },
+        {
+          "minute": 33,
+          "team": "IRN",
+          "player": "Saeid Ezatolahi",
           "type": "YELLOW"
         }
       ]
