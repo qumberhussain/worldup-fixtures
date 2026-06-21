@@ -1,6 +1,6 @@
 {
   "source": "wikipedia",
-  "scrapedAt": "2026-06-20T23:58:12.898Z",
+  "scrapedAt": "2026-06-21T03:42:18.917Z",
   "matches": {
     "MEX|RSA": {
       "goals": [
@@ -1292,6 +1292,48 @@
           "minute": 30,
           "team": "CIV",
           "scorer": "Kessié"
+        }
+      ]
+    },
+    "ECU|CUW": {
+      "goals": [],
+      "cards": [
+        {
+          "minute": 38,
+          "team": "ECU",
+          "player": "Jordy Alcívar",
+          "type": "YELLOW"
+        },
+        {
+          "minute": 75,
+          "team": "CUW",
+          "player": "Juriën Gaari",
+          "type": "YELLOW"
+        },
+        {
+          "minute": 56,
+          "team": "CUW",
+          "player": "Livano Comenencia",
+          "type": "YELLOW"
+        },
+        {
+          "minute": 39,
+          "team": "CUW",
+          "player": "Leandro Bacuna",
+          "type": "YELLOW"
+        },
+        {
+          "minute": 53,
+          "team": "CUW",
+          "player": "Juninho Bacuna",
+          "type": "YELLOW"
+        },
+        {
+          "minute": 90,
+          "injuryTime": 1,
+          "team": "CUW",
+          "player": "Gervane Kastaneer",
+          "type": "YELLOW"
         }
       ]
     }
