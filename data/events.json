@@ -1,6 +1,6 @@
 {
   "source": "wikipedia",
-  "scrapedAt": "2026-06-22T00:05:11.259Z",
+  "scrapedAt": "2026-06-22T06:16:21.871Z",
   "matches": {
     "MEX|RSA": {
       "goals": [
@@ -1413,6 +1413,102 @@
           "minute": 33,
           "team": "IRN",
           "player": "Saeid Ezatolahi",
+          "type": "YELLOW"
+        }
+      ]
+    },
+    "NZL|EGY": {
+      "goals": [
+        {
+          "minute": 15,
+          "team": "NZL",
+          "scorer": "Surman"
+        },
+        {
+          "minute": 58,
+          "team": "EGY",
+          "scorer": "Ziko"
+        },
+        {
+          "minute": 67,
+          "team": "EGY",
+          "scorer": "Salah"
+        },
+        {
+          "minute": 82,
+          "team": "EGY",
+          "scorer": "Trézéguet"
+        }
+      ],
+      "cards": [
+        {
+          "minute": 20,
+          "team": "NZL",
+          "player": "Sarpreet Singh",
+          "type": "YELLOW"
+        },
+        {
+          "minute": 34,
+          "team": "NZL",
+          "player": "Callum McCowatt",
+          "type": "YELLOW"
+        },
+        {
+          "minute": 17,
+          "team": "EGY",
+          "player": "Mohanad Lasheen",
+          "type": "YELLOW"
+        }
+      ]
+    },
+    "URU|CPV": {
+      "goals": [
+        {
+          "minute": 44,
+          "team": "URU",
+          "scorer": "M. Araújo"
+        },
+        {
+          "minute": 45,
+          "injuryTime": 6,
+          "team": "URU",
+          "scorer": "Canobbio"
+        },
+        {
+          "minute": 21,
+          "team": "CPV",
+          "scorer": "K. Pina"
+        },
+        {
+          "minute": 61,
+          "team": "CPV",
+          "scorer": "Varela"
+        }
+      ],
+      "cards": [
+        {
+          "minute": 58,
+          "team": "URU",
+          "player": "Mathías Olivera",
+          "type": "YELLOW"
+        },
+        {
+          "minute": 20,
+          "team": "URU",
+          "player": "Rodrigo Bentancur",
+          "type": "YELLOW"
+        },
+        {
+          "minute": 90,
+          "injuryTime": 3,
+          "team": "CPV",
+          "player": "Diney",
+          "type": "YELLOW"
+        },
+        {
+          "minute": 5,
+          "team": "CPV",
+          "player": "Sidny Lopes Cabral",
           "type": "YELLOW"
         }
       ]
