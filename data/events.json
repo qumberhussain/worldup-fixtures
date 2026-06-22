@@ -1,6 +1,6 @@
 {
   "source": "wikipedia",
-  "scrapedAt": "2026-06-22T17:22:38.337Z",
+  "scrapedAt": "2026-06-22T20:28:58.036Z",
   "matches": {
     "MEX|RSA": {
       "goals": [
@@ -1509,6 +1509,48 @@
           "minute": 5,
           "team": "CPV",
           "player": "Sidny Lopes Cabral",
+          "type": "YELLOW"
+        }
+      ]
+    },
+    "ARG|AUT": {
+      "goals": [
+        {
+          "minute": 38,
+          "team": "ARG",
+          "scorer": "Messi"
+        },
+        {
+          "minute": 90,
+          "injuryTime": 5,
+          "team": "ARG",
+          "scorer": "Messi"
+        }
+      ],
+      "cards": [
+        {
+          "minute": 76,
+          "team": "ARG",
+          "player": "Facundo Medina",
+          "type": "YELLOW"
+        },
+        {
+          "minute": 90,
+          "injuryTime": 2,
+          "team": "ARG",
+          "player": "Leandro Paredes",
+          "type": "YELLOW"
+        },
+        {
+          "minute": 41,
+          "team": "AUT",
+          "player": "Stefan Posch",
+          "type": "YELLOW"
+        },
+        {
+          "minute": 76,
+          "team": "AUT",
+          "player": "Konrad Laimer",
           "type": "YELLOW"
         }
       ]
