@@ -1,6 +1,6 @@
 {
   "source": "wikipedia",
-  "scrapedAt": "2026-06-23T18:59:30.336Z",
+  "scrapedAt": "2026-06-23T20:59:50.455Z",
   "matches": {
     "MEX|RSA": {
       "goals": [
@@ -1641,6 +1641,50 @@
           "minute": 44,
           "team": "ALG",
           "player": "Ramiz Zerrouki",
+          "type": "YELLOW"
+        }
+      ]
+    },
+    "POR|UZB": {
+      "goals": [
+        {
+          "minute": 6,
+          "team": "POR",
+          "scorer": "Ronaldo"
+        },
+        {
+          "minute": 39,
+          "team": "POR",
+          "scorer": "Ronaldo"
+        },
+        {
+          "minute": 17,
+          "team": "POR",
+          "scorer": "Mendes"
+        },
+        {
+          "minute": 60,
+          "team": "POR",
+          "scorer": "Nematov",
+          "type": "OWN"
+        },
+        {
+          "minute": 87,
+          "team": "POR",
+          "scorer": "Leão"
+        }
+      ],
+      "cards": [
+        {
+          "minute": 68,
+          "team": "POR",
+          "player": "Renato Veiga",
+          "type": "YELLOW"
+        },
+        {
+          "minute": 14,
+          "team": "UZB",
+          "player": "Odiljon Hamrobekov",
           "type": "YELLOW"
         }
       ]
