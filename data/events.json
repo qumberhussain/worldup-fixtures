@@ -1,6 +1,6 @@
 {
   "source": "wikipedia",
-  "scrapedAt": "2026-06-22T23:57:57.081Z",
+  "scrapedAt": "2026-06-23T02:46:17.726Z",
   "matches": {
     "MEX|RSA": {
       "goals": [
@@ -1552,6 +1552,63 @@
           "team": "AUT",
           "player": "Konrad Laimer",
           "type": "YELLOW"
+        }
+      ]
+    },
+    "FRA|IRQ": {
+      "goals": [
+        {
+          "minute": 14,
+          "team": "FRA",
+          "scorer": "Mbappé"
+        },
+        {
+          "minute": 54,
+          "team": "FRA",
+          "scorer": "Mbappé"
+        },
+        {
+          "minute": 66,
+          "team": "FRA",
+          "scorer": "Dembélé"
+        }
+      ],
+      "cards": [
+        {
+          "minute": 6,
+          "team": "IRQ",
+          "player": "Amir Al-Ammari",
+          "type": "YELLOW"
+        }
+      ]
+    },
+    "NOR|SEN": {
+      "goals": [
+        {
+          "minute": 43,
+          "team": "NOR",
+          "scorer": "Pedersen"
+        },
+        {
+          "minute": 48,
+          "team": "NOR",
+          "scorer": "Haaland"
+        },
+        {
+          "minute": 58,
+          "team": "NOR",
+          "scorer": "Haaland"
+        },
+        {
+          "minute": 53,
+          "team": "SEN",
+          "scorer": "I. Sarr"
+        },
+        {
+          "minute": 90,
+          "injuryTime": 3,
+          "team": "SEN",
+          "scorer": "I. Sarr"
         }
       ]
     }
