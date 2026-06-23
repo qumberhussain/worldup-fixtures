@@ -1,6 +1,6 @@
 {
   "source": "wikipedia",
-  "scrapedAt": "2026-06-23T02:46:17.726Z",
+  "scrapedAt": "2026-06-23T06:37:02.708Z",
   "matches": {
     "MEX|RSA": {
       "goals": [
@@ -1609,6 +1609,39 @@
           "injuryTime": 3,
           "team": "SEN",
           "scorer": "I. Sarr"
+        }
+      ]
+    },
+    "JOR|ALG": {
+      "goals": [
+        {
+          "minute": 36,
+          "team": "JOR",
+          "scorer": "Al-Rashdan"
+        },
+        {
+          "minute": 69,
+          "team": "ALG",
+          "scorer": "Benbouali"
+        },
+        {
+          "minute": 82,
+          "team": "ALG",
+          "scorer": "Gouiri"
+        }
+      ],
+      "cards": [
+        {
+          "minute": 64,
+          "team": "JOR",
+          "player": "Husam Abu Dahab",
+          "type": "YELLOW"
+        },
+        {
+          "minute": 44,
+          "team": "ALG",
+          "player": "Ramiz Zerrouki",
+          "type": "YELLOW"
         }
       ]
     }
