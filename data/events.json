@@ -1,6 +1,6 @@
 {
   "source": "wikipedia",
-  "scrapedAt": "2026-06-23T20:59:50.455Z",
+  "scrapedAt": "2026-06-23T22:13:14.237Z",
   "matches": {
     "MEX|RSA": {
       "goals": [
@@ -1685,6 +1685,23 @@
           "minute": 14,
           "team": "UZB",
           "player": "Odiljon Hamrobekov",
+          "type": "YELLOW"
+        }
+      ]
+    },
+    "ENG|GHA": {
+      "goals": [],
+      "cards": [
+        {
+          "minute": 41,
+          "team": "ENG",
+          "player": "Declan Rice",
+          "type": "YELLOW"
+        },
+        {
+          "minute": 60,
+          "team": "GHA",
+          "player": "Iñaki Williams",
           "type": "YELLOW"
         }
       ]
