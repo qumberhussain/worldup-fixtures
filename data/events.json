@@ -1,6 +1,6 @@
 {
   "source": "wikipedia",
-  "scrapedAt": "2026-06-24T11:36:46.656Z",
+  "scrapedAt": "2026-06-24T14:00:14.162Z",
   "matches": {
     "MEX|RSA": {
       "goals": [
@@ -1217,6 +1217,12 @@
           "minute": 4,
           "team": "PAR",
           "player": "Matías Galarza",
+          "type": "YELLOW"
+        },
+        {
+          "minute": 37,
+          "team": "PAR",
+          "player": "Kicker",
           "type": "YELLOW"
         }
       ]
