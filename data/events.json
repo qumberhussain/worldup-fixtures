@@ -1,6 +1,6 @@
 {
   "source": "wikipedia",
-  "scrapedAt": "2026-06-24T16:57:49.493Z",
+  "scrapedAt": "2026-06-24T18:47:53.263Z",
   "matches": {
     "MEX|RSA": {
       "goals": [
@@ -1222,7 +1222,7 @@
         {
           "minute": 37,
           "team": "PAR",
-          "player": "Kicker",
+          "player": "Carlos González",
           "type": "YELLOW"
         }
       ]
@@ -1764,6 +1764,29 @@
           "team": "COD",
           "player": "Charles Pickel",
           "type": "YELLOW"
+        }
+      ]
+    },
+    "BIH|QAT": {
+      "goals": [],
+      "cards": [
+        {
+          "minute": 2,
+          "team": "QAT",
+          "player": "third-place ranking",
+          "type": "RED"
+        },
+        {
+          "minute": 0,
+          "team": "QAT",
+          "player": "third-place ranking",
+          "type": "RED"
+        },
+        {
+          "minute": 1,
+          "team": "QAT",
+          "player": "third-place ranking",
+          "type": "RED"
         }
       ]
     }
