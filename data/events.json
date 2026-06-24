@@ -1,6 +1,6 @@
 {
   "source": "wikipedia",
-  "scrapedAt": "2026-06-24T20:25:24.741Z",
+  "scrapedAt": "2026-06-24T22:04:58.668Z",
   "matches": {
     "MEX|RSA": {
       "goals": [
@@ -1593,7 +1593,7 @@
         {
           "minute": 43,
           "team": "NOR",
-          "scorer": "Pedersen"
+          "scorer": "Holmgren Pedersen"
         },
         {
           "minute": 48,
@@ -1768,8 +1768,42 @@
       ]
     },
     "BIH|QAT": {
-      "goals": [],
+      "goals": [
+        {
+          "minute": 29,
+          "team": "BIH",
+          "scorer": "Alajbegović"
+        },
+        {
+          "minute": 34,
+          "team": "BIH",
+          "scorer": "Abunada",
+          "type": "OWN"
+        },
+        {
+          "minute": 80,
+          "team": "BIH",
+          "scorer": "Mahmić"
+        },
+        {
+          "minute": 42,
+          "team": "QAT",
+          "scorer": "Al-Haydos"
+        }
+      ],
       "cards": [
+        {
+          "minute": 82,
+          "team": "BIH",
+          "player": "Ermin Mahmić",
+          "type": "YELLOW"
+        },
+        {
+          "minute": 78,
+          "team": "QAT",
+          "player": "Ahmed Fathy",
+          "type": "YELLOW"
+        },
         {
           "minute": 2,
           "team": "QAT",
@@ -1785,6 +1819,68 @@
         {
           "minute": 1,
           "team": "QAT",
+          "player": "third-place ranking",
+          "type": "RED"
+        }
+      ]
+    },
+    "SUI|CAN": {
+      "goals": [
+        {
+          "minute": 46,
+          "team": "SUI",
+          "scorer": "Vargas"
+        },
+        {
+          "minute": 57,
+          "team": "SUI",
+          "scorer": "Manzambi"
+        },
+        {
+          "minute": 76,
+          "team": "CAN",
+          "scorer": "P. David"
+        }
+      ],
+      "cards": [
+        {
+          "minute": 32,
+          "team": "SUI",
+          "player": "Granit Xhaka",
+          "type": "YELLOW"
+        },
+        {
+          "minute": 32,
+          "team": "CAN",
+          "player": "Cyle Larin",
+          "type": "YELLOW"
+        },
+        {
+          "minute": 87,
+          "team": "CAN",
+          "player": "Liam Millar",
+          "type": "YELLOW"
+        }
+      ]
+    },
+    "MAR|HAI": {
+      "goals": [],
+      "cards": [
+        {
+          "minute": 2,
+          "team": "HAI",
+          "player": "third-place ranking",
+          "type": "RED"
+        },
+        {
+          "minute": 0,
+          "team": "HAI",
+          "player": "third-place ranking",
+          "type": "RED"
+        },
+        {
+          "minute": 1,
+          "team": "HAI",
           "player": "third-place ranking",
           "type": "RED"
         }
