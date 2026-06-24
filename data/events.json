@@ -1,6 +1,6 @@
 {
   "source": "wikipedia",
-  "scrapedAt": "2026-06-24T01:55:13.715Z",
+  "scrapedAt": "2026-06-24T05:56:22.117Z",
   "matches": {
     "MEX|RSA": {
       "goals": [
@@ -1726,6 +1726,37 @@
           "injuryTime": 2,
           "team": "CRO",
           "player": "Petar Sučić",
+          "type": "YELLOW"
+        }
+      ]
+    },
+    "COL|COD": {
+      "goals": [
+        {
+          "minute": 76,
+          "team": "COL",
+          "scorer": "Muñoz"
+        }
+      ],
+      "cards": [
+        {
+          "minute": 56,
+          "team": "COL",
+          "player": "Jhon Lucumí",
+          "type": "YELLOW"
+        },
+        {
+          "minute": 90,
+          "injuryTime": 4,
+          "team": "COL",
+          "player": "Jefferson Lerma",
+          "type": "YELLOW"
+        },
+        {
+          "minute": 90,
+          "injuryTime": 3,
+          "team": "COD",
+          "player": "Charles Pickel",
           "type": "YELLOW"
         }
       ]
