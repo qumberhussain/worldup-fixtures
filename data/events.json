@@ -1,6 +1,6 @@
 {
   "source": "wikipedia",
-  "scrapedAt": "2026-06-23T23:45:10.236Z",
+  "scrapedAt": "2026-06-24T01:55:13.715Z",
   "matches": {
     "MEX|RSA": {
       "goals": [
@@ -1702,6 +1702,30 @@
           "minute": 60,
           "team": "GHA",
           "player": "Iñaki Williams",
+          "type": "YELLOW"
+        }
+      ]
+    },
+    "PAN|CRO": {
+      "goals": [
+        {
+          "minute": 54,
+          "team": "CRO",
+          "scorer": "Budimir"
+        }
+      ],
+      "cards": [
+        {
+          "minute": 61,
+          "team": "PAN",
+          "player": "Yoel Bárcenas",
+          "type": "YELLOW"
+        },
+        {
+          "minute": 90,
+          "injuryTime": 2,
+          "team": "CRO",
+          "player": "Petar Sučić",
           "type": "YELLOW"
         }
       ]
