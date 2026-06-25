@@ -1,6 +1,6 @@
 {
   "source": "wikipedia",
-  "scrapedAt": "2026-06-25T02:03:23.781Z",
+  "scrapedAt": "2026-06-25T06:37:11.868Z",
   "matches": {
     "MEX|RSA": {
       "goals": [
@@ -1939,8 +1939,26 @@
       ]
     },
     "RSA|KOR": {
-      "goals": [],
+      "goals": [
+        {
+          "minute": 63,
+          "team": "RSA",
+          "scorer": "Maseko"
+        }
+      ],
       "cards": [
+        {
+          "minute": 72,
+          "team": "RSA",
+          "player": "Aubrey Modiba",
+          "type": "YELLOW"
+        },
+        {
+          "minute": 78,
+          "team": "KOR",
+          "player": "Cho Gue-sung",
+          "type": "YELLOW"
+        },
         {
           "minute": 2,
           "team": "KOR",
@@ -1997,6 +2015,34 @@
           "minute": 82,
           "team": "BRA",
           "player": "Fabinho",
+          "type": "YELLOW"
+        }
+      ]
+    },
+    "CZE|MEX": {
+      "goals": [
+        {
+          "minute": 55,
+          "team": "MEX",
+          "scorer": "M. Chávez"
+        },
+        {
+          "minute": 61,
+          "team": "MEX",
+          "scorer": "Quiñones"
+        },
+        {
+          "minute": 90,
+          "injuryTime": 4,
+          "team": "MEX",
+          "scorer": "Fidalgo"
+        }
+      ],
+      "cards": [
+        {
+          "minute": 64,
+          "team": "MEX",
+          "player": "Edson Álvarez",
           "type": "YELLOW"
         }
       ]
