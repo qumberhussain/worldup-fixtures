@@ -1,6 +1,6 @@
 {
   "source": "wikipedia",
-  "scrapedAt": "2026-06-24T23:55:28.917Z",
+  "scrapedAt": "2026-06-25T02:03:23.781Z",
   "matches": {
     "MEX|RSA": {
       "goals": [
@@ -1864,8 +1864,60 @@
       ]
     },
     "MAR|HAI": {
-      "goals": [],
+      "goals": [
+        {
+          "minute": 39,
+          "team": "MAR",
+          "scorer": "Hakimi"
+        },
+        {
+          "minute": 45,
+          "injuryTime": 1,
+          "team": "MAR",
+          "scorer": "Saibari"
+        },
+        {
+          "minute": 78,
+          "team": "MAR",
+          "scorer": "Rahimi"
+        },
+        {
+          "minute": 89,
+          "team": "MAR",
+          "scorer": "Yassine"
+        },
+        {
+          "minute": 10,
+          "team": "HAI",
+          "scorer": "Bounou",
+          "type": "OWN"
+        },
+        {
+          "minute": 43,
+          "team": "HAI",
+          "scorer": "Isidor"
+        }
+      ],
       "cards": [
+        {
+          "minute": 79,
+          "team": "HAI",
+          "player": "Johny Placide",
+          "type": "YELLOW"
+        },
+        {
+          "minute": 90,
+          "injuryTime": 3,
+          "team": "HAI",
+          "player": "Josué Casimir",
+          "type": "YELLOW"
+        },
+        {
+          "minute": 80,
+          "team": "HAI",
+          "player": "Duckens Nazon",
+          "type": "YELLOW"
+        },
         {
           "minute": 2,
           "team": "HAI",
@@ -1883,6 +1935,69 @@
           "team": "HAI",
           "player": "third-place ranking",
           "type": "RED"
+        }
+      ]
+    },
+    "RSA|KOR": {
+      "goals": [],
+      "cards": [
+        {
+          "minute": 2,
+          "team": "KOR",
+          "player": "third-place ranking",
+          "type": "RED"
+        },
+        {
+          "minute": 0,
+          "team": "KOR",
+          "player": "third-place ranking",
+          "type": "RED"
+        },
+        {
+          "minute": 1,
+          "team": "KOR",
+          "player": "third-place ranking",
+          "type": "RED"
+        }
+      ]
+    },
+    "SCO|BRA": {
+      "goals": [
+        {
+          "minute": 7,
+          "team": "BRA",
+          "scorer": "Vinícius"
+        },
+        {
+          "minute": 45,
+          "injuryTime": 3,
+          "team": "BRA",
+          "scorer": "Vinícius"
+        },
+        {
+          "minute": 60,
+          "team": "BRA",
+          "scorer": "Cunha"
+        }
+      ],
+      "cards": [
+        {
+          "minute": 89,
+          "team": "SCO",
+          "player": "Ryan Christie",
+          "type": "YELLOW"
+        },
+        {
+          "minute": 62,
+          "team": "BRA",
+          "player": "Danilo Luiz",
+          "type": "YELLOW"
+        },
+        {
+          "minute": 82,
+          "team": "BRA",
+          "player": "Fabinho",
+          "type": "YELLOW"
         }
       ]
     }
