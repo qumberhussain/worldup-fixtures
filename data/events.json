@@ -1,6 +1,6 @@
 {
   "source": "wikipedia",
-  "scrapedAt": "2026-06-25T06:37:11.868Z",
+  "scrapedAt": "2026-06-25T09:59:42.097Z",
   "matches": {
     "MEX|RSA": {
       "goals": [
@@ -1593,7 +1593,7 @@
         {
           "minute": 43,
           "team": "NOR",
-          "scorer": "Holmgren Pedersen"
+          "scorer": "Pedersen"
         },
         {
           "minute": 48,
