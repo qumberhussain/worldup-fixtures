@@ -1,6 +1,6 @@
 {
   "source": "wikipedia",
-  "scrapedAt": "2026-06-25T17:59:36.105Z",
+  "scrapedAt": "2026-06-25T19:59:53.898Z",
   "matches": {
     "MEX|RSA": {
       "goals": [
@@ -556,7 +556,7 @@
         {
           "minute": 90,
           "team": "CIV",
-          "scorer": "Diallo"
+          "scorer": "Amad"
         }
       ],
       "cards": [
@@ -2044,6 +2044,29 @@
           "team": "MEX",
           "player": "Edson Álvarez",
           "type": "YELLOW"
+        }
+      ]
+    },
+    "ECU|GER": {
+      "goals": [],
+      "cards": [
+        {
+          "minute": 2,
+          "team": "GER",
+          "player": "third-place ranking",
+          "type": "RED"
+        },
+        {
+          "minute": 0,
+          "team": "GER",
+          "player": "third-place ranking",
+          "type": "RED"
+        },
+        {
+          "minute": 1,
+          "team": "GER",
+          "player": "third-place ranking",
+          "type": "RED"
         }
       ]
     }
