@@ -1,6 +1,6 @@
 {
   "source": "wikipedia",
-  "scrapedAt": "2026-06-25T21:43:00.794Z",
+  "scrapedAt": "2026-06-25T23:05:10.867Z",
   "matches": {
     "MEX|RSA": {
       "goals": [
@@ -556,7 +556,7 @@
         {
           "minute": 90,
           "team": "CIV",
-          "scorer": "Amad"
+          "scorer": "Diallo"
         }
       ],
       "cards": [
@@ -2048,8 +2048,48 @@
       ]
     },
     "ECU|GER": {
-      "goals": [],
+      "goals": [
+        {
+          "minute": 9,
+          "team": "ECU",
+          "scorer": "Angulo"
+        },
+        {
+          "minute": 77,
+          "team": "ECU",
+          "scorer": "Plata"
+        },
+        {
+          "minute": 2,
+          "team": "GER",
+          "scorer": "Sané"
+        }
+      ],
       "cards": [
+        {
+          "minute": 50,
+          "team": "ECU",
+          "player": "Alan Franco",
+          "type": "YELLOW"
+        },
+        {
+          "minute": 43,
+          "team": "ECU",
+          "player": "Piero Hincapié",
+          "type": "YELLOW"
+        },
+        {
+          "minute": 89,
+          "team": "ECU",
+          "player": "Gonzalo Plata",
+          "type": "YELLOW"
+        },
+        {
+          "minute": 44,
+          "team": "GER",
+          "player": "Aleksandar Pavlović",
+          "type": "YELLOW"
+        },
         {
           "minute": 2,
           "team": "GER",
@@ -2065,6 +2105,63 @@
         {
           "minute": 1,
           "team": "GER",
+          "player": "third-place ranking",
+          "type": "RED"
+        }
+      ]
+    },
+    "CUW|CIV": {
+      "goals": [
+        {
+          "minute": 7,
+          "team": "CIV",
+          "scorer": "Pépé"
+        },
+        {
+          "minute": 64,
+          "team": "CIV",
+          "scorer": "Pépé"
+        }
+      ],
+      "cards": [
+        {
+          "minute": 75,
+          "team": "CUW",
+          "player": "Juninho Bacuna",
+          "type": "YELLOW"
+        },
+        {
+          "minute": 83,
+          "team": "CUW",
+          "player": "Gervane Kastaneer",
+          "type": "YELLOW"
+        },
+        {
+          "minute": 34,
+          "team": "CIV",
+          "player": "Nicolas Pépé",
+          "type": "YELLOW"
+        }
+      ]
+    },
+    "TUN|NED": {
+      "goals": [],
+      "cards": [
+        {
+          "minute": 2,
+          "team": "NED",
+          "player": "third-place ranking",
+          "type": "RED"
+        },
+        {
+          "minute": 0,
+          "team": "NED",
+          "player": "third-place ranking",
+          "type": "RED"
+        },
+        {
+          "minute": 1,
+          "team": "NED",
           "player": "third-place ranking",
           "type": "RED"
         }
