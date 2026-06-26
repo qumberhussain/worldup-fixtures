@@ -1,6 +1,6 @@
 {
   "source": "wikipedia",
-  "scrapedAt": "2026-06-26T02:00:49.123Z",
+  "scrapedAt": "2026-06-26T06:40:23.418Z",
   "matches": {
     "MEX|RSA": {
       "goals": [
@@ -2193,6 +2193,18 @@
       "goals": [],
       "cards": [
         {
+          "minute": 77,
+          "team": "PAR",
+          "player": "Diego Gómez",
+          "type": "YELLOW"
+        },
+        {
+          "minute": 46,
+          "team": "AUS",
+          "player": "Jackson Irvine",
+          "type": "YELLOW"
+        },
+        {
           "minute": 2,
           "team": "AUS",
           "player": "third-place ranking",
@@ -2242,6 +2254,44 @@
           "minute": 84,
           "team": "SWE",
           "player": "Viktor Gyökeres",
+          "type": "YELLOW"
+        }
+      ]
+    },
+    "TUR|USA": {
+      "goals": [
+        {
+          "minute": 10,
+          "team": "TUR",
+          "scorer": "Güler"
+        },
+        {
+          "minute": 31,
+          "team": "TUR",
+          "scorer": "Yılmaz"
+        },
+        {
+          "minute": 90,
+          "injuryTime": 8,
+          "team": "TUR",
+          "scorer": "Ayhan"
+        },
+        {
+          "minute": 3,
+          "team": "USA",
+          "scorer": "Trusty"
+        },
+        {
+          "minute": 49,
+          "team": "USA",
+          "scorer": "Berhalter"
+        }
+      ],
+      "cards": [
+        {
+          "minute": 19,
+          "team": "USA",
+          "player": "Sebastian Berhalter",
           "type": "YELLOW"
         }
       ]
