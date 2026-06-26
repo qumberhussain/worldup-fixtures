@@ -1,6 +1,6 @@
 {
   "source": "wikipedia",
-  "scrapedAt": "2026-06-26T20:24:49.810Z",
+  "scrapedAt": "2026-06-26T21:59:01.120Z",
   "matches": {
     "MEX|RSA": {
       "goals": [
@@ -2297,8 +2297,58 @@
       ]
     },
     "SEN|IRQ": {
-      "goals": [],
+      "goals": [
+        {
+          "minute": 4,
+          "team": "SEN",
+          "scorer": "Diarra"
+        },
+        {
+          "minute": 56,
+          "team": "SEN",
+          "scorer": "I. Sarr"
+        },
+        {
+          "minute": 59,
+          "team": "SEN",
+          "scorer": "P. Gueye"
+        },
+        {
+          "minute": 71,
+          "team": "SEN",
+          "scorer": "P. Gueye"
+        },
+        {
+          "minute": 82,
+          "team": "SEN",
+          "scorer": "I. Ndiaye"
+        }
+      ],
       "cards": [
+        {
+          "minute": 18,
+          "team": "SEN",
+          "player": "Abdoulaye Seck",
+          "type": "YELLOW"
+        },
+        {
+          "minute": 81,
+          "team": "SEN",
+          "player": "Pape Gueye",
+          "type": "YELLOW"
+        },
+        {
+          "minute": 90,
+          "team": "IRQ",
+          "player": "Merchas Doski",
+          "type": "YELLOW"
+        },
+        {
+          "minute": 75,
+          "team": "IRQ",
+          "player": "Amir Al-Ammari",
+          "type": "YELLOW"
+        },
         {
           "minute": 2,
           "team": "IRQ",
@@ -2316,6 +2366,50 @@
           "team": "IRQ",
           "player": "third-place ranking",
           "type": "RED"
+        }
+      ]
+    },
+    "NOR|FRA": {
+      "goals": [
+        {
+          "minute": 21,
+          "team": "NOR",
+          "scorer": "Aasgaard"
+        },
+        {
+          "minute": 7,
+          "team": "FRA",
+          "scorer": "Dembélé"
+        },
+        {
+          "minute": 20,
+          "team": "FRA",
+          "scorer": "Dembélé"
+        },
+        {
+          "minute": 32,
+          "team": "FRA",
+          "scorer": "Dembélé"
+        },
+        {
+          "minute": 90,
+          "injuryTime": 4,
+          "team": "FRA",
+          "scorer": "Doué"
+        }
+      ],
+      "cards": [
+        {
+          "minute": 10,
+          "team": "NOR",
+          "player": "Patrick Berg",
+          "type": "YELLOW"
+        },
+        {
+          "minute": 74,
+          "team": "FRA",
+          "player": "Aurélien Tchouaméni",
+          "type": "YELLOW"
         }
       ]
     }
