@@ -1,6 +1,6 @@
 {
   "source": "wikipedia",
-  "scrapedAt": "2026-06-26T21:59:01.120Z",
+  "scrapedAt": "2026-06-26T23:03:41.731Z",
   "matches": {
     "MEX|RSA": {
       "goals": [
@@ -2410,6 +2410,29 @@
           "team": "FRA",
           "player": "Aurélien Tchouaméni",
           "type": "YELLOW"
+        }
+      ]
+    },
+    "URU|ESP": {
+      "goals": [],
+      "cards": [
+        {
+          "minute": 2,
+          "team": "ESP",
+          "player": "third-place ranking",
+          "type": "RED"
+        },
+        {
+          "minute": 0,
+          "team": "ESP",
+          "player": "third-place ranking",
+          "type": "RED"
+        },
+        {
+          "minute": 1,
+          "team": "ESP",
+          "player": "third-place ranking",
+          "type": "RED"
         }
       ]
     }
