@@ -1,6 +1,6 @@
 {
   "source": "wikipedia",
-  "scrapedAt": "2026-06-26T16:05:22.288Z",
+  "scrapedAt": "2026-06-26T18:20:13.139Z",
   "matches": {
     "MEX|RSA": {
       "goals": [
@@ -2293,6 +2293,29 @@
           "team": "USA",
           "player": "Sebastian Berhalter",
           "type": "YELLOW"
+        }
+      ]
+    },
+    "SEN|IRQ": {
+      "goals": [],
+      "cards": [
+        {
+          "minute": 2,
+          "team": "IRQ",
+          "player": "third-place ranking",
+          "type": "RED"
+        },
+        {
+          "minute": 0,
+          "team": "IRQ",
+          "player": "third-place ranking",
+          "type": "RED"
+        },
+        {
+          "minute": 1,
+          "team": "IRQ",
+          "player": "third-place ranking",
+          "type": "RED"
         }
       ]
     }
