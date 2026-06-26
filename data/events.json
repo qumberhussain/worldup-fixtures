@@ -1,6 +1,6 @@
 {
   "source": "wikipedia",
-  "scrapedAt": "2026-06-25T23:05:10.867Z",
+  "scrapedAt": "2026-06-26T02:00:49.123Z",
   "matches": {
     "MEX|RSA": {
       "goals": [
@@ -2145,7 +2145,29 @@
       ]
     },
     "TUN|NED": {
-      "goals": [],
+      "goals": [
+        {
+          "minute": 54,
+          "team": "TUN",
+          "scorer": "Mastouri"
+        },
+        {
+          "minute": 3,
+          "team": "NED",
+          "scorer": "Skhiri",
+          "type": "OWN"
+        },
+        {
+          "minute": 7,
+          "team": "NED",
+          "scorer": "Brobbey"
+        },
+        {
+          "minute": 62,
+          "team": "NED",
+          "scorer": "Van Hecke"
+        }
+      ],
       "cards": [
         {
           "minute": 2,
@@ -2164,6 +2186,63 @@
           "team": "NED",
           "player": "third-place ranking",
           "type": "RED"
+        }
+      ]
+    },
+    "PAR|AUS": {
+      "goals": [],
+      "cards": [
+        {
+          "minute": 2,
+          "team": "AUS",
+          "player": "third-place ranking",
+          "type": "RED"
+        },
+        {
+          "minute": 0,
+          "team": "AUS",
+          "player": "third-place ranking",
+          "type": "RED"
+        },
+        {
+          "minute": 1,
+          "team": "AUS",
+          "player": "third-place ranking",
+          "type": "RED"
+        }
+      ]
+    },
+    "JPN|SWE": {
+      "goals": [
+        {
+          "minute": 56,
+          "team": "JPN",
+          "scorer": "Maeda"
+        },
+        {
+          "minute": 62,
+          "team": "SWE",
+          "scorer": "Elanga"
+        }
+      ],
+      "cards": [
+        {
+          "minute": 77,
+          "team": "JPN",
+          "player": "Shōgo Taniguchi",
+          "type": "YELLOW"
+        },
+        {
+          "minute": 32,
+          "team": "SWE",
+          "player": "Isak Hien",
+          "type": "YELLOW"
+        },
+        {
+          "minute": 84,
+          "team": "SWE",
+          "player": "Viktor Gyökeres",
+          "type": "YELLOW"
         }
       ]
     }
