@@ -1,6 +1,6 @@
 {
   "source": "wikipedia",
-  "scrapedAt": "2026-06-26T23:03:41.731Z",
+  "scrapedAt": "2026-06-27T01:54:32.452Z",
   "matches": {
     "MEX|RSA": {
       "goals": [
@@ -2431,6 +2431,29 @@
         {
           "minute": 1,
           "team": "ESP",
+          "player": "third-place ranking",
+          "type": "RED"
+        }
+      ]
+    },
+    "NZL|BEL": {
+      "goals": [],
+      "cards": [
+        {
+          "minute": 2,
+          "team": "BEL",
+          "player": "third-place ranking",
+          "type": "RED"
+        },
+        {
+          "minute": 0,
+          "team": "BEL",
+          "player": "third-place ranking",
+          "type": "RED"
+        },
+        {
+          "minute": 1,
+          "team": "BEL",
           "player": "third-place ranking",
           "type": "RED"
         }
