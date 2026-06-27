@@ -1,6 +1,6 @@
 {
   "source": "wikipedia",
-  "scrapedAt": "2026-06-27T22:50:55.725Z",
+  "scrapedAt": "2026-06-27T23:50:29.622Z",
   "matches": {
     "MEX|RSA": {
       "goals": [
@@ -2625,8 +2625,37 @@
       ]
     },
     "CRO|GHA": {
-      "goals": [],
+      "goals": [
+        {
+          "minute": 31,
+          "team": "CRO",
+          "scorer": "P. Sučić"
+        },
+        {
+          "minute": 83,
+          "team": "CRO",
+          "scorer": "Vlašić"
+        },
+        {
+          "minute": 73,
+          "team": "GHA",
+          "scorer": "Luckassen"
+        }
+      ],
       "cards": [
+        {
+          "minute": 68,
+          "team": "CRO",
+          "player": "Ivan Perišić",
+          "type": "YELLOW"
+        },
+        {
+          "minute": 90,
+          "injuryTime": 4,
+          "team": "GHA",
+          "player": "Kojo Peprah Oppong",
+          "type": "YELLOW"
+        },
         {
           "minute": 2,
           "team": "GHA",
@@ -2667,6 +2696,40 @@
           "team": "UZB",
           "player": "third-place ranking",
           "type": "RED"
+        }
+      ]
+    },
+    "PAN|ENG": {
+      "goals": [
+        {
+          "minute": 62,
+          "team": "ENG",
+          "scorer": "Bellingham"
+        },
+        {
+          "minute": 67,
+          "team": "ENG",
+          "scorer": "Kane"
+        }
+      ],
+      "cards": [
+        {
+          "minute": 83,
+          "team": "PAN",
+          "player": "Andrés Andrade",
+          "type": "YELLOW"
+        },
+        {
+          "minute": 53,
+          "team": "PAN",
+          "player": "José Fajardo",
+          "type": "YELLOW"
+        },
+        {
+          "minute": 60,
+          "team": "ENG",
+          "player": "Jarell Quansah",
+          "type": "YELLOW"
         }
       ]
     }
