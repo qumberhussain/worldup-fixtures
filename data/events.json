@@ -1,6 +1,6 @@
 {
   "source": "wikipedia",
-  "scrapedAt": "2026-06-27T01:54:32.452Z",
+  "scrapedAt": "2026-06-27T05:43:40.363Z",
   "matches": {
     "MEX|RSA": {
       "goals": [
@@ -2414,8 +2414,39 @@
       ]
     },
     "URU|ESP": {
-      "goals": [],
+      "goals": [
+        {
+          "minute": 42,
+          "team": "ESP",
+          "scorer": "Baena"
+        }
+      ],
       "cards": [
+        {
+          "minute": 58,
+          "team": "URU",
+          "player": "Guillermo Varela",
+          "type": "YELLOW"
+        },
+        {
+          "minute": 54,
+          "team": "URU",
+          "player": "Juan Manuel Sanabria",
+          "type": "YELLOW"
+        },
+        {
+          "minute": 90,
+          "injuryTime": 3,
+          "team": "URU",
+          "player": "Nicolás de la Cruz",
+          "type": "YELLOW"
+        },
+        {
+          "minute": 46,
+          "team": "ESP",
+          "player": "Álex Baena",
+          "type": "YELLOW"
+        },
         {
           "minute": 2,
           "team": "ESP",
@@ -2437,7 +2468,39 @@
       ]
     },
     "NZL|BEL": {
-      "goals": [],
+      "goals": [
+        {
+          "minute": 84,
+          "team": "NZL",
+          "scorer": "Just"
+        },
+        {
+          "minute": 28,
+          "team": "BEL",
+          "scorer": "Trossard"
+        },
+        {
+          "minute": 50,
+          "team": "BEL",
+          "scorer": "Trossard"
+        },
+        {
+          "minute": 66,
+          "team": "BEL",
+          "scorer": "De Bruyne"
+        },
+        {
+          "minute": 86,
+          "team": "BEL",
+          "scorer": "Lukaku"
+        },
+        {
+          "minute": 90,
+          "injuryTime": 4,
+          "team": "BEL",
+          "scorer": "Saelemaekers"
+        }
+      ],
       "cards": [
         {
           "minute": 2,
@@ -2456,6 +2519,96 @@
           "team": "BEL",
           "player": "third-place ranking",
           "type": "RED"
+        }
+      ]
+    },
+    "EGY|IRN": {
+      "goals": [
+        {
+          "minute": 5,
+          "team": "EGY",
+          "scorer": "Saber"
+        },
+        {
+          "minute": 14,
+          "team": "IRN",
+          "scorer": "Rezaeian"
+        }
+      ],
+      "cards": [
+        {
+          "minute": 19,
+          "team": "EGY",
+          "player": "Mahmoud Saber",
+          "type": "YELLOW"
+        },
+        {
+          "minute": 90,
+          "injuryTime": 2,
+          "team": "EGY",
+          "player": "Mohanad Lasheen",
+          "type": "YELLOW"
+        },
+        {
+          "minute": 41,
+          "team": "EGY",
+          "player": "Yasser Ibrahim",
+          "type": "YELLOW"
+        },
+        {
+          "minute": 18,
+          "team": "IRN",
+          "player": "Hossein Kanaanizadegan",
+          "type": "YELLOW"
+        },
+        {
+          "minute": 90,
+          "injuryTime": 4,
+          "team": "IRN",
+          "player": "Shojae Khalilzadeh",
+          "type": "YELLOW"
+        },
+        {
+          "minute": 43,
+          "team": "IRN",
+          "player": "Ali Nemati",
+          "type": "YELLOW"
+        },
+        {
+          "minute": 79,
+          "team": "IRN",
+          "player": "Saeid Ezatolahi",
+          "type": "YELLOW"
+        }
+      ]
+    },
+    "CPV|KSA": {
+      "goals": [],
+      "cards": [
+        {
+          "minute": 8,
+          "team": "CPV",
+          "player": "Wagner Pina",
+          "type": "YELLOW"
+        },
+        {
+          "minute": 4,
+          "team": "KSA",
+          "player": "Saud Abdulhamid",
+          "type": "YELLOW"
+        },
+        {
+          "minute": 67,
+          "team": "KSA",
+          "player": "Nasser Al-Dawsari",
+          "type": "YELLOW"
+        },
+        {
+          "minute": 90,
+          "injuryTime": 3,
+          "team": "KSA",
+          "player": "Firas Al-Buraikan",
+          "type": "YELLOW"
         }
       ]
     }
