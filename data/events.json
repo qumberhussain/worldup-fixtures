@@ -1,6 +1,6 @@
 {
   "source": "wikipedia",
-  "scrapedAt": "2026-06-27T10:51:15.393Z",
+  "scrapedAt": "2026-06-27T12:03:52.985Z",
   "matches": {
     "MEX|RSA": {
       "goals": [
@@ -2568,7 +2568,7 @@
           "type": "YELLOW"
         },
         {
-          "minute": 18,
+          "minute": 19,
           "team": "IRN",
           "player": "Hossein Kanaanizadegan",
           "type": "YELLOW"
