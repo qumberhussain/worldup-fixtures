@@ -1,6 +1,6 @@
 {
   "source": "wikipedia",
-  "scrapedAt": "2026-06-27T18:59:17.097Z",
+  "scrapedAt": "2026-06-27T20:07:24.520Z",
   "matches": {
     "MEX|RSA": {
       "goals": [
@@ -2621,6 +2621,29 @@
           "team": "KSA",
           "player": "Firas Al-Buraikan",
           "type": "YELLOW"
+        }
+      ]
+    },
+    "CRO|GHA": {
+      "goals": [],
+      "cards": [
+        {
+          "minute": 2,
+          "team": "GHA",
+          "player": "third-place ranking",
+          "type": "RED"
+        },
+        {
+          "minute": 0,
+          "team": "GHA",
+          "player": "third-place ranking",
+          "type": "RED"
+        },
+        {
+          "minute": 1,
+          "team": "GHA",
+          "player": "third-place ranking",
+          "type": "RED"
         }
       ]
     }
