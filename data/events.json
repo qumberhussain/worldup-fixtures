@@ -1,6 +1,6 @@
 {
   "source": "wikipedia",
-  "scrapedAt": "2026-06-27T05:43:40.363Z",
+  "scrapedAt": "2026-06-27T08:22:34.114Z",
   "matches": {
     "MEX|RSA": {
       "goals": [
@@ -2502,6 +2502,18 @@
         }
       ],
       "cards": [
+        {
+          "minute": 46,
+          "team": "NZL",
+          "player": "Marko Stamenić",
+          "type": "YELLOW"
+        },
+        {
+          "minute": 56,
+          "team": "NZL",
+          "player": "Elijah Just",
+          "type": "YELLOW"
+        },
         {
           "minute": 2,
           "team": "BEL",
