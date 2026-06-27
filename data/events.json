@@ -1,6 +1,6 @@
 {
   "source": "wikipedia",
-  "scrapedAt": "2026-06-27T21:50:28.481Z",
+  "scrapedAt": "2026-06-27T22:50:55.725Z",
   "matches": {
     "MEX|RSA": {
       "goals": [
@@ -2642,6 +2642,29 @@
         {
           "minute": 1,
           "team": "GHA",
+          "player": "third-place ranking",
+          "type": "RED"
+        }
+      ]
+    },
+    "COD|UZB": {
+      "goals": [],
+      "cards": [
+        {
+          "minute": 2,
+          "team": "UZB",
+          "player": "third-place ranking",
+          "type": "RED"
+        },
+        {
+          "minute": 0,
+          "team": "UZB",
+          "player": "third-place ranking",
+          "type": "RED"
+        },
+        {
+          "minute": 1,
+          "team": "UZB",
           "player": "third-place ranking",
           "type": "RED"
         }
