@@ -3,8 +3,9 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import { classify, hasScore } from "@/lib/normalize";
-import { channelNetwork, channelServices } from "@/lib/channels";
+import { channelNetwork, channelServices, teamCode } from "@/lib/channels";
 import { matchSlug } from "@/lib/slug";
+import { computeStandings, fmtGD, groupLabel, type GroupTable } from "@/lib/standings";
 import type { Card, FixturesPayload, Goal, Match, MatchKind, Team } from "@/lib/types";
 
 // Adaptive polling cadence — only refresh quickly when it matters.
@@ -108,6 +109,14 @@ export default function Fixtures({ initial }: { initial?: FixturesPayload }) {
 
   const matches = payload?.matches ?? [];
   const isLiveSource = payload?.source === "football-data.org";
+
+  // Group tables computed once from the matches we already hold, so each card
+  // can reveal its group's standings inline — no extra fetch, no page nav.
+  const standingsByGroup = useMemo(() => {
+    const byGroup = new Map<string, GroupTable>();
+    for (const t of computeStandings(matches)) byGroup.set(t.group, t);
+    return byGroup;
+  }, [matches]);
 
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
@@ -215,7 +224,11 @@ export default function Fixtures({ initial }: { initial?: FixturesPayload }) {
                   </span>
                 </div>
                 {items.map((m) => (
-                  <MatchCard key={m.id} m={m} />
+                  <MatchCard
+                    key={m.id}
+                    m={m}
+                    groupTable={m.group ? standingsByGroup.get(m.group) : undefined}
+                  />
                 ))}
               </div>
             ))}
@@ -251,7 +264,7 @@ function StatusBar({
   );
 }
 
-function MatchCard({ m }: { m: Match }) {
+function MatchCard({ m, groupTable }: { m: Match; groupTable?: GroupTable }) {
   const kind: MatchKind = classify(m);
   const h = m.homeTeam, a = m.awayTeam;
   const homeWin = kind === "played" && hasScore(m) && m.score.home! > m.score.away!;
@@ -259,6 +272,7 @@ function MatchCard({ m }: { m: Match }) {
   const canExpand = kind === "played" || kind === "live" || kind === "underway";
 
   const [expanded, setExpanded] = useState(false);
+  const [groupOpen, setGroupOpen] = useState(false);
   const [detail, setDetail] = useState<{ goals: Goal[]; cards: Card[] } | null>(null);
   const [loadingDetail, setLoadingDetail] = useState(false);
 
@@ -347,10 +361,33 @@ function MatchCard({ m }: { m: Match }) {
 
       {hasMeta && (
         <div className="match-meta">
-          {m.group && <span>🏆 {m.group}</span>}
+          {m.group && <span>🏆 {groupLabel(m.group)}</span>}
           {m.stage && m.stage !== "GROUP_STAGE" && <span>{prettyStage(m.stage)}</span>}
           {m.venue && <span>📍 {m.venue}</span>}
           {m.channel && <ChannelTag channel={m.channel} />}
+        </div>
+      )}
+
+      {m.group && groupTable && groupTable.rows.length > 0 && (
+        <div className="group-section">
+          <button
+            className="goals-toggle"
+            aria-expanded={groupOpen}
+            onClick={() => setGroupOpen((v) => !v)}
+          >
+            {groupOpen ? "Hide" : groupLabel(m.group)} table{" "}
+            <span className="chev">{groupOpen ? "▴" : "▾"}</span>
+          </button>
+          {groupOpen && (
+            <GroupMiniTable
+              table={groupTable}
+              highlight={
+                new Set(
+                  [teamCode(h), teamCode(a)].filter((t): t is string => Boolean(t))
+                )
+              }
+            />
+          )}
         </div>
       )}
 
@@ -380,6 +417,42 @@ function MatchCard({ m }: { m: Match }) {
         </Link>
       </div>
     </article>
+  );
+}
+
+/** Compact group table shown inline on a match card; the two teams in this
+ *  match are highlighted. Columns are kept to P / GD / Pts to stay readable. */
+function GroupMiniTable({ table, highlight }: { table: GroupTable; highlight: Set<string> }) {
+  return (
+    <div className="group-reveal table-scroll">
+      <table className="standings-table mini">
+        <thead>
+          <tr>
+            <th scope="col" className="c-pos">#</th>
+            <th scope="col" className="c-team">Team</th>
+            <th scope="col"><abbr title="Played">P</abbr></th>
+            <th scope="col"><abbr title="Goal difference">GD</abbr></th>
+            <th scope="col" className="c-pts"><abbr title="Points">Pts</abbr></th>
+          </tr>
+        </thead>
+        <tbody>
+          {table.rows.map((r, i) => (
+            <tr key={r.tla} className={highlight.has(r.tla) ? "is-current" : ""}>
+              <td className="c-pos">{i + 1}</td>
+              <td className="c-team">
+                <span className="st-team">
+                  <span className="st-tla" aria-hidden="true">{r.tla}</span>
+                  <span className="st-name">{r.team.name}</span>
+                </span>
+              </td>
+              <td>{r.played}</td>
+              <td>{fmtGD(r.goalDifference)}</td>
+              <td className="c-pts">{r.points}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
   );
 }
 

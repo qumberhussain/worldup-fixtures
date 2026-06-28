@@ -396,6 +396,15 @@ a.brand { text-decoration: none; color: var(--text); }
 .groups-legend .key.q-auto { background: var(--accent); }
 .groups-legend .key.q-third { background: #ffb020; }
 
+/* Inline group-table reveal on a match card */
+.group-section { grid-column: 1 / -1; }
+.group-reveal { margin: 10px 0 2px; }
+.standings-table.mini { font-size: 12.5px; }
+.standings-table.mini th, .standings-table.mini td { padding: 5px 6px; }
+.standings-table tr.is-current { background: rgba(91, 140, 255, 0.10); }
+.standings-table tr.is-current .st-name { color: var(--text); font-weight: 700; }
+.standings-table tr.is-current .c-pts { color: var(--accent-2); }
+
 @media (max-width: 540px) {
   .match { padding: 14px; gap: 8px; }
   .team .name { font-size: 13.5px; }

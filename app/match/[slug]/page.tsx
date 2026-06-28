@@ -6,6 +6,7 @@ import { loadMatchEvents } from "@/lib/match-events";
 import { buildMatchJsonLd } from "@/lib/jsonld";
 import { matchSlug, parseMatchId } from "@/lib/slug";
 import { classify, hasScore } from "@/lib/normalize";
+import { groupLabel } from "@/lib/standings";
 import { channelServices } from "@/lib/channels";
 import { absoluteUrl } from "@/lib/site";
 import LiveRefresher from "@/components/LiveRefresher";
@@ -112,7 +113,7 @@ export default async function MatchPage({
     .slice(0, 6);
 
   const stageLabel = [
-    m.group,
+    m.group ? groupLabel(m.group) : null,
     m.stage && m.stage !== "GROUP_STAGE" ? prettyStage(m.stage) : null,
   ]
     .filter(Boolean)
@@ -202,7 +203,7 @@ export default async function MatchPage({
 
         {related.length > 0 && (
           <section className="md-related">
-            <h2>More from {m.group}</h2>
+            <h2>More from {groupLabel(m.group!)}</h2>
             <ul>
               {related.map((r) => (
                 <li key={r.id}>
@@ -217,7 +218,7 @@ export default async function MatchPage({
 
         <p className="md-back">
           <a href="/">← All fixtures &amp; results</a>
-          {m.group && <> · <a href="/groups">{m.group} table</a></>}
+          {m.group && <> · <a href="/groups">{groupLabel(m.group)} table</a></>}
         </p>
       </main>
 

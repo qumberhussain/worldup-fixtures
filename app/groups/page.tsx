@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { loadFixtures } from "@/lib/fixtures";
-import { computeStandings, type StandingRow } from "@/lib/standings";
+import { computeStandings, fmtGD, groupLabel, type StandingRow } from "@/lib/standings";
 import { SITE, absoluteUrl } from "@/lib/site";
 import { slugify } from "@/lib/slug";
 
@@ -23,13 +23,6 @@ export const metadata: Metadata = {
   openGraph: { title: TITLE, description: DESCRIPTION, url: absoluteUrl(CANONICAL), type: "website" },
   twitter: { card: "summary_large_image", title: TITLE, description: DESCRIPTION },
 };
-
-/** Signed goal difference, e.g. +3 / 0 / −2 (real minus sign for typography). */
-function fmtGD(gd: number): string {
-  if (gd > 0) return `+${gd}`;
-  if (gd < 0) return `−${Math.abs(gd)}`;
-  return "0";
-}
 
 /** Qualification hint by finishing position (WC2026: top 2 + 8 best thirds advance). */
 function qualClass(index: number): string {
@@ -110,7 +103,7 @@ export default async function GroupsPage() {
               const id = `g-${slugify(t.group)}`;
               return (
                 <section className="standings" key={t.group} aria-labelledby={id}>
-                  <h2 id={id} className="standings-head">{t.group}</h2>
+                  <h2 id={id} className="standings-head">{groupLabel(t.group)}</h2>
                   <div className="table-scroll">
                     <table className="standings-table">
                       <thead>

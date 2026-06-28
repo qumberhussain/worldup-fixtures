@@ -36,6 +36,21 @@ export interface GroupTable {
   rows: StandingRow[];
 }
 
+/** Display label for a group key: "GROUP_K" / "Group K" → "Group K". */
+export function groupLabel(group: string): string {
+  return group
+    .replace(/_/g, " ")
+    .toLowerCase()
+    .replace(/\b\w/g, (c) => c.toUpperCase());
+}
+
+/** Signed goal difference for display, e.g. +3 / 0 / −2 (real minus sign). */
+export function fmtGD(gd: number): string {
+  if (gd > 0) return `+${gd}`;
+  if (gd < 0) return `−${Math.abs(gd)}`;
+  return "0";
+}
+
 function blankRow(team: Team, tla: string): StandingRow {
   return {
     team,
