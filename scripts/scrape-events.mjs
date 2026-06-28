@@ -5,10 +5,10 @@
  *
  * Why Wikipedia: football-data.org's free tier returns no match events. The
  * group pages encode goals cleanly in each match's `goals1`/`goals2` fields
- * with FIFA team codes, so goals are reliable to parse. CARDS are intentionally
- * NOT scraped — in the wikitext they live in the lineup section with mixed
- * teams and noisy player links, so they can't be attributed reliably. Cards are
- * maintained by hand in lib/events.ts, which overrides this file per match.
+ * with FIFA team codes, so goals are reliable to parse. CARDS are also scraped,
+ * from the 2-column lineup table (col 1 = team1, the rest = team2), reading the
+ * {{yel}} and {{sent off}} templates with their minute. Curated entries in
+ * lib/events.ts still override this file per match for any manual corrections.
  *
  * Run: node scripts/scrape-events.mjs   (no API key needed)
  */
@@ -150,9 +150,17 @@ function parseCards(region, team) {
       out.push({ minute: min, ...(inj ? { injuryTime: inj } : {}), team, player: lastPlayer, type });
     };
     for (const y of chunk.matchAll(/\{\{\s*yel\s*\|\s*(\d{1,3}(?:\+\d{1,2})?)/gi)) push(y[1], "YELLOW");
+    // A real dismissal is {{sent off|<prior yellows>|<minute>}} — the minute is
+    // always the SECOND param. The single-param form ({{sent off|0}} / |1 / |2)
+    // is the legend used in a group's disciplinary "fair play / third-place
+    // ranking" table; that table sits after the final match's lineup, so it
+    // bleeds into the last block and was being recorded as bogus reds at minute
+    // 0/1/2 (attributed to a fake "third-place ranking" player). It carries no
+    // minute, so require the 2-param form and skip the legend.
     for (const so of chunk.matchAll(/\{\{\s*sent off\s*\|([^}]*)\}\}/gi)) {
       const params = so[1].split("|").map((s) => s.trim());
-      push(params.length > 1 ? params[1] : params[0], "RED"); // red minute
+      if (params.length < 2) continue; // legend icon, not an actual sending-off
+      push(params[1], "RED"); // 2nd param is the minute (e.g. "49" or "45+3")
     }
   }
   return out;
