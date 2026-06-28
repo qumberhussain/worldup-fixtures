@@ -217,6 +217,7 @@ export default async function MatchPage({
 
         <p className="md-back">
           <a href="/">← All fixtures &amp; results</a>
+          {m.group && <> · <a href="/groups">{m.group} table</a></>}
         </p>
       </main>
 

@@ -21,6 +21,7 @@ World Cup 2026. Deployed on Vercel.
 | **Goal scorers** | Expand any played/live match → chronological event timeline. |
 | **Cards (🟨/🟥)** | Yellow/red cards interleaved into the same timeline, by minute. |
 | **UK TV channel** | Per-match broadcaster badge (BBC/ITV) + streaming chips (iPlayer / ITVX / STV). |
+| **Group tables** | Per-group standings at `/groups` — W/D/L, GD, points, computed live from results. |
 | **Search** | Filter by team, group, or venue. |
 | **Day grouping** | Matches grouped by local calendar day (Today / Tomorrow aware). |
 | **Local timezone** | All kick-off times render in the viewer's timezone. |
@@ -164,6 +165,7 @@ app/
   match/[slug]/page.tsx           Per-match page (SSG/ISR): SSR timeline, JSON-LD, related
   match/[slug]/opengraph-image.tsx Per-match OG share card
   match/[slug]/not-found.tsx       404 for unknown match ids
+  groups/page.tsx                 Group standings tables (ISR): computed from results
   api/fixtures/route.ts   Thin proxy over lib/fixtures.ts (scores/schedule)
   api/match/[id]/route.ts Match detail: goals + cards (curated ▸ scraped)
 components/
@@ -174,6 +176,7 @@ lib/
   slug.ts                 Match URL slugs (matchSlug / parseMatchId)
   fixtures.ts             Shared fixtures loader + throttle cache (SSR + API route)
   match-events.ts         Shared match-events loader (curated ▸ scraped ▸ paid API)
+  standings.ts            Pure group-table compute (W/D/L/GD/Pts) from played matches
   jsonld.ts               Builds Schema.org SportsEvent / WebSite JSON-LD
   types.ts                Shared types (Match, Goal, Card, ...)
   normalize.ts            football-data.org → app shape + match classification
@@ -276,6 +279,19 @@ Chronological record of what changed and why, so context is recoverable:
     games. The events API path is gated on **`FOOTBALL_DATA_PAID=1`** (not just key
     presence — a free key returns no events) so the free tier never wastes a call;
     going paid = set the paid key + that flag (live minute/score come automatically).
+12. **Group standings + a scraper red-card fix.** Added per-group league tables
+    (`/groups`), computed in `lib/standings.ts` from the fixtures we already load —
+    no standings API needed. `computeStandings()` is a pure function (W/D/L, GF/GA,
+    GD, points), seeds every team in a group so unplayed sides still show at zero,
+    and ranks by Pts → GD → GF → name (full FIFA head-to-head/fair-play is a noted
+    v1 omission). The page is ISR-cached, server-rendered (crawlable), carries
+    breadcrumb JSON-LD + metadata, flags qualification spots, and is linked from the
+    homepage, every match page and the sitemap. Same session: fixed an events
+    scraper bug that recorded **phantom red cards** — the single-param
+    `{{sent off|0/1/2}}` *legend* in each group's disciplinary "fair-play / third-place
+    ranking" table was bleeding into the last match's block and being logged as reds
+    at minute 0/1/2 (a fake "third-place ranking" player). The scraper now only
+    accepts the real two-param `{{sent off|<yellows>|<minute>}}` form.
 
 ---
 
@@ -303,8 +319,9 @@ analytics, ads, a11y).
   events, **live match minute/clock**, lineups, formations, stats (xG, shots,
   possession), head-to-head. The match route is already structured for events.
   *(API integration; removes the Wikipedia-lag limitation.)*
-- **Group standings + knockout bracket** — compute W/D/L, GD, points from results;
-  visual R32→final tree. Non-trivial data logic + UI. *(state modelling, data viz.)*
+- **Group standings + knockout bracket** — ✅ standings done (`/groups`, computed
+  from results); the visual R32→final bracket tree is still TODO. *(state
+  modelling, data viz.)*
 - **Team & player pages** — squads, scorer/assist/cards leaderboards, per-team
   fixtures. Another large SEO surface. *(data modelling + SEO.)*
 - **Full WCAG 2.2 AA accessibility pass** — see the dedicated item below. *(directly
@@ -320,7 +337,9 @@ analytics, ads, a11y).
   UK (US/AU), per-region detection. Expands audience + SEO. *(i18n; content.)*
 
 ### High value / low effort
-- **Group standings tables** — W/D/L, GD, points per group (compute from results).
+- ✅ **Group standings tables** — W/D/L, GD, points per group, **computed from
+  results** (`lib/standings.ts` → `/groups`). *Next:* full FIFA head-to-head
+  tie-breakers + a best-third-placed ranking.
 - **Calendar export (.ics)** — "add this match/these fixtures to my calendar".
 - **Knockout bracket view** — visual R32→final tree (placeholders until drawn).
 - **Favourite teams** — pin teams (localStorage); a "My teams" tab like the England one.

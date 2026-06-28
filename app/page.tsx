@@ -28,6 +28,9 @@ export default async function Home() {
               <p className="tagline">Results, goal scorers &amp; the UK TV channel for every match</p>
             </div>
           </div>
+          <nav className="site-nav" aria-label="Primary">
+            <a href="/groups">Group tables</a>
+          </nav>
         </div>
       </header>
 
@@ -50,6 +53,9 @@ export default async function Home() {
               football-data.org
             </a>
             . Auto-refreshes every 15s during live matches · times shown in your local timezone.
+          </p>
+          <p>
+            <a href="/groups">Group standings &amp; tables →</a>
           </p>
         </div>
       </footer>
