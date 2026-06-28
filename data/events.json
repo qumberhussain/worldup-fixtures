@@ -1,6 +1,6 @@
 {
   "source": "wikipedia",
-  "scrapedAt": "2026-06-27T23:50:29.622Z",
+  "scrapedAt": "2026-06-28T02:04:44.091Z",
   "matches": {
     "MEX|RSA": {
       "goals": [
@@ -2677,8 +2677,63 @@
       ]
     },
     "COD|UZB": {
-      "goals": [],
+      "goals": [
+        {
+          "minute": 68,
+          "team": "COD",
+          "scorer": "Wissa",
+          "type": "PENALTY"
+        },
+        {
+          "minute": 90,
+          "injuryTime": 1,
+          "team": "COD",
+          "scorer": "Wissa",
+          "type": "PENALTY"
+        },
+        {
+          "minute": 78,
+          "team": "COD",
+          "scorer": "Mayele"
+        },
+        {
+          "minute": 10,
+          "team": "UZB",
+          "scorer": "Shomurodov"
+        }
+      ],
       "cards": [
+        {
+          "minute": 62,
+          "team": "COD",
+          "player": "Samuel Moutoussamy",
+          "type": "YELLOW"
+        },
+        {
+          "minute": 21,
+          "team": "COD",
+          "player": "Noah Sadiki",
+          "type": "YELLOW"
+        },
+        {
+          "minute": 45,
+          "injuryTime": 4,
+          "team": "COD",
+          "player": "Nathanaël Mbuku",
+          "type": "YELLOW"
+        },
+        {
+          "minute": 43,
+          "team": "UZB",
+          "player": "Abdukodir Khusanov",
+          "type": "YELLOW"
+        },
+        {
+          "minute": 47,
+          "team": "UZB",
+          "player": "Sherzod Nasrullaev",
+          "type": "YELLOW"
+        },
         {
           "minute": 2,
           "team": "UZB",
@@ -2729,6 +2784,40 @@
           "minute": 60,
           "team": "ENG",
           "player": "Jarell Quansah",
+          "type": "YELLOW"
+        }
+      ]
+    },
+    "JOR|ARG": {
+      "goals": [],
+      "cards": [
+        {
+          "minute": 2,
+          "team": "ARG",
+          "player": "third-place ranking",
+          "type": "RED"
+        },
+        {
+          "minute": 0,
+          "team": "ARG",
+          "player": "third-place ranking",
+          "type": "RED"
+        },
+        {
+          "minute": 1,
+          "team": "ARG",
+          "player": "third-place ranking",
+          "type": "RED"
+        }
+      ]
+    },
+    "COL|POR": {
+      "goals": [],
+      "cards": [
+        {
+          "minute": 86,
+          "team": "COL",
+          "player": "Gustavo Puerta",
           "type": "YELLOW"
         }
       ]
