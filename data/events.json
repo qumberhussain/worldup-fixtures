@@ -1,6 +1,6 @@
 {
   "source": "wikipedia",
-  "scrapedAt": "2026-06-28T02:04:44.091Z",
+  "scrapedAt": "2026-06-28T06:21:16.605Z",
   "matches": {
     "MEX|RSA": {
       "goals": [
@@ -1803,24 +1803,6 @@
           "team": "QAT",
           "player": "Ahmed Fathy",
           "type": "YELLOW"
-        },
-        {
-          "minute": 2,
-          "team": "QAT",
-          "player": "third-place ranking",
-          "type": "RED"
-        },
-        {
-          "minute": 0,
-          "team": "QAT",
-          "player": "third-place ranking",
-          "type": "RED"
-        },
-        {
-          "minute": 1,
-          "team": "QAT",
-          "player": "third-place ranking",
-          "type": "RED"
         }
       ]
     },
@@ -1917,24 +1899,6 @@
           "team": "HAI",
           "player": "Duckens Nazon",
           "type": "YELLOW"
-        },
-        {
-          "minute": 2,
-          "team": "HAI",
-          "player": "third-place ranking",
-          "type": "RED"
-        },
-        {
-          "minute": 0,
-          "team": "HAI",
-          "player": "third-place ranking",
-          "type": "RED"
-        },
-        {
-          "minute": 1,
-          "team": "HAI",
-          "player": "third-place ranking",
-          "type": "RED"
         }
       ]
     },
@@ -1958,24 +1922,6 @@
           "team": "KOR",
           "player": "Cho Gue-sung",
           "type": "YELLOW"
-        },
-        {
-          "minute": 2,
-          "team": "KOR",
-          "player": "third-place ranking",
-          "type": "RED"
-        },
-        {
-          "minute": 0,
-          "team": "KOR",
-          "player": "third-place ranking",
-          "type": "RED"
-        },
-        {
-          "minute": 1,
-          "team": "KOR",
-          "player": "third-place ranking",
-          "type": "RED"
         }
       ]
     },
@@ -2089,24 +2035,6 @@
           "team": "GER",
           "player": "Aleksandar Pavlović",
           "type": "YELLOW"
-        },
-        {
-          "minute": 2,
-          "team": "GER",
-          "player": "third-place ranking",
-          "type": "RED"
-        },
-        {
-          "minute": 0,
-          "team": "GER",
-          "player": "third-place ranking",
-          "type": "RED"
-        },
-        {
-          "minute": 1,
-          "team": "GER",
-          "player": "third-place ranking",
-          "type": "RED"
         }
       ]
     },
@@ -2167,26 +2095,6 @@
           "team": "NED",
           "scorer": "Van Hecke"
         }
-      ],
-      "cards": [
-        {
-          "minute": 2,
-          "team": "NED",
-          "player": "third-place ranking",
-          "type": "RED"
-        },
-        {
-          "minute": 0,
-          "team": "NED",
-          "player": "third-place ranking",
-          "type": "RED"
-        },
-        {
-          "minute": 1,
-          "team": "NED",
-          "player": "third-place ranking",
-          "type": "RED"
-        }
       ]
     },
     "PAR|AUS": {
@@ -2203,24 +2111,6 @@
           "team": "AUS",
           "player": "Jackson Irvine",
           "type": "YELLOW"
-        },
-        {
-          "minute": 2,
-          "team": "AUS",
-          "player": "third-place ranking",
-          "type": "RED"
-        },
-        {
-          "minute": 0,
-          "team": "AUS",
-          "player": "third-place ranking",
-          "type": "RED"
-        },
-        {
-          "minute": 1,
-          "team": "AUS",
-          "player": "third-place ranking",
-          "type": "RED"
         }
       ]
     },
@@ -2348,24 +2238,6 @@
           "team": "IRQ",
           "player": "Amir Al-Ammari",
           "type": "YELLOW"
-        },
-        {
-          "minute": 2,
-          "team": "IRQ",
-          "player": "third-place ranking",
-          "type": "RED"
-        },
-        {
-          "minute": 0,
-          "team": "IRQ",
-          "player": "third-place ranking",
-          "type": "RED"
-        },
-        {
-          "minute": 1,
-          "team": "IRQ",
-          "player": "third-place ranking",
-          "type": "RED"
         }
       ]
     },
@@ -2446,24 +2318,6 @@
           "team": "ESP",
           "player": "Álex Baena",
           "type": "YELLOW"
-        },
-        {
-          "minute": 2,
-          "team": "ESP",
-          "player": "third-place ranking",
-          "type": "RED"
-        },
-        {
-          "minute": 0,
-          "team": "ESP",
-          "player": "third-place ranking",
-          "type": "RED"
-        },
-        {
-          "minute": 1,
-          "team": "ESP",
-          "player": "third-place ranking",
-          "type": "RED"
         }
       ]
     },
@@ -2513,24 +2367,6 @@
           "team": "NZL",
           "player": "Elijah Just",
           "type": "YELLOW"
-        },
-        {
-          "minute": 2,
-          "team": "BEL",
-          "player": "third-place ranking",
-          "type": "RED"
-        },
-        {
-          "minute": 0,
-          "team": "BEL",
-          "player": "third-place ranking",
-          "type": "RED"
-        },
-        {
-          "minute": 1,
-          "team": "BEL",
-          "player": "third-place ranking",
-          "type": "RED"
         }
       ]
     },
@@ -2655,24 +2491,6 @@
           "team": "GHA",
           "player": "Kojo Peprah Oppong",
           "type": "YELLOW"
-        },
-        {
-          "minute": 2,
-          "team": "GHA",
-          "player": "third-place ranking",
-          "type": "RED"
-        },
-        {
-          "minute": 0,
-          "team": "GHA",
-          "player": "third-place ranking",
-          "type": "RED"
-        },
-        {
-          "minute": 1,
-          "team": "GHA",
-          "player": "third-place ranking",
-          "type": "RED"
         }
       ]
     },
@@ -2733,24 +2551,6 @@
           "team": "UZB",
           "player": "Sherzod Nasrullaev",
           "type": "YELLOW"
-        },
-        {
-          "minute": 2,
-          "team": "UZB",
-          "player": "third-place ranking",
-          "type": "RED"
-        },
-        {
-          "minute": 0,
-          "team": "UZB",
-          "player": "third-place ranking",
-          "type": "RED"
-        },
-        {
-          "minute": 1,
-          "team": "UZB",
-          "player": "third-place ranking",
-          "type": "RED"
         }
       ]
     },
@@ -2789,25 +2589,48 @@
       ]
     },
     "JOR|ARG": {
-      "goals": [],
+      "goals": [
+        {
+          "minute": 55,
+          "team": "JOR",
+          "scorer": "Al-Taamari"
+        },
+        {
+          "minute": 19,
+          "team": "ARG",
+          "scorer": "Lo Celso"
+        },
+        {
+          "minute": 31,
+          "team": "ARG",
+          "scorer": "La. Martínez",
+          "type": "PENALTY"
+        },
+        {
+          "minute": 80,
+          "team": "ARG",
+          "scorer": "Messi"
+        }
+      ],
       "cards": [
         {
-          "minute": 2,
-          "team": "ARG",
-          "player": "third-place ranking",
-          "type": "RED"
+          "minute": 64,
+          "team": "JOR",
+          "player": "Yazan Al-Arab",
+          "type": "YELLOW"
         },
         {
-          "minute": 0,
-          "team": "ARG",
-          "player": "third-place ranking",
-          "type": "RED"
+          "minute": 17,
+          "team": "JOR",
+          "player": "Mohannad Abu Taha",
+          "type": "YELLOW"
         },
         {
-          "minute": 1,
-          "team": "ARG",
-          "player": "third-place ranking",
-          "type": "RED"
+          "minute": 90,
+          "injuryTime": 4,
+          "team": "JOR",
+          "player": "Mohammad Abu Zrayq",
+          "type": "YELLOW"
         }
       ]
     },
@@ -2818,6 +2641,50 @@
           "minute": 86,
           "team": "COL",
           "player": "Gustavo Puerta",
+          "type": "YELLOW"
+        }
+      ]
+    },
+    "ALG|AUT": {
+      "goals": [
+        {
+          "minute": 45,
+          "team": "ALG",
+          "scorer": "Belghali"
+        },
+        {
+          "minute": 60,
+          "team": "ALG",
+          "scorer": "Mahrez"
+        },
+        {
+          "minute": 90,
+          "injuryTime": 3,
+          "team": "ALG",
+          "scorer": "Mahrez"
+        },
+        {
+          "minute": 28,
+          "team": "AUT",
+          "scorer": "Arnautović"
+        },
+        {
+          "minute": 55,
+          "team": "AUT",
+          "scorer": "Sabitzer"
+        },
+        {
+          "minute": 90,
+          "injuryTime": 6,
+          "team": "AUT",
+          "scorer": "Kalajdžić"
+        }
+      ],
+      "cards": [
+        {
+          "minute": 11,
+          "team": "AUT",
+          "player": "Marko Arnautović",
           "type": "YELLOW"
         }
       ]
