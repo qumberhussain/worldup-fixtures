@@ -1,7 +1,8 @@
 #!/usr/bin/env node
 /**
  * Scrapes goal scorers for completed World Cup 2026 matches from Wikipedia's
- * group-stage pages and writes data/events.json (keyed by FIFA team-code pair).
+ * group-stage pages plus the knockout-stage page (R32 onward), writing
+ * data/events.json (keyed by FIFA team-code pair).
  *
  * Why Wikipedia: football-data.org's free tier returns no match events. The
  * group pages encode goals cleanly in each match's `goals1`/`goals2` fields
@@ -23,16 +24,24 @@ const OUT = join(__dirname, "..", "data", "events.json");
 const GROUPS = "ABCDEFGHIJKL".split("");
 const API = "https://en.wikipedia.org/w/api.php";
 
+// Wikipedia page holding every knockout match box (R32 onward). Same box format
+// as the group pages, so parsePage handles it unchanged. Keyed as KO below.
+const KNOCKOUT_TITLE = "2026_FIFA_World_Cup_knockout_stage";
+
 /**
- * Fetch the wikitext of every group page in ONE request via the MediaWiki
- * `query` API (up to 50 titles per call). The old approach made 12 separate
- * `parse` requests; the last couple (Groups K, L) were reliably 429'd once the
- * IP had fired ~10 rapid requests, so those groups never refreshed and their
- * matches stayed blank on the site. A single batched request sidesteps the
- * per-request rate limit entirely. Returns a { [group letter]: wikitext } map.
+ * Fetch the wikitext of every group page AND the knockout-stage page in ONE
+ * request via the MediaWiki `query` API (up to 50 titles per call). The old
+ * approach made 12 separate `parse` requests; the last couple (Groups K, L)
+ * were reliably 429'd once the IP had fired ~10 rapid requests, so those groups
+ * never refreshed and their matches stayed blank on the site. A single batched
+ * request sidesteps the per-request rate limit entirely. Returns a map keyed by
+ * group letter ("A".."L") plus "KO" for the knockout-stage page.
  */
 async function fetchAllWikitext(groups) {
-  const titles = groups.map((g) => `2026_FIFA_World_Cup_Group_${g}`).join("|");
+  const titles = [
+    ...groups.map((g) => `2026_FIFA_World_Cup_Group_${g}`),
+    KNOCKOUT_TITLE,
+  ].join("|");
   const url =
     `${API}?action=query&prop=revisions&rvprop=content&rvslots=main` +
     `&titles=${encodeURIComponent(titles)}&format=json&formatversion=2`;
@@ -49,9 +58,11 @@ async function fetchAllWikitext(groups) {
     const pages = json.query?.pages || [];
     const byGroup = {};
     for (const p of pages) {
-      const letter = p.title?.match(/Group ([A-L])$/)?.[1];
       const content = p.revisions?.[0]?.slots?.main?.content;
-      if (letter && content) byGroup[letter] = content;
+      if (!content) continue;
+      const letter = p.title?.match(/Group ([A-L])$/)?.[1];
+      if (letter) byGroup[letter] = content;
+      else if (/knockout stage$/i.test(p.title || "")) byGroup.KO = content;
     }
     return byGroup;
   }
@@ -182,9 +193,17 @@ function parsePage(wt) {
     if (!t2m) continue;
     const t2 = t2m[1];
 
-    // Goals: between team2 and |stadium= , split on |goals2=.
+    // Goals: between team2 and the first of |stadium= OR any penalty-shootout
+    // param. Knockout boxes add |penaltyscore=/|penalties1=/|penalties2= before
+    // |stadium= — those list the shootout takers (with {{pen}}/scored markers)
+    // and must NOT be read as regular goals. Stopping the region at whichever
+    // marker comes first keeps group parsing identical (no penalty params there).
     const afterT2 = block.slice(block.indexOf(t2m[0]) + t2m[0].length);
-    const goalsRegion = afterT2.slice(0, afterT2.indexOf("|stadium="));
+    const goalsEnd = ["|stadium=", "|penaltyscore=", "|penalties1=", "|penalties2=", "|aet="]
+      .map((mk) => afterT2.indexOf(mk))
+      .filter((i) => i >= 0)
+      .reduce((min, i) => Math.min(min, i), afterT2.length);
+    const goalsRegion = afterT2.slice(0, goalsEnd);
     const g2 = goalsRegion.indexOf("|goals2=");
     let goals = [];
     if (g2 >= 0) {
@@ -247,6 +266,18 @@ async function main() {
     ok++;
     process.stderr.write(`Group ${g}: ${Object.keys(parsed).length} match(es) with goals\n`);
   }
+
+  // Knockout stage (R32 onward). Same box format, so parsePage handles it. While
+  // Wikipedia still has only empty bracket placeholders this yields nothing; it
+  // self-fills (like the groups) as editors add each match's goals/cards.
+  if (pages.KO) {
+    const parsed = parsePage(pages.KO);
+    Object.assign(all, parsed);
+    process.stderr.write(`Knockout: ${Object.keys(parsed).length} match(es) with events\n`);
+  } else {
+    process.stderr.write(`Knockout: page missing from response, keeping previous\n`);
+  }
+
   const payload = {
     source: "wikipedia",
     scrapedAt: new Date().toISOString(),
