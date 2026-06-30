@@ -1,6 +1,6 @@
 {
   "source": "wikipedia",
-  "scrapedAt": "2026-06-30T18:26:35.854Z",
+  "scrapedAt": "2026-06-30T20:48:47.826Z",
   "matches": {
     "MEX|RSA": {
       "goals": [
@@ -2849,6 +2849,34 @@
           "minute": 47,
           "team": "MAR",
           "player": "Issa Diop",
+          "type": "YELLOW"
+        }
+      ]
+    },
+    "CIV|NOR": {
+      "goals": [
+        {
+          "minute": 74,
+          "team": "CIV",
+          "scorer": "Diallo"
+        },
+        {
+          "minute": 39,
+          "team": "NOR",
+          "scorer": "Nusa"
+        },
+        {
+          "minute": 86,
+          "team": "NOR",
+          "scorer": "Haaland"
+        }
+      ],
+      "cards": [
+        {
+          "minute": 45,
+          "injuryTime": 1,
+          "team": "NOR",
+          "player": "Antonio Nusa",
           "type": "YELLOW"
         }
       ]
