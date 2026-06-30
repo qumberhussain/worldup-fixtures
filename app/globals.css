@@ -204,15 +204,17 @@ a { color: var(--accent-2); }
 .badge.inplay { background: rgba(255,176,32,0.16); color: #ffb020; }
 /* "AET" marker that replaces the FT badge when a tie ran past 90'. */
 .aet-note {
-  display: block; margin-top: 5px; font-size: 11px; font-weight: 700;
+  display: block; margin-top: 6px; font-size: 12px; font-weight: 700;
   letter-spacing: .08em; text-transform: uppercase; color: var(--text-dim);
 }
-/* "<Winner> win X–Y on pens" line under the score (card + match page). */
+/* Penalty-shootout result under the score (card + match page). Kept bright and
+ * a touch larger than the surrounding meta so the outcome reads clearly. */
 .pens-note {
-  margin-top: 4px; font-size: 11.5px; line-height: 1.3; color: var(--text-faint);
+  margin-top: 5px; font-size: 13px; line-height: 1.35; font-weight: 500;
+  color: var(--text);
 }
-.pens-note strong { color: var(--text-dim); font-weight: 700; }
-.md-center .pens-note { margin-top: 6px; font-size: 13px; }
+.pens-note strong { color: var(--won); font-weight: 700; }
+.md-center .pens-note { margin-top: 7px; font-size: 15px; }
 .match-meta {
   grid-column: 1 / -1; display: flex; gap: 8px; flex-wrap: wrap;
   margin-top: 4px; padding-top: 10px; border-top: 1px dashed var(--border);

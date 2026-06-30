@@ -66,12 +66,10 @@ interface RawMatch {
   score?: {
     winner?: string | null;
     duration?: string | null;
-    // `fullTime` is cumulative: for a shootout it equals regular + extra +
-    // penalties. We derive the headline (pre-shootout) score by subtracting the
-    // `penalties` node back out, so we never depend on regularTime/extraTime
-    // being present.
-    fullTime?: { home?: number | null; away?: number | null };
-    penalties?: { home?: number | null; away?: number | null };
+    fullTime?: Side;
+    regularTime?: Side;
+    extraTime?: Side;
+    penalties?: Side;
   };
 }
 
@@ -89,16 +87,32 @@ function normalizeTeam(t?: RawTeam): Team {
 }
 
 export function normalizeMatch(m: RawMatch): Match {
-  const ft: Side = m.score?.fullTime ?? {};
-  const pk: Side = m.score?.penalties ?? {};
-  const penHome = num(pk.home);
-  const penAway = num(pk.away);
-  const hasPenalties = penHome != null && penAway != null;
+  const s = m.score ?? {};
+  const ft: Side = s.fullTime ?? {};
+  const rt: Side = s.regularTime ?? {};
+  const et: Side = s.extraTime ?? {};
+  const pk: Side = s.penalties ?? {};
+  const duration = s.duration ?? null;
+  const wentLong = duration === "EXTRA_TIME" || duration === "PENALTY_SHOOTOUT";
 
-  // football-data.org folds the shootout into `fullTime`, so peel it back off to
-  // recover the result the match actually finished on (e.g. 1–1, won on pens).
-  const stripPens = (full: number | null, pen: number | null): number | null =>
-    full != null && pen != null ? full - pen : full;
+  // Headline = the score the match finished on, after extra time but BEFORE any
+  // shootout. For shootouts football-data's `fullTime` is unreliable (its
+  // `penalties` node has been seen to duplicate the home value from the away
+  // one, and that bad number is folded into fullTime), so for any match that
+  // ran past 90' we rebuild the score from the trustworthy regularTime (+
+  // extraTime) nodes instead. Plain matches keep fullTime as-is.
+  const haveRegular = num(rt.home) != null && num(rt.away) != null;
+  const home = wentLong && haveRegular
+    ? (num(rt.home) ?? 0) + (num(et.home) ?? 0)
+    : num(ft.home);
+  const away = wentLong && haveRegular
+    ? (num(rt.away) ?? 0) + (num(et.away) ?? 0)
+    : num(ft.away);
+
+  // Only keep the shootout score when it actually separates the teams — a
+  // home==away value is the known-bad feed, not a real result.
+  const penHome = num(pk.home), penAway = num(pk.away);
+  const penaltiesDecisive = penHome != null && penAway != null && penHome !== penAway;
 
   return {
     id: m.id,
@@ -110,25 +124,20 @@ export function normalizeMatch(m: RawMatch): Match {
     venue: m.venue ?? null,
     homeTeam: normalizeTeam(m.homeTeam),
     awayTeam: normalizeTeam(m.awayTeam),
-    score: {
-      home: stripPens(num(ft.home), penHome),
-      away: stripPens(num(ft.away), penAway),
-    },
-    penalties: hasPenalties ? { home: penHome, away: penAway } : null,
-    duration: m.score?.duration ?? null,
+    score: { home, away },
+    penalties: penaltiesDecisive ? { home: penHome, away: penAway } : null,
+    winner: s.winner ?? null,
+    duration,
     channel: null,
     minute: m.minute ?? null,
     injuryTime: m.injuryTime ?? null,
   };
 }
 
-/** Whether the tie was settled on penalties (and we have the shootout score). */
+/** Whether the tie was settled on penalties (regardless of whether we have a
+ *  trustworthy shootout score to show). */
 export function decidedOnPenalties(m: Match): boolean {
-  return (
-    m.duration === "PENALTY_SHOOTOUT" &&
-    m.penalties?.home != null &&
-    m.penalties?.away != null
-  );
+  return m.duration === "PENALTY_SHOOTOUT";
 }
 
 /** True when the match ran past 90' (extra time, with or without a shootout). */
@@ -137,14 +146,13 @@ export function wentToExtraTime(m: Match): boolean {
 }
 
 /**
- * The winning side, accounting for a shootout: a penalty win counts even though
- * the headline score is level. Returns null for an honest draw or no result.
+ * The winning side. Trusts football-data's `winner` field (which survives the
+ * buggy penalties node); falls back to comparing the headline score.
  */
 export function winnerSide(m: Match): "home" | "away" | null {
-  if (decidedOnPenalties(m)) {
-    const h = m.penalties!.home!, a = m.penalties!.away!;
-    return h > a ? "home" : a > h ? "away" : null;
-  }
+  if (m.winner === "HOME_TEAM") return "home";
+  if (m.winner === "AWAY_TEAM") return "away";
+  if (m.winner === "DRAW") return null;
   if (!hasScore(m)) return null;
   if (m.score.home! > m.score.away!) return "home";
   if (m.score.away! > m.score.home!) return "away";

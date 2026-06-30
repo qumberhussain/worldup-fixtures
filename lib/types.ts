@@ -32,10 +32,16 @@ export interface Match {
    * shootout in — so we strip the shootout back out into `penalties`.)
    */
   score: { home: number | null; away: number | null };
-  /** Shootout result when the tie was settled on penalties; null otherwise. */
+  /**
+   * Shootout score when the tie was settled on penalties AND the feed gave a
+   * decisive (home != away) result; null otherwise. The match can still be a
+   * shootout (see `duration`/`winner`) without a trustworthy score here.
+   */
   penalties?: { home: number | null; away: number | null } | null;
   /** football-data.org score.duration: REGULAR | EXTRA_TIME | PENALTY_SHOOTOUT. */
   duration?: string | null;
+  /** football-data.org score.winner: HOME_TEAM | AWAY_TEAM | DRAW | null. */
+  winner?: string | null;
   /** UK broadcast channel, merged from the curated channel map. */
   channel: string | null;
   /** Live elapsed minute while IN_PLAY — only present on paid tiers; null otherwise. */

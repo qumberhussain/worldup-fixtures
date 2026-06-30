@@ -240,15 +240,20 @@ export default async function MatchPage({
   );
 }
 
-/** "<Winner> win X–Y on pens" line, shown under the score for shootout results. */
+/** Penalty-shootout outcome under the score. Shows the score when the feed
+ *  gives a decisive one, otherwise just names the winner. */
 function PensNote({ m, home, away }: { m: Match; home: Team; away: Team }) {
   if (!decidedOnPenalties(m)) return null;
-  const ph = m.penalties!.home!, pa = m.penalties!.away!;
-  const winner = ph > pa ? home : away;
+  const side = winnerSide(m);
+  const winner = side === "home" ? home : side === "away" ? away : null;
   const wName = winner?.name || winner?.tla || "Winner";
+  const pens = m.penalties;
   return (
     <p className="pens-note">
-      <strong>{wName}</strong> win {Math.max(ph, pa)}–{Math.min(ph, pa)} on pens
+      <strong>{wName}</strong>{" "}
+      {pens
+        ? `win ${Math.max(pens.home!, pens.away!)}–${Math.min(pens.home!, pens.away!)} on pens`
+        : "won on penalties"}
     </p>
   );
 }
