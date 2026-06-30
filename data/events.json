@@ -1,6 +1,6 @@
 {
   "source": "wikipedia",
-  "scrapedAt": "2026-06-30T06:12:26.037Z",
+  "scrapedAt": "2026-06-30T06:46:35.408Z",
   "matches": {
     "MEX|RSA": {
       "goals": [
@@ -2685,6 +2685,170 @@
           "minute": 11,
           "team": "AUT",
           "player": "Marko Arnautović",
+          "type": "YELLOW"
+        }
+      ]
+    },
+    "RSA|CAN": {
+      "goals": [
+        {
+          "minute": 90,
+          "injuryTime": 2,
+          "team": "CAN",
+          "scorer": "Eustáquio"
+        }
+      ],
+      "cards": [
+        {
+          "minute": 54,
+          "team": "CAN",
+          "player": "Nathan Saliba",
+          "type": "YELLOW"
+        },
+        {
+          "minute": 67,
+          "team": "CAN",
+          "player": "Niko Sigur",
+          "type": "YELLOW"
+        }
+      ]
+    },
+    "BRA|JPN": {
+      "goals": [
+        {
+          "minute": 56,
+          "team": "BRA",
+          "scorer": "Casemiro"
+        },
+        {
+          "minute": 90,
+          "injuryTime": 5,
+          "team": "BRA",
+          "scorer": "Martinelli"
+        },
+        {
+          "minute": 29,
+          "team": "JPN",
+          "scorer": "Sano"
+        }
+      ],
+      "cards": [
+        {
+          "minute": 48,
+          "team": "BRA",
+          "player": "Danilo Luiz",
+          "type": "YELLOW"
+        },
+        {
+          "minute": 14,
+          "team": "BRA",
+          "player": "Casemiro",
+          "type": "YELLOW"
+        },
+        {
+          "minute": 12,
+          "team": "JPN",
+          "player": "Kaishū Sano",
+          "type": "YELLOW"
+        },
+        {
+          "minute": 45,
+          "team": "JPN",
+          "player": "Daichi Kamada",
+          "type": "YELLOW"
+        },
+        {
+          "minute": 84,
+          "team": "JPN",
+          "player": "Junnosuke Suzuki",
+          "type": "YELLOW"
+        }
+      ]
+    },
+    "GER|PAR": {
+      "goals": [
+        {
+          "minute": 54,
+          "team": "GER",
+          "scorer": "Havertz"
+        },
+        {
+          "minute": 42,
+          "team": "PAR",
+          "scorer": "Enciso"
+        }
+      ],
+      "cards": [
+        {
+          "minute": 106,
+          "team": "GER",
+          "player": "Kai Havertz",
+          "type": "YELLOW"
+        },
+        {
+          "minute": 115,
+          "team": "GER",
+          "player": "Jamal Musiala",
+          "type": "YELLOW"
+        },
+        {
+          "minute": 116,
+          "team": "GER",
+          "player": "Malick Thiaw",
+          "type": "YELLOW"
+        },
+        {
+          "minute": 105,
+          "injuryTime": 1,
+          "team": "GER",
+          "player": "Julian Nagelsmann",
+          "type": "YELLOW"
+        },
+        {
+          "minute": 65,
+          "team": "PAR",
+          "player": "Andrés Cubas",
+          "type": "YELLOW"
+        },
+        {
+          "minute": 117,
+          "team": "PAR",
+          "player": "Matías Galarza",
+          "type": "YELLOW"
+        },
+        {
+          "minute": 117,
+          "team": "PAR",
+          "player": "Fabián Balbuena",
+          "type": "YELLOW"
+        },
+        {
+          "minute": 105,
+          "team": "PAR",
+          "player": "Gustavo Alfaro",
+          "type": "YELLOW"
+        }
+      ]
+    },
+    "NED|MAR": {
+      "goals": [
+        {
+          "minute": 72,
+          "team": "NED",
+          "scorer": "Gakpo"
+        },
+        {
+          "minute": 90,
+          "injuryTime": 1,
+          "team": "MAR",
+          "scorer": "Diop"
+        }
+      ],
+      "cards": [
+        {
+          "minute": 47,
+          "team": "MAR",
+          "player": "Issa Diop",
           "type": "YELLOW"
         }
       ]

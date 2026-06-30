@@ -1,7 +1,8 @@
 #!/usr/bin/env node
 /**
  * Scrapes goal scorers for completed World Cup 2026 matches from Wikipedia's
- * group-stage pages plus the knockout-stage page (R32 onward), writing
+ * group-stage pages plus the per-round knockout articles (round of 32 onward,
+ * discovered from the knockout-stage page's {{Main|...}} links), writing
  * data/events.json (keyed by FIFA team-code pair).
  *
  * Why Wikipedia: football-data.org's free tier returns no match events. The
@@ -24,27 +25,23 @@ const OUT = join(__dirname, "..", "data", "events.json");
 const GROUPS = "ABCDEFGHIJKL".split("");
 const API = "https://en.wikipedia.org/w/api.php";
 
-// Wikipedia page holding every knockout match box (R32 onward). Same box format
-// as the group pages, so parsePage handles it unchanged. Keyed as KO below.
-const KNOCKOUT_TITLE = "2026_FIFA_World_Cup_knockout_stage";
+// The knockout-stage page is just the bracket; each round's match detail (goals,
+// cards, shootout) lives in a per-round sub-article it links to as {{Main|...}}
+// — e.g. "2026 FIFA World Cup round of 32". We scrape the stage page to discover
+// those links, then scrape the articles themselves (same box format as groups).
+const KNOCKOUT_STAGE_TITLE = "2026_FIFA_World_Cup_knockout_stage";
 
 /**
- * Fetch the wikitext of every group page AND the knockout-stage page in ONE
- * request via the MediaWiki `query` API (up to 50 titles per call). The old
- * approach made 12 separate `parse` requests; the last couple (Groups K, L)
- * were reliably 429'd once the IP had fired ~10 rapid requests, so those groups
- * never refreshed and their matches stayed blank on the site. A single batched
- * request sidesteps the per-request rate limit entirely. Returns a map keyed by
- * group letter ("A".."L") plus "KO" for the knockout-stage page.
+ * Batched MediaWiki wikitext fetch (up to 50 titles per call) with 429 back-off.
+ * Returns a Map<canonicalTitle, wikitext> for the titles that exist (missing
+ * pages are simply absent). Batching in one request sidesteps the per-request
+ * rate limit that used to 429 the last group pages (K, L) and blank them.
  */
-async function fetchAllWikitext(groups) {
-  const titles = [
-    ...groups.map((g) => `2026_FIFA_World_Cup_Group_${g}`),
-    KNOCKOUT_TITLE,
-  ].join("|");
+async function fetchWikitext(titles) {
+  if (!titles.length) return new Map();
   const url =
-    `${API}?action=query&prop=revisions&rvprop=content&rvslots=main` +
-    `&titles=${encodeURIComponent(titles)}&format=json&formatversion=2`;
+    `${API}?action=query&prop=revisions&rvprop=content&rvslots=main&redirects=1` +
+    `&titles=${encodeURIComponent(titles.join("|"))}&format=json&formatversion=2`;
   let lastErr = "unknown";
   for (let attempt = 0; attempt < 4; attempt++) {
     const res = await fetch(url, { headers: { "User-Agent": "worldup-fixtures/1.0 (events scraper)" } });
@@ -53,20 +50,33 @@ async function fetchAllWikitext(groups) {
       await sleep(2000 * (attempt + 1));
       continue;
     }
-    if (!res.ok) throw new Error(`group pages: HTTP ${res.status}`);
+    if (!res.ok) throw new Error(`wiki fetch: HTTP ${res.status}`);
     const json = await res.json();
-    const pages = json.query?.pages || [];
-    const byGroup = {};
-    for (const p of pages) {
+    const out = new Map();
+    for (const p of json.query?.pages || []) {
       const content = p.revisions?.[0]?.slots?.main?.content;
-      if (!content) continue;
-      const letter = p.title?.match(/Group ([A-L])$/)?.[1];
-      if (letter) byGroup[letter] = content;
-      else if (/knockout stage$/i.test(p.title || "")) byGroup.KO = content;
+      if (content) out.set(p.title, content);
     }
-    return byGroup;
+    return out;
   }
-  throw new Error(`group pages: ${lastErr} (after retries)`);
+  throw new Error(`wiki fetch: ${lastErr} (after retries)`);
+}
+
+/**
+ * Pull the per-round knockout article titles ({{Main|...}} links) out of the
+ * knockout-stage wikitext, so we scrape wherever the data actually is and pick
+ * up later rounds automatically as their articles appear (round of 16, etc.).
+ */
+function roundArticleTitles(koWt) {
+  if (!koWt) return [];
+  const titles = new Set();
+  for (const m of koWt.matchAll(/\{\{\s*[Mm]ain(?:\s+article)?\s*\|([^}|]+)/g)) {
+    const t = m[1].trim();
+    if (/^2026 FIFA World Cup /i.test(t) && /round of \d+|final|quarter|semi|third place|play-?off/i.test(t)) {
+      titles.add(t);
+    }
+  }
+  return [...titles];
 }
 
 function cleanName(raw) {
@@ -247,16 +257,29 @@ async function main() {
   const all = await loadPrevious();
   let pages;
   try {
-    pages = await fetchAllWikitext(GROUPS);
+    pages = await fetchWikitext([
+      ...GROUPS.map((g) => `2026_FIFA_World_Cup_Group_${g}`),
+      KNOCKOUT_STAGE_TITLE,
+    ]);
   } catch (err) {
     // Fetch failed outright — leave the committed file untouched and exit red
     // so the previous good data keeps serving rather than being overwritten.
     process.stderr.write(`\nFetch failed (${err.message}) — leaving data/events.json unchanged.\n`);
     process.exit(1);
   }
+
+  // Index the returned pages by group letter / knockout-stage page.
+  const byGroup = {};
+  let koWt = null;
+  for (const [title, wt] of pages) {
+    const letter = title.match(/Group ([A-L])$/)?.[1];
+    if (letter) byGroup[letter] = wt;
+    else if (/knockout stage$/i.test(title)) koWt = wt;
+  }
+
   let ok = 0;
   for (const g of GROUPS) {
-    const wt = pages[g];
+    const wt = byGroup[g];
     if (!wt) {
       process.stderr.write(`Group ${g}: missing from response, keeping previous\n`);
       continue;
@@ -267,16 +290,25 @@ async function main() {
     process.stderr.write(`Group ${g}: ${Object.keys(parsed).length} match(es) with goals\n`);
   }
 
-  // Knockout stage (R32 onward). Same box format, so parsePage handles it. While
-  // Wikipedia still has only empty bracket placeholders this yields nothing; it
-  // self-fills (like the groups) as editors add each match's goals/cards.
-  if (pages.KO) {
-    const parsed = parsePage(pages.KO);
-    Object.assign(all, parsed);
-    process.stderr.write(`Knockout: ${Object.keys(parsed).length} match(es) with events\n`);
-  } else {
-    process.stderr.write(`Knockout: page missing from response, keeping previous\n`);
+  // Knockout stage. The stage page is just the bracket, so parse it too (in case
+  // a round is ever filled inline) and follow its {{Main|...}} links to the
+  // per-round articles where the match detail actually lives. Round fetches are
+  // non-fatal: a failure keeps the previous knockout data rather than blanking.
+  if (koWt) Object.assign(all, parsePage(koWt));
+  let koCount = 0;
+  try {
+    const roundTitles = roundArticleTitles(koWt);
+    const rounds = await fetchWikitext(roundTitles.map((t) => t.replace(/ /g, "_")));
+    for (const [title, wt] of rounds) {
+      const parsed = parsePage(wt);
+      Object.assign(all, parsed);
+      koCount += Object.keys(parsed).length;
+      process.stderr.write(`Knockout · ${title}: ${Object.keys(parsed).length} match(es)\n`);
+    }
+  } catch (err) {
+    process.stderr.write(`Knockout rounds: fetch failed (${err.message}), keeping previous\n`);
   }
+  process.stderr.write(`Knockout: ${koCount} match(es) with events\n`);
 
   const payload = {
     source: "wikipedia",
