@@ -26,7 +26,16 @@ export interface Match {
   venue: string | null;
   homeTeam: Team;
   awayTeam: Team;
+  /**
+   * The headline score: the result after extra time but EXCLUDING any penalty
+   * shootout. (football-data.org's `fullTime` is cumulative — it folds the
+   * shootout in — so we strip the shootout back out into `penalties`.)
+   */
   score: { home: number | null; away: number | null };
+  /** Shootout result when the tie was settled on penalties; null otherwise. */
+  penalties?: { home: number | null; away: number | null } | null;
+  /** football-data.org score.duration: REGULAR | EXTRA_TIME | PENALTY_SHOOTOUT. */
+  duration?: string | null;
   /** UK broadcast channel, merged from the curated channel map. */
   channel: string | null;
   /** Live elapsed minute while IN_PLAY — only present on paid tiers; null otherwise. */

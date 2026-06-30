@@ -5,7 +5,7 @@ import { getMatchEvents } from "@/lib/events";
 import { loadMatchEvents } from "@/lib/match-events";
 import { buildMatchJsonLd } from "@/lib/jsonld";
 import { matchSlug, parseMatchId } from "@/lib/slug";
-import { classify, hasScore } from "@/lib/normalize";
+import { classify, decidedOnPenalties, hasScore, wentToExtraTime, winnerSide } from "@/lib/normalize";
 import { groupLabel } from "@/lib/standings";
 import { channelServices } from "@/lib/channels";
 import { absoluteUrl } from "@/lib/site";
@@ -104,8 +104,10 @@ export default async function MatchPage({
       ? await loadMatchEvents(m)
       : getMatchEvents(home, away) ?? { goals: [], cards: [] };
   const jsonLd = buildMatchJsonLd(m);
-  const homeWin = kind === "played" && hasScore(m) && m.score.home! > m.score.away!;
-  const awayWin = kind === "played" && hasScore(m) && m.score.away! > m.score.home!;
+  // A shootout win counts even though the headline score is level.
+  const winner = kind === "played" ? winnerSide(m) : null;
+  const homeWin = winner === "home";
+  const awayWin = winner === "away";
 
   const { payload } = await loadFixtures();
   const related = payload.matches
@@ -178,9 +180,10 @@ export default async function MatchPage({
                 {kind === "live"
                   ? (m.minute != null ? `● ${m.minute}${m.injuryTime ? `+${m.injuryTime}` : ""}'` : "● Live")
                   : kind === "underway" ? "● In progress"
-                  : kind === "played" ? "Full time"
+                  : kind === "played" ? (wentToExtraTime(m) ? "After extra time" : "Full time")
                   : "Upcoming"}
               </span>
+              <PensNote m={m} home={home} away={away} />
             </div>
             <h1 className={`md-team ${awayWin ? "winner" : ""}`}>{away?.name || "TBD"}</h1>
           </div>
@@ -234,6 +237,19 @@ export default async function MatchPage({
         </div>
       </footer>
     </>
+  );
+}
+
+/** "<Winner> win X–Y on pens" line, shown under the score for shootout results. */
+function PensNote({ m, home, away }: { m: Match; home: Team; away: Team }) {
+  if (!decidedOnPenalties(m)) return null;
+  const ph = m.penalties!.home!, pa = m.penalties!.away!;
+  const winner = ph > pa ? home : away;
+  const wName = winner?.name || winner?.tla || "Winner";
+  return (
+    <p className="pens-note">
+      <strong>{wName}</strong> win {Math.max(ph, pa)}–{Math.min(ph, pa)} on pens
+    </p>
   );
 }
 

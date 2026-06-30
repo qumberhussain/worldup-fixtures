@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
-import { classify, hasScore } from "@/lib/normalize";
+import { classify, decidedOnPenalties, hasScore, wentToExtraTime, winnerSide } from "@/lib/normalize";
 import { channelNetwork, channelServices, teamCode } from "@/lib/channels";
 import { matchSlug } from "@/lib/slug";
 import { computeStandings, fmtGD, groupLabel, type GroupTable } from "@/lib/standings";
@@ -267,8 +267,10 @@ function StatusBar({
 function MatchCard({ m, groupTable }: { m: Match; groupTable?: GroupTable }) {
   const kind: MatchKind = classify(m);
   const h = m.homeTeam, a = m.awayTeam;
-  const homeWin = kind === "played" && hasScore(m) && m.score.home! > m.score.away!;
-  const awayWin = kind === "played" && hasScore(m) && m.score.away! > m.score.home!;
+  // A penalty win counts as a win even though the headline score is level.
+  const winner = kind === "played" ? winnerSide(m) : null;
+  const homeWin = winner === "home";
+  const awayWin = winner === "away";
   const canExpand = kind === "played" || kind === "live" || kind === "underway";
 
   const [expanded, setExpanded] = useState(false);
@@ -348,9 +350,12 @@ function MatchCard({ m, groupTable }: { m: Match; groupTable?: GroupTable }) {
                   KO {kickoffTime(m.utcDate)}
                 </time>
               </>
+            ) : wentToExtraTime(m) ? (
+              <span className="aet-note">AET</span>
             ) : (
               <span className="badge ft">Full time</span>
             )}
+            <PensNote m={m} home={h} away={a} />
           </>
         )}
       </div>
@@ -417,6 +422,20 @@ function MatchCard({ m, groupTable }: { m: Match; groupTable?: GroupTable }) {
         </Link>
       </div>
     </article>
+  );
+}
+
+/** "<Winner> win X–Y on pens" line, shown under the score for shootout results. */
+function PensNote({ m, home, away }: { m: Match; home: Team; away: Team }) {
+  if (!decidedOnPenalties(m)) return null;
+  const ph = m.penalties!.home!, pa = m.penalties!.away!;
+  const winnerHome = ph > pa;
+  const winner = winnerHome ? home : away;
+  const wName = winner?.name || winner?.tla || "Winner";
+  return (
+    <div className="pens-note">
+      <strong>{wName}</strong> win {Math.max(ph, pa)}–{Math.min(ph, pa)} on pens
+    </div>
   );
 }
 

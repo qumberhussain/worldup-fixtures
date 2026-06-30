@@ -63,8 +63,21 @@ interface RawMatch {
   injuryTime?: number | null;
   homeTeam?: RawTeam;
   awayTeam?: RawTeam;
-  score?: { fullTime?: { home?: number | null; away?: number | null } };
+  score?: {
+    winner?: string | null;
+    duration?: string | null;
+    // `fullTime` is cumulative: for a shootout it equals regular + extra +
+    // penalties. We derive the headline (pre-shootout) score by subtracting the
+    // `penalties` node back out, so we never depend on regularTime/extraTime
+    // being present.
+    fullTime?: { home?: number | null; away?: number | null };
+    penalties?: { home?: number | null; away?: number | null };
+  };
 }
+
+type Side = { home?: number | null; away?: number | null };
+
+const num = (v?: number | null): number | null => (typeof v === "number" ? v : null);
 
 function normalizeTeam(t?: RawTeam): Team {
   if (!t) return { name: "TBD", tla: null, crest: "" };
@@ -76,6 +89,17 @@ function normalizeTeam(t?: RawTeam): Team {
 }
 
 export function normalizeMatch(m: RawMatch): Match {
+  const ft: Side = m.score?.fullTime ?? {};
+  const pk: Side = m.score?.penalties ?? {};
+  const penHome = num(pk.home);
+  const penAway = num(pk.away);
+  const hasPenalties = penHome != null && penAway != null;
+
+  // football-data.org folds the shootout into `fullTime`, so peel it back off to
+  // recover the result the match actually finished on (e.g. 1–1, won on pens).
+  const stripPens = (full: number | null, pen: number | null): number | null =>
+    full != null && pen != null ? full - pen : full;
+
   return {
     id: m.id,
     utcDate: m.utcDate,
@@ -87,11 +111,42 @@ export function normalizeMatch(m: RawMatch): Match {
     homeTeam: normalizeTeam(m.homeTeam),
     awayTeam: normalizeTeam(m.awayTeam),
     score: {
-      home: m.score?.fullTime?.home ?? null,
-      away: m.score?.fullTime?.away ?? null,
+      home: stripPens(num(ft.home), penHome),
+      away: stripPens(num(ft.away), penAway),
     },
+    penalties: hasPenalties ? { home: penHome, away: penAway } : null,
+    duration: m.score?.duration ?? null,
     channel: null,
     minute: m.minute ?? null,
     injuryTime: m.injuryTime ?? null,
   };
+}
+
+/** Whether the tie was settled on penalties (and we have the shootout score). */
+export function decidedOnPenalties(m: Match): boolean {
+  return (
+    m.duration === "PENALTY_SHOOTOUT" &&
+    m.penalties?.home != null &&
+    m.penalties?.away != null
+  );
+}
+
+/** True when the match ran past 90' (extra time, with or without a shootout). */
+export function wentToExtraTime(m: Match): boolean {
+  return m.duration === "EXTRA_TIME" || m.duration === "PENALTY_SHOOTOUT";
+}
+
+/**
+ * The winning side, accounting for a shootout: a penalty win counts even though
+ * the headline score is level. Returns null for an honest draw or no result.
+ */
+export function winnerSide(m: Match): "home" | "away" | null {
+  if (decidedOnPenalties(m)) {
+    const h = m.penalties!.home!, a = m.penalties!.away!;
+    return h > a ? "home" : a > h ? "away" : null;
+  }
+  if (!hasScore(m)) return null;
+  if (m.score.home! > m.score.away!) return "home";
+  if (m.score.away! > m.score.home!) return "away";
+  return null;
 }
