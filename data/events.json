@@ -1,6 +1,6 @@
 {
   "source": "wikipedia",
-  "scrapedAt": "2026-06-30T22:06:11.303Z",
+  "scrapedAt": "2026-06-30T23:55:40.593Z",
   "matches": {
     "MEX|RSA": {
       "goals": [
@@ -2878,6 +2878,25 @@
           "team": "NOR",
           "player": "Antonio Nusa",
           "type": "YELLOW"
+        }
+      ]
+    },
+    "FRA|SWE": {
+      "goals": [
+        {
+          "minute": 45,
+          "team": "FRA",
+          "scorer": "Mbappé"
+        },
+        {
+          "minute": 74,
+          "team": "FRA",
+          "scorer": "Mbappé"
+        },
+        {
+          "minute": 53,
+          "team": "FRA",
+          "scorer": "Barcola"
         }
       ]
     }
