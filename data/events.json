@@ -1,6 +1,6 @@
 {
   "source": "wikipedia",
-  "scrapedAt": "2026-07-01T02:13:07.651Z",
+  "scrapedAt": "2026-07-01T07:00:41.916Z",
   "matches": {
     "MEX|RSA": {
       "goals": [
@@ -2897,6 +2897,43 @@
           "minute": 53,
           "team": "FRA",
           "scorer": "Barcola"
+        }
+      ]
+    },
+    "MEX|ECU": {
+      "goals": [
+        {
+          "minute": 22,
+          "team": "MEX",
+          "scorer": "Quiñones"
+        },
+        {
+          "minute": 31,
+          "team": "MEX",
+          "scorer": "Jiménez"
+        }
+      ],
+      "cards": [
+        {
+          "minute": 45,
+          "injuryTime": 1,
+          "team": "ECU",
+          "player": "Alan Franco",
+          "type": "YELLOW"
+        },
+        {
+          "minute": 90,
+          "injuryTime": 9,
+          "team": "ECU",
+          "player": "Moisés Caicedo",
+          "type": "YELLOW"
+        },
+        {
+          "minute": 90,
+          "injuryTime": 3,
+          "team": "ECU",
+          "player": "Kendry Páez",
+          "type": "YELLOW"
         }
       ]
     }
