@@ -1,6 +1,6 @@
 {
   "source": "wikipedia",
-  "scrapedAt": "2026-07-01T16:13:12.801Z",
+  "scrapedAt": "2026-07-01T18:53:09.979Z",
   "matches": {
     "MEX|RSA": {
       "goals": [
@@ -2933,6 +2933,39 @@
           "injuryTime": 3,
           "team": "ECU",
           "player": "Kendry Páez",
+          "type": "YELLOW"
+        }
+      ]
+    },
+    "ENG|COD": {
+      "goals": [
+        {
+          "minute": 75,
+          "team": "ENG",
+          "scorer": "Kane"
+        },
+        {
+          "minute": 86,
+          "team": "ENG",
+          "scorer": "Kane"
+        },
+        {
+          "minute": 7,
+          "team": "COD",
+          "scorer": "Cipenga"
+        }
+      ],
+      "cards": [
+        {
+          "minute": 19,
+          "team": "ENG",
+          "player": "Jude Bellingham",
+          "type": "YELLOW"
+        },
+        {
+          "minute": 27,
+          "team": "COD",
+          "player": "Noah Sadiki",
           "type": "YELLOW"
         }
       ]
