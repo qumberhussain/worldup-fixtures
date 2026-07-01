@@ -4,6 +4,9 @@ const LIVE_STATUSES = new Set(["IN_PLAY", "PAUSED", "SUSPENDED"]);
 const FINISHED_STATUSES = new Set(["FINISHED", "AWARDED"]);
 // Pre-match statuses the free feed leaves stale once a game actually kicks off.
 const PRE_STATUSES = new Set(["TIMED", "SCHEDULED"]);
+// A real match can't reach full-time sooner than ~2x45' + 15' half-time from
+// kick-off, so ~100 min wall-clock is the floor for a legitimate FINISHED.
+const MIN_FULLTIME_MINS = 100;
 
 export function hasScore(m: Match): boolean {
   return m.score?.home != null && m.score?.away != null;
@@ -18,8 +21,19 @@ export function classify(m: Match): MatchKind {
   // gives a small safety margin. Knockouts allow for extra time + penalties.
   const maxLiveMins = m.stage && m.stage !== "GROUP_STAGE" ? 190 : 130;
 
-  // 1. Feed confirms finished.
-  if (FINISHED_STATUSES.has(m.status)) return "played";
+  // 1. Feed confirms finished — but distrust a FINISHED flag that lands
+  //    implausibly early. Around kick-off the free feed can briefly mark a
+  //    knockout slot as finished (a placeholder/stale result) before live data
+  //    flows, which otherwise shows "Full time" 10' into a live match. A real
+  //    match needs ~100 min from KO to legitimately reach full-time.
+  if (FINISHED_STATUSES.has(m.status)) {
+    if (valid && minsSince < MIN_FULLTIME_MINS) {
+      // Not enough time to have finished: if it hasn't kicked off yet it's
+      // upcoming, otherwise it's still in progress (don't assert the score).
+      return minsSince <= 0 ? "upcoming" : "underway";
+    }
+    return "played";
+  }
 
   // 2. Feed confirms live — but distrust a status stuck "in play" well past a
   //    realistic match length (the free feed lags the FINISHED flag).
