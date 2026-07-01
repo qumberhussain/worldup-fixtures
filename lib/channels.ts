@@ -5,8 +5,10 @@ import type { Match } from "./types";
  * maintained by hand from the official BBC/ITV listings (see the uploaded
  * "World Cup 2026 Timetable UK"). Keyed by an unordered FIFA team-code pair
  * "TLA|TLA" (the lookup tries both orders), since two teams only meet once in
- * the group stage. Knockout matches use bracket placeholders with no real
- * teams yet, so they are not keyed here and show no channel until drawn.
+ * the tournament. Knockout ties are keyed here once the round is drawn and the
+ * two real teams are known (a bracket with placeholder "TBD" slots shows no
+ * channel until the teams are filled in). Round of 32 is drawn below; later
+ * rounds get added as each draw resolves.
  */
 export const UK_CHANNELS: Record<string, string> = {
   "MEX|RSA": "BBC One",
@@ -81,6 +83,28 @@ export const UK_CHANNELS: Record<string, string> = {
   "COD|UZB": "BBC Two",
   "ALG|AUT": "BBC Two",
   "JOR|ARG": "BBC One",
+
+  // --- Round of 32 (Last 32), keyed by the drawn ties.
+  // Ties from 1 Jul onward are the confirmed BBC/ITV listing (official UK
+  // timetable). The seven earlier ties (played 28 Jun–1 Jul) are still
+  // editorial guesses pending their real listing.
+  "RSA|CAN": "ITV1",
+  "BRA|JPN": "BBC One",
+  "GER|PAR": "ITV1",
+  "NED|MAR": "BBC One",
+  "CIV|NOR": "ITV1",
+  "FRA|SWE": "BBC One",
+  "MEX|ECU": "ITV1",
+  // Confirmed from the UK timetable:
+  "ENG|COD": "BBC One",
+  "BEL|SEN": "ITV1",
+  "USA|BIH": "BBC One",
+  "ESP|AUT": "BBC One",
+  "POR|CRO": "BBC One",
+  "SUI|ALG": "BBC One",
+  "AUS|EGY": "BBC One",
+  "ARG|CPV": "ITV1",
+  "COL|GHA": "ITV1",
 };
 
 /**
