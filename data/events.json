@@ -1,6 +1,6 @@
 {
   "source": "wikipedia",
-  "scrapedAt": "2026-07-01T22:10:44.167Z",
+  "scrapedAt": "2026-07-01T23:59:32.568Z",
   "matches": {
     "MEX|RSA": {
       "goals": [
@@ -2966,6 +2966,50 @@
           "minute": 27,
           "team": "COD",
           "player": "Noah Sadiki",
+          "type": "YELLOW"
+        }
+      ]
+    },
+    "BEL|SEN": {
+      "goals": [
+        {
+          "minute": 86,
+          "team": "BEL",
+          "scorer": "Lukaku"
+        },
+        {
+          "minute": 89,
+          "team": "BEL",
+          "scorer": "Tielemans"
+        },
+        {
+          "minute": 120,
+          "injuryTime": 5,
+          "team": "BEL",
+          "scorer": "Tielemans"
+        },
+        {
+          "minute": 25,
+          "team": "SEN",
+          "scorer": "Diarra"
+        },
+        {
+          "minute": 51,
+          "team": "SEN",
+          "scorer": "I. Sarr"
+        }
+      ],
+      "cards": [
+        {
+          "minute": 64,
+          "team": "BEL",
+          "player": "Brandon Mechele",
+          "type": "YELLOW"
+        },
+        {
+          "minute": 90,
+          "team": "BEL",
+          "player": "Rudi Garcia",
           "type": "YELLOW"
         }
       ]
