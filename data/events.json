@@ -1,6 +1,6 @@
 {
   "source": "wikipedia",
-  "scrapedAt": "2026-07-02T20:48:46.249Z",
+  "scrapedAt": "2026-07-02T21:55:45.730Z",
   "matches": {
     "MEX|RSA": {
       "goals": [
@@ -3046,6 +3046,33 @@
           "minute": 80,
           "team": "BIH",
           "player": "Sergej Barbarez",
+          "type": "YELLOW"
+        }
+      ]
+    },
+    "ESP|AUT": {
+      "goals": [
+        {
+          "minute": 36,
+          "team": "ESP",
+          "scorer": "Oyarzabal"
+        },
+        {
+          "minute": 89,
+          "team": "ESP",
+          "scorer": "Oyarzabal"
+        },
+        {
+          "minute": 66,
+          "team": "ESP",
+          "scorer": "Porro"
+        }
+      ],
+      "cards": [
+        {
+          "minute": 83,
+          "team": "AUT",
+          "player": "Stefan Posch",
           "type": "YELLOW"
         }
       ]
