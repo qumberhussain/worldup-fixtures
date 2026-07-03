@@ -1,6 +1,6 @@
 {
   "source": "wikipedia",
-  "scrapedAt": "2026-07-02T23:54:27.285Z",
+  "scrapedAt": "2026-07-03T01:29:17.033Z",
   "matches": {
     "MEX|RSA": {
       "goals": [
@@ -3073,6 +3073,48 @@
           "minute": 83,
           "team": "AUT",
           "player": "Stefan Posch",
+          "type": "YELLOW"
+        }
+      ]
+    },
+    "POR|CRO": {
+      "goals": [
+        {
+          "minute": 68,
+          "team": "POR",
+          "scorer": "Ronaldo",
+          "type": "PENALTY"
+        },
+        {
+          "minute": 90,
+          "injuryTime": 4,
+          "team": "POR",
+          "scorer": "Ramos"
+        },
+        {
+          "minute": 53,
+          "team": "CRO",
+          "scorer": "Perišić"
+        }
+      ],
+      "cards": [
+        {
+          "minute": 17,
+          "team": "POR",
+          "player": "Rúben Dias",
+          "type": "YELLOW"
+        },
+        {
+          "minute": 90,
+          "injuryTime": 8,
+          "team": "CRO",
+          "player": "Ivan Perišić",
+          "type": "YELLOW"
+        },
+        {
+          "minute": 59,
+          "team": "CRO",
+          "player": "Luka Modrić",
           "type": "YELLOW"
         }
       ]
