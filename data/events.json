@@ -1,6 +1,6 @@
 {
   "source": "wikipedia",
-  "scrapedAt": "2026-07-03T20:10:51.112Z",
+  "scrapedAt": "2026-07-03T21:53:35.386Z",
   "matches": {
     "MEX|RSA": {
       "goals": [
@@ -3143,6 +3143,41 @@
           "minute": 72,
           "team": "ALG",
           "player": "Hicham Boudaoui",
+          "type": "YELLOW"
+        }
+      ]
+    },
+    "AUS|EGY": {
+      "goals": [
+        {
+          "minute": 55,
+          "team": "AUS",
+          "scorer": "Hany",
+          "type": "OWN"
+        },
+        {
+          "minute": 13,
+          "team": "EGY",
+          "scorer": "Ashour"
+        }
+      ],
+      "cards": [
+        {
+          "minute": 120,
+          "team": "EGY",
+          "player": "Yasser Ibrahim",
+          "type": "YELLOW"
+        },
+        {
+          "minute": 105,
+          "team": "EGY",
+          "player": "Haissem Hassan",
+          "type": "YELLOW"
+        },
+        {
+          "minute": 91,
+          "team": "EGY",
+          "player": "Saafan El-Sagheer",
           "type": "YELLOW"
         }
       ]
