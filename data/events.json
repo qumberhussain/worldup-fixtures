@@ -1,6 +1,6 @@
 {
   "source": "wikipedia",
-  "scrapedAt": "2026-07-03T01:29:17.033Z",
+  "scrapedAt": "2026-07-03T05:39:34.972Z",
   "matches": {
     "MEX|RSA": {
       "goals": [
@@ -3115,6 +3115,34 @@
           "minute": 59,
           "team": "CRO",
           "player": "Luka Modrić",
+          "type": "YELLOW"
+        }
+      ]
+    },
+    "SUI|ALG": {
+      "goals": [
+        {
+          "minute": 10,
+          "team": "SUI",
+          "scorer": "Embolo"
+        },
+        {
+          "minute": 46,
+          "team": "SUI",
+          "scorer": "Ndoye"
+        }
+      ],
+      "cards": [
+        {
+          "minute": 36,
+          "team": "ALG",
+          "player": "Farès Chaïbi",
+          "type": "YELLOW"
+        },
+        {
+          "minute": 72,
+          "team": "ALG",
+          "player": "Hicham Boudaoui",
           "type": "YELLOW"
         }
       ]
