@@ -1,6 +1,6 @@
 {
   "source": "wikipedia",
-  "scrapedAt": "2026-07-04T20:02:38.461Z",
+  "scrapedAt": "2026-07-04T21:44:43.984Z",
   "matches": {
     "MEX|RSA": {
       "goals": [
@@ -3306,7 +3306,7 @@
           "type": "YELLOW"
         },
         {
-          "minute": 76,
+          "minute": 67,
           "team": "CAN",
           "player": "Cyle Larin",
           "type": "YELLOW"
