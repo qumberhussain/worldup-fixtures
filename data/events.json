@@ -1,6 +1,6 @@
 {
   "source": "wikipedia",
-  "scrapedAt": "2026-07-03T23:53:33.302Z",
+  "scrapedAt": "2026-07-04T01:29:02.411Z",
   "matches": {
     "MEX|RSA": {
       "goals": [
@@ -3178,6 +3178,50 @@
           "minute": 91,
           "team": "EGY",
           "player": "Saafan El-Sagheer",
+          "type": "YELLOW"
+        }
+      ]
+    },
+    "ARG|CPV": {
+      "goals": [
+        {
+          "minute": 29,
+          "team": "ARG",
+          "scorer": "Messi"
+        },
+        {
+          "minute": 92,
+          "team": "ARG",
+          "scorer": "Li. Martínez"
+        },
+        {
+          "minute": 111,
+          "team": "ARG",
+          "scorer": "Diney",
+          "type": "OWN"
+        },
+        {
+          "minute": 59,
+          "team": "CPV",
+          "scorer": "D. Duarte"
+        },
+        {
+          "minute": 103,
+          "team": "CPV",
+          "scorer": "Lopes Cabral"
+        }
+      ],
+      "cards": [
+        {
+          "minute": 115,
+          "team": "ARG",
+          "player": "Gonzalo Montiel",
+          "type": "YELLOW"
+        },
+        {
+          "minute": 68,
+          "team": "CPV",
+          "player": "Kevin Pina",
           "type": "YELLOW"
         }
       ]
