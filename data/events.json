@@ -1,6 +1,6 @@
 {
   "source": "wikipedia",
-  "scrapedAt": "2026-07-04T18:50:44.272Z",
+  "scrapedAt": "2026-07-04T20:02:38.461Z",
   "matches": {
     "MEX|RSA": {
       "goals": [
@@ -3263,6 +3263,77 @@
           "minute": 66,
           "team": "GHA",
           "player": "Abdul Fatawu",
+          "type": "YELLOW"
+        }
+      ]
+    },
+    "CAN|MAR": {
+      "goals": [
+        {
+          "minute": 50,
+          "team": "MAR",
+          "scorer": "Ounahi"
+        },
+        {
+          "minute": 82,
+          "team": "MAR",
+          "scorer": "Ounahi"
+        },
+        {
+          "minute": 90,
+          "injuryTime": 8,
+          "team": "MAR",
+          "scorer": "Rahimi"
+        }
+      ],
+      "cards": [
+        {
+          "minute": 49,
+          "team": "CAN",
+          "player": "Luc de Fougerolles",
+          "type": "YELLOW"
+        },
+        {
+          "minute": 40,
+          "team": "CAN",
+          "player": "Richie Laryea",
+          "type": "YELLOW"
+        },
+        {
+          "minute": 43,
+          "team": "CAN",
+          "player": "Jonathan David",
+          "type": "YELLOW"
+        },
+        {
+          "minute": 76,
+          "team": "CAN",
+          "player": "Cyle Larin",
+          "type": "YELLOW"
+        },
+        {
+          "minute": 40,
+          "team": "MAR",
+          "player": "Achraf Hakimi",
+          "type": "YELLOW"
+        },
+        {
+          "minute": 20,
+          "team": "MAR",
+          "player": "Redouane Halhal",
+          "type": "YELLOW"
+        },
+        {
+          "minute": 45,
+          "team": "MAR",
+          "player": "Azzedine Ounahi",
+          "type": "YELLOW"
+        },
+        {
+          "minute": 45,
+          "injuryTime": 6,
+          "team": "MAR",
+          "player": "Bilal El Khannouss",
           "type": "YELLOW"
         }
       ]
