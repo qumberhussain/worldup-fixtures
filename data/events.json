@@ -1,6 +1,6 @@
 {
   "source": "wikipedia",
-  "scrapedAt": "2026-07-04T22:43:53.500Z",
+  "scrapedAt": "2026-07-04T23:50:23.624Z",
   "matches": {
     "MEX|RSA": {
       "goals": [
@@ -3334,6 +3334,37 @@
           "injuryTime": 6,
           "team": "MAR",
           "player": "Bilal El Khannouss",
+          "type": "YELLOW"
+        }
+      ]
+    },
+    "PAR|FRA": {
+      "goals": [
+        {
+          "minute": 70,
+          "team": "FRA",
+          "scorer": "Mbappé",
+          "type": "PENALTY"
+        }
+      ],
+      "cards": [
+        {
+          "minute": 81,
+          "team": "FRA",
+          "player": "Manu Koné",
+          "type": "YELLOW"
+        },
+        {
+          "minute": 90,
+          "injuryTime": 7,
+          "team": "FRA",
+          "player": "Michael Olise",
+          "type": "YELLOW"
+        },
+        {
+          "minute": 19,
+          "team": "FRA",
+          "player": "Bradley Barcola",
           "type": "YELLOW"
         }
       ]
