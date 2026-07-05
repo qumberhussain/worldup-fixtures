@@ -1,6 +1,6 @@
 {
   "source": "wikipedia",
-  "scrapedAt": "2026-07-05T21:47:21.279Z",
+  "scrapedAt": "2026-07-05T22:45:46.907Z",
   "matches": {
     "MEX|RSA": {
       "goals": [
@@ -3365,6 +3365,36 @@
           "minute": 19,
           "team": "FRA",
           "player": "Bradley Barcola",
+          "type": "YELLOW"
+        }
+      ]
+    },
+    "BRA|NOR": {
+      "goals": [
+        {
+          "minute": 90,
+          "injuryTime": 10,
+          "team": "BRA",
+          "scorer": "Neymar",
+          "type": "PENALTY"
+        },
+        {
+          "minute": 79,
+          "team": "NOR",
+          "scorer": "Haaland"
+        },
+        {
+          "minute": 90,
+          "team": "NOR",
+          "scorer": "Haaland"
+        }
+      ],
+      "cards": [
+        {
+          "minute": 90,
+          "injuryTime": 6,
+          "team": "BRA",
+          "player": "Neymar",
           "type": "YELLOW"
         }
       ]
