@@ -1,6 +1,6 @@
 {
   "source": "wikipedia",
-  "scrapedAt": "2026-07-06T01:50:48.694Z",
+  "scrapedAt": "2026-07-06T06:14:58.935Z",
   "matches": {
     "MEX|RSA": {
       "goals": [
@@ -3395,6 +3395,77 @@
           "injuryTime": 6,
           "team": "BRA",
           "player": "Neymar",
+          "type": "YELLOW"
+        }
+      ]
+    },
+    "MEX|ENG": {
+      "goals": [
+        {
+          "minute": 42,
+          "team": "MEX",
+          "scorer": "Quiñones"
+        },
+        {
+          "minute": 69,
+          "team": "MEX",
+          "scorer": "Jiménez",
+          "type": "PENALTY"
+        },
+        {
+          "minute": 36,
+          "team": "ENG",
+          "scorer": "Bellingham"
+        },
+        {
+          "minute": 38,
+          "team": "ENG",
+          "scorer": "Bellingham"
+        },
+        {
+          "minute": 60,
+          "team": "ENG",
+          "scorer": "Kane",
+          "type": "PENALTY"
+        }
+      ],
+      "cards": [
+        {
+          "minute": 71,
+          "team": "MEX",
+          "player": "Jorge Sánchez",
+          "type": "YELLOW"
+        },
+        {
+          "minute": 90,
+          "injuryTime": 8,
+          "team": "MEX",
+          "player": "Johan Vásquez",
+          "type": "YELLOW"
+        },
+        {
+          "minute": 68,
+          "team": "ENG",
+          "player": "Marc Guéhi",
+          "type": "YELLOW"
+        },
+        {
+          "minute": 72,
+          "team": "ENG",
+          "player": "Nico O'Reilly",
+          "type": "YELLOW"
+        },
+        {
+          "minute": 1,
+          "team": "ENG",
+          "player": "Declan Rice",
+          "type": "YELLOW"
+        },
+        {
+          "minute": 90,
+          "injuryTime": 8,
+          "team": "ENG",
+          "player": "Jordan Henderson",
           "type": "YELLOW"
         }
       ]
