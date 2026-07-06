@@ -1,6 +1,6 @@
 {
   "source": "wikipedia",
-  "scrapedAt": "2026-07-06T19:27:29.484Z",
+  "scrapedAt": "2026-07-06T21:17:32.322Z",
   "matches": {
     "MEX|RSA": {
       "goals": [
@@ -3466,6 +3466,38 @@
           "injuryTime": 8,
           "team": "ENG",
           "player": "Jordan Henderson",
+          "type": "YELLOW"
+        }
+      ]
+    },
+    "POR|ESP": {
+      "goals": [
+        {
+          "minute": 90,
+          "injuryTime": 1,
+          "team": "ESP",
+          "scorer": "Merino"
+        }
+      ],
+      "cards": [
+        {
+          "minute": 90,
+          "injuryTime": 3,
+          "team": "POR",
+          "player": "Renato Veiga",
+          "type": "YELLOW"
+        },
+        {
+          "minute": 89,
+          "team": "POR",
+          "player": "Bernardo Silva",
+          "type": "YELLOW"
+        },
+        {
+          "minute": 90,
+          "injuryTime": 8,
+          "team": "ESP",
+          "player": "Ferran Torres",
           "type": "YELLOW"
         }
       ]
