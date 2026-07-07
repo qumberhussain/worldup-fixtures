@@ -1,6 +1,6 @@
 {
   "source": "wikipedia",
-  "scrapedAt": "2026-07-07T22:48:52.898Z",
+  "scrapedAt": "2026-07-07T23:42:53.885Z",
   "matches": {
     "MEX|RSA": {
       "goals": [
@@ -3608,6 +3608,47 @@
           "injuryTime": 9,
           "team": "EGY",
           "player": "Hossam Hassan",
+          "type": "YELLOW"
+        }
+      ]
+    },
+    "SUI|COL": {
+      "goals": [],
+      "cards": [
+        {
+          "minute": 59,
+          "team": "SUI",
+          "player": "Denis Zakaria",
+          "type": "YELLOW"
+        },
+        {
+          "minute": 51,
+          "team": "SUI",
+          "player": "Granit Xhaka",
+          "type": "YELLOW"
+        },
+        {
+          "minute": 105,
+          "team": "SUI",
+          "player": "Miro Muheim",
+          "type": "YELLOW"
+        },
+        {
+          "minute": 94,
+          "team": "COL",
+          "player": "Davinson Sánchez",
+          "type": "YELLOW"
+        },
+        {
+          "minute": 60,
+          "team": "COL",
+          "player": "Luis Suárez",
+          "type": "YELLOW"
+        },
+        {
+          "minute": 95,
+          "team": "COL",
+          "player": "Luis Amaranto Perea",
           "type": "YELLOW"
         }
       ]
