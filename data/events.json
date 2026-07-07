@@ -1,6 +1,6 @@
 {
   "source": "wikipedia",
-  "scrapedAt": "2026-07-07T01:47:33.527Z",
+  "scrapedAt": "2026-07-07T05:55:54.458Z",
   "matches": {
     "MEX|RSA": {
       "goals": [
@@ -3498,6 +3498,50 @@
           "injuryTime": 8,
           "team": "ESP",
           "player": "Ferran Torres",
+          "type": "YELLOW"
+        }
+      ]
+    },
+    "USA|BEL": {
+      "goals": [
+        {
+          "minute": 31,
+          "team": "USA",
+          "scorer": "Tillman"
+        },
+        {
+          "minute": 9,
+          "team": "BEL",
+          "scorer": "De Ketelaere"
+        },
+        {
+          "minute": 33,
+          "team": "BEL",
+          "scorer": "De Ketelaere"
+        },
+        {
+          "minute": 57,
+          "team": "BEL",
+          "scorer": "Vanaken"
+        },
+        {
+          "minute": 90,
+          "injuryTime": 3,
+          "team": "BEL",
+          "scorer": "Lukaku"
+        }
+      ],
+      "cards": [
+        {
+          "minute": 69,
+          "team": "USA",
+          "player": "Malik Tillman",
+          "type": "YELLOW"
+        },
+        {
+          "minute": 35,
+          "team": "USA",
+          "player": "Weston McKennie",
           "type": "YELLOW"
         }
       ]
