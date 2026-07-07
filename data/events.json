@@ -1,6 +1,6 @@
 {
   "source": "wikipedia",
-  "scrapedAt": "2026-07-07T17:48:44.346Z",
+  "scrapedAt": "2026-07-07T19:29:31.342Z",
   "matches": {
     "MEX|RSA": {
       "goals": [
@@ -3542,6 +3542,79 @@
           "minute": 35,
           "team": "USA",
           "player": "Weston McKennie",
+          "type": "YELLOW"
+        }
+      ]
+    },
+    "ARG|EGY": {
+      "goals": [
+        {
+          "minute": 79,
+          "team": "ARG",
+          "scorer": "Romero"
+        },
+        {
+          "minute": 83,
+          "team": "ARG",
+          "scorer": "Messi"
+        },
+        {
+          "minute": 90,
+          "injuryTime": 2,
+          "team": "ARG",
+          "scorer": "Fernández"
+        },
+        {
+          "minute": 15,
+          "team": "EGY",
+          "scorer": "Ibrahim"
+        },
+        {
+          "minute": 67,
+          "team": "EGY",
+          "scorer": "Ziko"
+        }
+      ],
+      "cards": [
+        {
+          "minute": 90,
+          "injuryTime": 3,
+          "team": "EGY",
+          "player": "Mostafa Shobeir",
+          "type": "YELLOW"
+        },
+        {
+          "minute": 90,
+          "injuryTime": 8,
+          "team": "EGY",
+          "player": "Marwan Attia",
+          "type": "YELLOW"
+        },
+        {
+          "minute": 90,
+          "injuryTime": 13,
+          "team": "EGY",
+          "player": "Haissem Hassan",
+          "type": "YELLOW"
+        },
+        {
+          "minute": 90,
+          "injuryTime": 4,
+          "team": "EGY",
+          "player": "Hamdy Fathy",
+          "type": "YELLOW"
+        },
+        {
+          "minute": 21,
+          "team": "EGY",
+          "player": "Saafan El-Sagheer",
+          "type": "RED"
+        },
+        {
+          "minute": 90,
+          "injuryTime": 9,
+          "team": "EGY",
+          "player": "Hossam Hassan",
           "type": "YELLOW"
         }
       ]
