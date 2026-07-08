@@ -1,6 +1,6 @@
 {
   "source": "wikipedia",
-  "scrapedAt": "2026-07-08T15:05:34.290Z",
+  "scrapedAt": "2026-07-08T17:15:31.860Z",
   "matches": {
     "MEX|RSA": {
       "goals": [
@@ -3285,57 +3285,6 @@
           "team": "MAR",
           "scorer": "Rahimi"
         }
-      ],
-      "cards": [
-        {
-          "minute": 49,
-          "team": "CAN",
-          "player": "Luc de Fougerolles",
-          "type": "YELLOW"
-        },
-        {
-          "minute": 40,
-          "team": "CAN",
-          "player": "Richie Laryea",
-          "type": "YELLOW"
-        },
-        {
-          "minute": 43,
-          "team": "CAN",
-          "player": "Jonathan David",
-          "type": "YELLOW"
-        },
-        {
-          "minute": 67,
-          "team": "CAN",
-          "player": "Cyle Larin",
-          "type": "YELLOW"
-        },
-        {
-          "minute": 40,
-          "team": "MAR",
-          "player": "Achraf Hakimi",
-          "type": "YELLOW"
-        },
-        {
-          "minute": 20,
-          "team": "MAR",
-          "player": "Redouane Halhal",
-          "type": "YELLOW"
-        },
-        {
-          "minute": 45,
-          "team": "MAR",
-          "player": "Azzedine Ounahi",
-          "type": "YELLOW"
-        },
-        {
-          "minute": 45,
-          "injuryTime": 6,
-          "team": "MAR",
-          "player": "Bilal El Khannouss",
-          "type": "YELLOW"
-        }
       ]
     },
     "PAR|FRA": {
@@ -3345,27 +3294,6 @@
           "team": "FRA",
           "scorer": "Mbappé",
           "type": "PENALTY"
-        }
-      ],
-      "cards": [
-        {
-          "minute": 81,
-          "team": "FRA",
-          "player": "Manu Koné",
-          "type": "YELLOW"
-        },
-        {
-          "minute": 90,
-          "injuryTime": 7,
-          "team": "FRA",
-          "player": "Michael Olise",
-          "type": "YELLOW"
-        },
-        {
-          "minute": 19,
-          "team": "FRA",
-          "player": "Bradley Barcola",
-          "type": "YELLOW"
         }
       ]
     },
@@ -3387,15 +3315,6 @@
           "minute": 90,
           "team": "NOR",
           "scorer": "Haaland"
-        }
-      ],
-      "cards": [
-        {
-          "minute": 90,
-          "injuryTime": 6,
-          "team": "BRA",
-          "player": "Neymar",
-          "type": "YELLOW"
         }
       ]
     },
@@ -3428,46 +3347,6 @@
           "scorer": "Kane",
           "type": "PENALTY"
         }
-      ],
-      "cards": [
-        {
-          "minute": 71,
-          "team": "MEX",
-          "player": "Jorge Sánchez",
-          "type": "YELLOW"
-        },
-        {
-          "minute": 90,
-          "injuryTime": 8,
-          "team": "MEX",
-          "player": "Johan Vásquez",
-          "type": "YELLOW"
-        },
-        {
-          "minute": 68,
-          "team": "ENG",
-          "player": "Marc Guéhi",
-          "type": "YELLOW"
-        },
-        {
-          "minute": 72,
-          "team": "ENG",
-          "player": "Nico O'Reilly",
-          "type": "YELLOW"
-        },
-        {
-          "minute": 1,
-          "team": "ENG",
-          "player": "Declan Rice",
-          "type": "YELLOW"
-        },
-        {
-          "minute": 90,
-          "injuryTime": 8,
-          "team": "ENG",
-          "player": "Jordan Henderson",
-          "type": "YELLOW"
-        }
       ]
     },
     "POR|ESP": {
@@ -3477,28 +3356,6 @@
           "injuryTime": 1,
           "team": "ESP",
           "scorer": "Merino"
-        }
-      ],
-      "cards": [
-        {
-          "minute": 90,
-          "injuryTime": 3,
-          "team": "POR",
-          "player": "Renato Veiga",
-          "type": "YELLOW"
-        },
-        {
-          "minute": 89,
-          "team": "POR",
-          "player": "Bernardo Silva",
-          "type": "YELLOW"
-        },
-        {
-          "minute": 90,
-          "injuryTime": 8,
-          "team": "ESP",
-          "player": "Ferran Torres",
-          "type": "YELLOW"
         }
       ]
     },
@@ -3530,20 +3387,6 @@
           "team": "BEL",
           "scorer": "Lukaku"
         }
-      ],
-      "cards": [
-        {
-          "minute": 69,
-          "team": "USA",
-          "player": "Malik Tillman",
-          "type": "YELLOW"
-        },
-        {
-          "minute": 35,
-          "team": "USA",
-          "player": "Weston McKennie",
-          "type": "YELLOW"
-        }
       ]
     },
     "ARG|EGY": {
@@ -3573,42 +3416,6 @@
           "minute": 67,
           "team": "EGY",
           "scorer": "Ziko"
-        }
-      ],
-      "cards": [
-        {
-          "minute": 90,
-          "injuryTime": 3,
-          "team": "EGY",
-          "player": "Mostafa Shobeir",
-          "type": "YELLOW"
-        },
-        {
-          "minute": 90,
-          "injuryTime": 8,
-          "team": "EGY",
-          "player": "Marwan Attia",
-          "type": "YELLOW"
-        },
-        {
-          "minute": 90,
-          "injuryTime": 4,
-          "team": "EGY",
-          "player": "Hamdy Fathy",
-          "type": "YELLOW"
-        },
-        {
-          "minute": 21,
-          "team": "EGY",
-          "player": "Saafan El-Sagheer",
-          "type": "RED"
-        },
-        {
-          "minute": 90,
-          "injuryTime": 9,
-          "team": "EGY",
-          "player": "Hossam Hassan",
-          "type": "YELLOW"
         }
       ]
     },
