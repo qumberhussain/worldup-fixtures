@@ -1,6 +1,6 @@
 {
   "source": "wikipedia",
-  "scrapedAt": "2026-07-09T20:30:31.133Z",
+  "scrapedAt": "2026-07-09T22:10:52.528Z",
   "matches": {
     "MEX|RSA": {
       "goals": [
@@ -3649,6 +3649,28 @@
           "minute": 95,
           "team": "COL",
           "player": "Luis Amaranto Perea",
+          "type": "YELLOW"
+        }
+      ]
+    },
+    "FRA|MAR": {
+      "goals": [
+        {
+          "minute": 60,
+          "team": "FRA",
+          "scorer": "Mbappé"
+        },
+        {
+          "minute": 66,
+          "team": "FRA",
+          "scorer": "Dembélé"
+        }
+      ],
+      "cards": [
+        {
+          "minute": 63,
+          "team": "MAR",
+          "player": "Issa Diop",
           "type": "YELLOW"
         }
       ]
