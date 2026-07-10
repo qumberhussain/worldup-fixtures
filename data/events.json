@@ -1,6 +1,6 @@
 {
   "source": "wikipedia",
-  "scrapedAt": "2026-07-10T20:10:38.609Z",
+  "scrapedAt": "2026-07-10T21:48:00.590Z",
   "matches": {
     "MEX|RSA": {
       "goals": [
@@ -3671,6 +3671,53 @@
           "minute": 63,
           "team": "MAR",
           "player": "Issa Diop",
+          "type": "YELLOW"
+        }
+      ]
+    },
+    "ESP|BEL": {
+      "goals": [
+        {
+          "minute": 30,
+          "team": "ESP",
+          "scorer": "Fabián"
+        },
+        {
+          "minute": 88,
+          "team": "ESP",
+          "scorer": "Merino"
+        },
+        {
+          "minute": 41,
+          "team": "BEL",
+          "scorer": "De Ketelaere"
+        }
+      ],
+      "cards": [
+        {
+          "minute": 43,
+          "team": "ESP",
+          "player": "Pau Cubarsí",
+          "type": "YELLOW"
+        },
+        {
+          "minute": 90,
+          "injuryTime": 3,
+          "team": "ESP",
+          "player": "Aymeric Laporte",
+          "type": "YELLOW"
+        },
+        {
+          "minute": 85,
+          "team": "BEL",
+          "player": "Kevin De Bruyne",
+          "type": "YELLOW"
+        },
+        {
+          "minute": 90,
+          "injuryTime": 5,
+          "team": "BEL",
+          "player": "Axel Witsel",
           "type": "YELLOW"
         }
       ]
