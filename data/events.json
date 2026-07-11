@@ -1,6 +1,6 @@
 {
   "source": "wikipedia",
-  "scrapedAt": "2026-07-11T18:40:38.820Z",
+  "scrapedAt": "2026-07-11T19:56:38.481Z",
   "matches": {
     "MEX|RSA": {
       "goals": [
@@ -3680,7 +3680,7 @@
         {
           "minute": 30,
           "team": "ESP",
-          "scorer": "Ruiz"
+          "scorer": "Fabián"
         },
         {
           "minute": 88,
