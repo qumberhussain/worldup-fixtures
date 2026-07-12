@@ -1,6 +1,6 @@
 {
   "source": "wikipedia",
-  "scrapedAt": "2026-07-11T23:40:13.791Z",
+  "scrapedAt": "2026-07-12T01:20:41.652Z",
   "matches": {
     "MEX|RSA": {
       "goals": [
@@ -3718,6 +3718,34 @@
           "injuryTime": 5,
           "team": "BEL",
           "player": "Axel Witsel",
+          "type": "YELLOW"
+        }
+      ]
+    },
+    "NOR|ENG": {
+      "goals": [
+        {
+          "minute": 36,
+          "team": "NOR",
+          "scorer": "Schjelderup"
+        },
+        {
+          "minute": 45,
+          "injuryTime": 2,
+          "team": "ENG",
+          "scorer": "Bellingham"
+        },
+        {
+          "minute": 93,
+          "team": "ENG",
+          "scorer": "Bellingham"
+        }
+      ],
+      "cards": [
+        {
+          "minute": 117,
+          "team": "NOR",
+          "player": "Kristoffer Ajer",
           "type": "YELLOW"
         }
       ]
