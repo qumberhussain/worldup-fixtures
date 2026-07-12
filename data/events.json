@@ -1,6 +1,6 @@
 {
   "source": "wikipedia",
-  "scrapedAt": "2026-07-12T01:20:41.652Z",
+  "scrapedAt": "2026-07-12T05:12:13.537Z",
   "matches": {
     "MEX|RSA": {
       "goals": [
@@ -3747,6 +3747,57 @@
           "team": "NOR",
           "player": "Kristoffer Ajer",
           "type": "YELLOW"
+        }
+      ]
+    },
+    "ARG|SUI": {
+      "goals": [
+        {
+          "minute": 10,
+          "team": "ARG",
+          "scorer": "Mac Allister"
+        },
+        {
+          "minute": 112,
+          "team": "ARG",
+          "scorer": "Alvarez"
+        },
+        {
+          "minute": 120,
+          "injuryTime": 1,
+          "team": "ARG",
+          "scorer": "La. Martínez"
+        },
+        {
+          "minute": 67,
+          "team": "SUI",
+          "scorer": "Ndoye"
+        }
+      ],
+      "cards": [
+        {
+          "minute": 98,
+          "team": "ARG",
+          "player": "Lautaro Martínez",
+          "type": "YELLOW"
+        },
+        {
+          "minute": 97,
+          "team": "ARG",
+          "player": "Thiago Almada",
+          "type": "YELLOW"
+        },
+        {
+          "minute": 114,
+          "team": "ARG",
+          "player": "José Manuel López",
+          "type": "YELLOW"
+        },
+        {
+          "minute": 44,
+          "team": "SUI",
+          "player": "Breel Embolo",
+          "type": "RED"
         }
       ]
     }
