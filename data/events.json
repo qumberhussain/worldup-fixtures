@@ -1,6 +1,6 @@
 {
   "source": "wikipedia",
-  "scrapedAt": "2026-07-14T20:06:03.488Z",
+  "scrapedAt": "2026-07-14T21:43:44.184Z",
   "matches": {
     "MEX|RSA": {
       "goals": [
@@ -3798,6 +3798,41 @@
           "team": "SUI",
           "player": "Breel Embolo",
           "type": "RED"
+        }
+      ]
+    },
+    "FRA|ESP": {
+      "goals": [
+        {
+          "minute": 22,
+          "team": "ESP",
+          "scorer": "Oyarzabal",
+          "type": "PENALTY"
+        },
+        {
+          "minute": 58,
+          "team": "ESP",
+          "scorer": "Porro"
+        }
+      ],
+      "cards": [
+        {
+          "minute": 8,
+          "team": "FRA",
+          "player": "Adrien Rabiot",
+          "type": "YELLOW"
+        },
+        {
+          "minute": 86,
+          "team": "FRA",
+          "player": "Kylian Mbappé",
+          "type": "YELLOW"
+        },
+        {
+          "minute": 31,
+          "team": "ESP",
+          "player": "Marc Cucurella",
+          "type": "YELLOW"
         }
       ]
     }
