@@ -1,6 +1,6 @@
 {
   "source": "wikipedia",
-  "scrapedAt": "2026-07-15T20:58:29.266Z",
+  "scrapedAt": "2026-07-15T21:56:08.306Z",
   "matches": {
     "MEX|RSA": {
       "goals": [
@@ -3832,6 +3832,53 @@
           "minute": 31,
           "team": "ESP",
           "player": "Marc Cucurella",
+          "type": "YELLOW"
+        }
+      ]
+    },
+    "ENG|ARG": {
+      "goals": [
+        {
+          "minute": 55,
+          "team": "ENG",
+          "scorer": "Gordon"
+        },
+        {
+          "minute": 85,
+          "team": "ARG",
+          "scorer": "Fernández"
+        },
+        {
+          "minute": 90,
+          "injuryTime": 2,
+          "team": "ARG",
+          "scorer": "La. Martínez"
+        }
+      ],
+      "cards": [
+        {
+          "minute": 37,
+          "team": "ENG",
+          "player": "Elliot Anderson",
+          "type": "YELLOW"
+        },
+        {
+          "minute": 51,
+          "team": "ARG",
+          "player": "Cristian Romero",
+          "type": "YELLOW"
+        },
+        {
+          "minute": 42,
+          "team": "ARG",
+          "player": "Lisandro Martínez",
+          "type": "YELLOW"
+        },
+        {
+          "minute": 90,
+          "injuryTime": 4,
+          "team": "ARG",
+          "player": "Rodrigo De Paul",
           "type": "YELLOW"
         }
       ]
