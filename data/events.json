@@ -1,6 +1,6 @@
 {
   "source": "wikipedia",
-  "scrapedAt": "2026-07-18T22:35:27.378Z",
+  "scrapedAt": "2026-07-18T23:39:35.956Z",
   "matches": {
     "MEX|RSA": {
       "goals": [
@@ -3880,6 +3880,66 @@
           "team": "ARG",
           "player": "Rodrigo De Paul",
           "type": "YELLOW"
+        }
+      ]
+    },
+    "FRA|ENG": {
+      "goals": [
+        {
+          "minute": 48,
+          "team": "FRA",
+          "scorer": "Mbappé"
+        },
+        {
+          "minute": 66,
+          "team": "FRA",
+          "scorer": "Mbappé"
+        },
+        {
+          "minute": 54,
+          "team": "FRA",
+          "scorer": "Barcola"
+        },
+        {
+          "minute": 90,
+          "injuryTime": 6,
+          "team": "FRA",
+          "scorer": "Dembélé"
+        },
+        {
+          "minute": 3,
+          "team": "ENG",
+          "scorer": "Rice"
+        },
+        {
+          "minute": 18,
+          "team": "ENG",
+          "scorer": "Konsa"
+        },
+        {
+          "minute": 37,
+          "team": "ENG",
+          "scorer": "Saka",
+          "type": "PENALTY"
+        },
+        {
+          "minute": 45,
+          "injuryTime": 1,
+          "team": "ENG",
+          "scorer": "Saka",
+          "type": "PENALTY"
+        },
+        {
+          "minute": 87,
+          "team": "ENG",
+          "scorer": "Saka",
+          "type": "PENALTY"
+        },
+        {
+          "minute": 90,
+          "injuryTime": 8,
+          "team": "ENG",
+          "scorer": "Bellingham"
         }
       ]
     }
