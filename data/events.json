@@ -1,6 +1,6 @@
 {
   "source": "wikipedia",
-  "scrapedAt": "2026-07-18T21:37:53.558Z",
+  "scrapedAt": "2026-07-18T22:35:27.378Z",
   "matches": {
     "MEX|RSA": {
       "goals": [
@@ -2158,7 +2158,7 @@
         {
           "minute": 31,
           "team": "TUR",
-          "scorer": "Yılmaz"
+          "scorer": "Kökcü"
         },
         {
           "minute": 90,
