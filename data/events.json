@@ -1,6 +1,6 @@
 {
   "source": "wikipedia",
-  "scrapedAt": "2026-07-19T21:38:43.556Z",
+  "scrapedAt": "2026-07-19T22:38:30.367Z",
   "matches": {
     "MEX|RSA": {
       "goals": [
@@ -3940,6 +3940,54 @@
           "injuryTime": 8,
           "team": "ENG",
           "scorer": "Bellingham"
+        }
+      ]
+    },
+    "ESP|ARG": {
+      "goals": [
+        {
+          "minute": 106,
+          "team": "ESP",
+          "scorer": "Torres"
+        }
+      ],
+      "cards": [
+        {
+          "minute": 90,
+          "injuryTime": 2,
+          "team": "ARG",
+          "player": "Cristian Romero",
+          "type": "YELLOW"
+        },
+        {
+          "minute": 41,
+          "team": "ARG",
+          "player": "Lisandro Martínez",
+          "type": "YELLOW"
+        },
+        {
+          "minute": 82,
+          "team": "ARG",
+          "player": "Enzo Fernández",
+          "type": "RED"
+        },
+        {
+          "minute": 111,
+          "team": "ARG",
+          "player": "Alexis Mac Allister",
+          "type": "YELLOW"
+        },
+        {
+          "minute": 52,
+          "team": "ARG",
+          "player": "Leandro Paredes",
+          "type": "YELLOW"
+        },
+        {
+          "minute": 105,
+          "team": "ARG",
+          "player": "Lionel Scaloni",
+          "type": "YELLOW"
         }
       ]
     }
