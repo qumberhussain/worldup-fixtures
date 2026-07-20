@@ -1,6 +1,6 @@
 {
   "source": "wikipedia",
-  "scrapedAt": "2026-07-20T17:14:12.327Z",
+  "scrapedAt": "2026-07-20T19:20:16.784Z",
   "matches": {
     "MEX|RSA": {
       "goals": [
@@ -3978,7 +3978,7 @@
           "type": "YELLOW"
         },
         {
-          "minute": 53,
+          "minute": 52,
           "team": "ARG",
           "player": "Leandro Paredes",
           "type": "YELLOW"
